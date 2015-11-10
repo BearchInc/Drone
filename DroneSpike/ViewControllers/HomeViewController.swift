@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-	var drone: DJIDrone!
+	static var drone: DJIDrone!
 	
 	@IBOutlet weak var debugLabel: UILabel!
 	
@@ -47,8 +47,8 @@ extension HomeViewController: DJIAppManagerDelegate {
 		
 		var message = "New drone found"
 		if let drone = newDrone {
-			self.drone = drone
-			self.drone.delegate = self
+			HomeViewController.drone = drone
+			HomeViewController.drone.delegate = self
 		} else {
 			message = "error getting new drone"
 		}
