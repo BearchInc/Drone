@@ -18,6 +18,8 @@
 		36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */; };
 		36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8361BF21A980021ED2F /* CoreLocation.framework */; };
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
+		550291741BF26580002F7FD1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291721BF26580002F7FD1 /* Fabric.framework */; };
+		550291751BF26581002F7FD1 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
 		962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 		962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB20B1BF23B6B004FD44C /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,8 @@
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
 		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
+		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		962FB20B1BF23B6B004FD44C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,8 +73,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */,
+				550291741BF26580002F7FD1 /* Fabric.framework in Frameworks */,
 				36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */,
 				36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */,
+				550291751BF26581002F7FD1 /* Crashlytics.framework in Frameworks */,
 				36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +105,8 @@
 				36ADF8111BF13E1E0021ED2F /* DroneSpikeTests */,
 				36ADF81C1BF13E1E0021ED2F /* DroneSpikeUITests */,
 				36ADF7FB1BF13E1E0021ED2F /* Products */,
+				550291721BF26580002F7FD1 /* Fabric.framework */,
+				550291731BF26580002F7FD1 /* Crashlytics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +201,7 @@
 				36ADF7F61BF13E1E0021ED2F /* Sources */,
 				36ADF7F71BF13E1E0021ED2F /* Frameworks */,
 				36ADF7F81BF13E1E0021ED2F /* Resources */,
+				550291711BF2654E002F7FD1 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -308,6 +317,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		550291711BF2654E002F7FD1 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run d755fc6afce425dd611af6e6129b210edaa514ba 8cc8bb27b7b0cca83f23953ccd681dea7a61dc8e36791ce88768da1c16b4042b";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		36ADF7F61BF13E1E0021ED2F /* Sources */ = {
@@ -467,6 +493,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DroneSpike",
 					"$(PROJECT_DIR)/DroneSpike/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DroneSpike/ProjectFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -487,6 +514,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DroneSpike",
 					"$(PROJECT_DIR)/DroneSpike/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DroneSpike/ProjectFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
