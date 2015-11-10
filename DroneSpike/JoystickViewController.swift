@@ -3,6 +3,7 @@ import UIKit
 class JoystickViewController: UIViewController, DJIDroneDelegate {
     var drone : DJIDrone = DJIDrone(type: DJIDroneType.Phantom3Professional)
     
+    @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         drone.delegate = self
         super.viewDidLoad()
@@ -19,6 +20,17 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
     
     func droneOnConnectionStatusChanged(status:DJIConnectionStatus) {
         
+    }
+    
+    @IBAction func didTouchTakeOff(sender: AnyObject) {
+        drone.mainController.startTakeoffWithResult { (error) -> Void in
+            if error != nil {
+                self.label.text = error.errorDescription
+            } else {
+                self.label.text = "success"
+            }
+        }
+    
     }
 }
 
