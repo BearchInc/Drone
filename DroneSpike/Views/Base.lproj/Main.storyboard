@@ -112,10 +112,10 @@
             </objects>
             <point key="canvasLocation" x="1117" y="303"/>
         </scene>
-        <!--View Controller-->
+        <!--Waypoint View Controller-->
         <scene sceneID="Fi2-is-a30">
             <objects>
-                <viewController id="nqv-AC-OpV" sceneMemberID="viewController">
+                <viewController id="nqv-AC-OpV" customClass="WaypointViewController" customModule="DroneSpike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VyH-ZD-Jzc"/>
                         <viewControllerLayoutGuide type="bottom" id="TyP-5H-QHO"/>
@@ -123,9 +123,29 @@
                     <view key="view" contentMode="scaleToFill" id="OKa-u1-cQE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xE6-Tq-VNU" userLabel="Debug Label">
+                                <rect key="frame" x="20" y="64" width="150" height="300"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="2US-QK-jJr"/>
+                                    <constraint firstAttribute="height" constant="300" id="nXz-hv-aAM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xE6-Tq-VNU" firstAttribute="leading" secondItem="OKa-u1-cQE" secondAttribute="leadingMargin" id="1fe-7f-2tt"/>
+                            <constraint firstItem="xE6-Tq-VNU" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" id="ntv-gj-3f5"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="debugLabel" destination="xE6-Tq-VNU" id="Aep-DN-yOc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qB-ux-GAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
