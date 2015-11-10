@@ -34,6 +34,17 @@
                                     <segue destination="nqv-AC-OpV" kind="show" id="QbH-Ju-FKh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpd-ei-CWi" userLabel="Debug Label">
+                                <rect key="frame" x="20" y="101" width="150" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ftL-u9-eee"/>
+                                    <constraint firstAttribute="width" constant="150" id="hU3-Sy-ySA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,10 +52,15 @@
                             <constraint firstItem="xER-uH-eBV" firstAttribute="top" secondItem="a0R-dH-iWv" secondAttribute="bottom" constant="50" id="6MV-Oz-EcJ"/>
                             <constraint firstItem="a0R-dH-iWv" firstAttribute="top" secondItem="Dai-Sx-JSY" secondAttribute="bottom" constant="200" id="AwS-6K-6Ms"/>
                             <constraint firstItem="xER-uH-eBV" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="IUO-qI-rCZ"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="kpd-ei-CWi" secondAttribute="leading" id="ScC-5g-1Ja"/>
                             <constraint firstItem="a0R-dH-iWv" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="TvW-bP-GPm"/>
+                            <constraint firstItem="kpd-ei-CWi" firstAttribute="top" secondItem="Dai-Sx-JSY" secondAttribute="bottom" constant="37" id="rsk-4M-EaN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="I4T-g1-Chs"/>
+                    <connections>
+                        <outlet property="debugLabel" destination="kpd-ei-CWi" id="coW-RT-2xA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jjd-vk-YQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
