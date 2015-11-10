@@ -9,8 +9,33 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
-
+class ViewController: UIViewController, CLLocationManagerDelegate, DJIAppManagerDelegate, DJIDroneDelegate, DJIMainControllerDelegate {
+   
+    var drone: DJIDrone = DJIDrone(type: DJIDroneType.Phantom3Professional)
+    
+    @IBAction func startMission(sender: AnyObject) {
+        let mission = drone.mainController.navigationManager.waypointMission
+        let currentLocation = locationManager.location!
+        let twoMetersAway = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude + 0.00002, longitude: currentLocation.coordinate.longitude)
+        let waypoint = DJIWaypoint(coordinate: currentLocation.coordinate)
+        let waypointTwoMetersAway = DJIWaypoint(coordinate: twoMetersAway)
+        
+        mission.addWaypoint(waypoint)
+        mission.addWaypoint(waypointTwoMetersAway)
+        mission.finishedAction = DJIWaypointMissionFinishedAction.GoHome
+        
+        mission.uploadMissionWithResult { error -> Void in
+            if error != nil {
+                UIAlertView(title: "Error Uploading Mission", message: error.errorDescription, delegate: nil, cancelButtonTitle: "OK").show()
+            } else {
+                mission.startMissionWithResult { error -> Void in
+                    UIAlertView(title: "Error Starting Mission", message: error.errorDescription, delegate: nil, cancelButtonTitle: "OK").show()
+                }
+            }
+        }
+        
+    }
+    
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self
@@ -18,11 +43,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         return manager
     }()
     
-    lazy var drone = DJIDrone(type: DJIDroneType.Phantom3Professional)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        drone.connectToDrone()
+        DJIAppManager.registerApp("602797533f7b529cc9470265", withDelegate: self)
         
         if CLLocationManager.authorizationStatus() == .NotDetermined {
             locationManager.requestAlwaysAuthorization()
@@ -31,19 +54,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
+
+        self.drone.delegate = self
+        self.drone.mainController.mcDelegate = self
+        self.drone.connectToDrone()
         
         print("Loaded")
-        
-        let waypoint = DJIWaypoint(coordinate: locationManager.location!.coordinate)
-        let mission = drone.mainController.navigationManager.waypointMission
-        mission.addWaypoint(waypoint)
-        mission.uploadMissionWithResult { error -> Void in
-            print("Error \(error.errorDescription)")
+    }
+    
+    func droneOnConnectionStatusChanged(status: DJIConnectionStatus) {
+        print("Drone status changed: \(status)")
+    }
+    
+    func mainController(mc: DJIMainController!, didMainControlError error: MCError) {
+        print("Main controller error: \(error.rawValue)")
+    }
+    
+    func appManagerDidRegisterWithError(errorCode: Int32) {
+        if errorCode == 0 {
+            UIAlertView(title: "Register", message: "Success", delegate: nil, cancelButtonTitle: "OK").show()
+        } else {
+            UIAlertView(title: "Register", message: "Error: \(errorCode)", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+    }
+    
+    func appManagerDidConnectedDroneChanged(newDrone: DJIDrone?) {
+        if let drone = newDrone {
+            self.drone = drone
+            UIAlertView(title: "Creating Drone", message: "Found Existent One", delegate: nil, cancelButtonTitle: "OK").show()
+        } else {
+            self.drone = DJIDrone(type: DJIDroneType.Phantom3Professional)
+            UIAlertView(title: "Creating Drone", message: "Fresh New One", delegate: nil, cancelButtonTitle: "OK").show()
         }
         
-        mission.startMissionWithResult { error -> Void in
-            print("Error \(error.errorDescription)")
-        }
+        drone.connectToDrone()
     }
     
     override func viewDidDisappear(animated: Bool) {
