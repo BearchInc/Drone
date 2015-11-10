@@ -21,16 +21,19 @@ class HomeViewController: UIViewController {
     }
 	
 	func setDebugText(message: String) {
-		debugLabel.text = message
+		debugLabel.text = debugLabel.text! + "\n" + message
 	}
 
 }
 
-extension HomeViewController: DJIAppManagerDelegate, DJIDroneDelegate {
-	
+extension HomeViewController: DJIDroneDelegate {
 	func droneOnConnectionStatusChanged(status: DJIConnectionStatus) {
-		setDebugText("Status \(status)")
+		setDebugText("Status \(status.rawValue)")
 	}
+}
+
+extension HomeViewController: DJIAppManagerDelegate {
+	
 	
 	func appManagerDidRegisterWithError(statusCode: Int32) {
 		if statusCode == RegisterSuccess {
@@ -45,6 +48,7 @@ extension HomeViewController: DJIAppManagerDelegate, DJIDroneDelegate {
 		var message = "New drone found"
 		if let drone = newDrone {
 			self.drone = drone
+			self.drone.delegate = self
 		} else {
 			message = "error getting new drone"
 		}
