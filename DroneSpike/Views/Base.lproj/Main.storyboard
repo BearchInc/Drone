@@ -1,11 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MKI-2g-2hQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="oPe-fI-gyU">
+            <objects>
+                <viewController id="9gs-Re-RNY" customClass="HomeViewController" customModule="DroneSpike" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dai-Sx-JSY"/>
+                        <viewControllerLayoutGuide type="bottom" id="oAU-F3-6NG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EU4-Ws-WcS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0R-dH-iWv" userLabel="Joystick Button">
+                                <rect key="frame" x="271.5" y="264" width="57" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Joystick"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="apt-Wy-h2j"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xER-uH-eBV" userLabel="Waypoint Button">
+                                <rect key="frame" x="268" y="344" width="64" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Waypoint"/>
+                                <connections>
+                                    <segue destination="nqv-AC-OpV" kind="show" id="QbH-Ju-FKh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xER-uH-eBV" firstAttribute="top" secondItem="a0R-dH-iWv" secondAttribute="bottom" constant="50" id="6MV-Oz-EcJ"/>
+                            <constraint firstItem="a0R-dH-iWv" firstAttribute="top" secondItem="Dai-Sx-JSY" secondAttribute="bottom" constant="200" id="AwS-6K-6Ms"/>
+                            <constraint firstItem="xER-uH-eBV" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="IUO-qI-rCZ"/>
+                            <constraint firstItem="a0R-dH-iWv" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="TvW-bP-GPm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="I4T-g1-Chs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jjd-vk-YQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="262" y="798"/>
+        </scene>
         <!--Joystick View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -50,7 +94,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="303"/>
+            <point key="canvasLocation" x="1117" y="303"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Fi2-is-a30">
+            <objects>
+                <viewController id="nqv-AC-OpV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VyH-ZD-Jzc"/>
+                        <viewControllerLayoutGuide type="bottom" id="TyP-5H-QHO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OKa-u1-cQE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qB-ux-GAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1157" y="1258"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="M2Q-Y3-imz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MKI-2g-2hQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="adh-M2-329">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9gs-Re-RNY" kind="relationship" relationship="rootViewController" id="EcL-KW-9V8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EBp-m7-HmI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-550" y="798"/>
         </scene>
     </scenes>
 </document>

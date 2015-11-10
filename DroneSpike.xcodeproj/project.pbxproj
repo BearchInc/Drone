@@ -19,6 +19,7 @@
 		36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8361BF21A980021ED2F /* CoreLocation.framework */; };
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
 		962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
+		962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB20B1BF23B6B004FD44C /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
 		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
+		962FB20B1BF23B6B004FD44C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			children = (
 				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
 				36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */,
+				962FB20B1BF23B6B004FD44C /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */,
 				550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */,
 				36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */,
+				962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
