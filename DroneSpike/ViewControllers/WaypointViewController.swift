@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class WaypointViewController: UIViewController, CLLocationManagerDelegate {
 
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -45,11 +45,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             print("Error \(error.errorDescription)")
         }
     }
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		drone.connectToDrone()
+	}
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        drone.disconnectToDrone()
-    }
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		drone.disconnectToDrone()
+	}
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         print("Auth status changed to \(status)")

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */; };
-		36ADF8001BF13E1E0021ED2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FF1BF13E1E0021ED2F /* ViewController.swift */; };
+		36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */; };
 		36ADF8031BF13E1E0021ED2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36ADF8011BF13E1E0021ED2F /* Main.storyboard */; };
 		36ADF8051BF13E1E0021ED2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36ADF8041BF13E1E0021ED2F /* Assets.xcassets */; };
 		36ADF8081BF13E1E0021ED2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36ADF8061BF13E1E0021ED2F /* LaunchScreen.storyboard */; };
@@ -41,7 +41,7 @@
 /* Begin PBXFileReference section */
 		36ADF7FA1BF13E1E0021ED2F /* DroneSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		36ADF7FF1BF13E1E0021ED2F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
 		36ADF8021BF13E1E0021ED2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36ADF8041BF13E1E0021ED2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36ADF8071BF13E1E0021ED2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
-				36ADF7FF1BF13E1E0021ED2F /* ViewController.swift */,
+				36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36ADF8001BF13E1E0021ED2F /* ViewController.swift in Sources */,
+				36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */,
 				550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */,
 				36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */,
 			);
