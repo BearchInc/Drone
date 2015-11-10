@@ -18,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 //        DJIAppManager.registerApp("602797533f7b529cc9470265", withDelegate: self)
         // Override point for customization after application launch.
-        Fabric.with([Crashlytics.self()])
+        let cl = Crashlytics.self()
+        cl.debugMode = true
+        Fabric.with([cl])
+
         return true
     }
     
