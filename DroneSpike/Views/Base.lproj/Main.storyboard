@@ -78,33 +78,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-wW-QBe">
-                                <rect key="frame" x="244" y="285" width="111" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-wW-QBe">
+                                <rect key="frame" x="271" y="285" width="58" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Take Off"/>
                                 <connections>
                                     <action selector="didTouchTakeOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SGj-hB-TWR"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ErrorLog" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajq-jZ-FxV">
-                                <rect key="frame" x="20" y="20" width="560" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ErrorLog" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajq-jZ-FxV">
+                                <rect key="frame" x="20" y="64" width="560" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm8-OI-vCi">
-                                <rect key="frame" x="276" y="214" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm8-OI-vCi">
+                                <rect key="frame" x="285" y="214" width="30" height="30"/>
                                 <state key="normal" title="/\"/>
                                 <connections>
                                     <action selector="didTouchThrottleUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KrS-Mg-LYq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3L-zc-jfJ">
-                                <rect key="frame" x="277" y="357" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3L-zc-jfJ">
+                                <rect key="frame" x="285" y="357" width="30" height="30"/>
                                 <state key="normal" title="\/"/>
                                 <connections>
                                     <action selector="didTouchThrottleDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SAY-Ho-61u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWL-96-Lfn">
+                                <rect key="frame" x="210" y="285" width="51" height="30"/>
+                                <state key="normal" title="Control"/>
+                                <connections>
+                                    <action selector="control:" destination="BYZ-38-t0r" eventType="touchUpInside" id="meV-EU-GbI"/>
+                                    <action selector="didTouchTakeControl:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xVb-m9-WSQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -117,8 +125,10 @@
                             <constraint firstItem="K3L-zc-jfJ" firstAttribute="centerX" secondItem="YNa-wW-QBe" secondAttribute="centerX" id="MiY-Qm-QZ7"/>
                             <constraint firstItem="ajq-jZ-FxV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Whq-IB-wH1"/>
                             <constraint firstItem="ajq-jZ-FxV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fbh-SC-WgS"/>
+                            <constraint firstItem="YNa-wW-QBe" firstAttribute="leading" secondItem="kWL-96-Lfn" secondAttribute="trailing" constant="10" id="hoI-GI-BOD"/>
                             <constraint firstItem="YNa-wW-QBe" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oNn-2F-IAY"/>
                             <constraint firstItem="YNa-wW-QBe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qKg-BS-gcB"/>
+                            <constraint firstItem="kWL-96-Lfn" firstAttribute="centerY" secondItem="YNa-wW-QBe" secondAttribute="centerY" id="xAD-uj-qX3"/>
                             <constraint firstItem="YNa-wW-QBe" firstAttribute="top" secondItem="fm8-OI-vCi" secondAttribute="bottom" constant="41" id="zG0-oN-8E5"/>
                         </constraints>
                     </view>

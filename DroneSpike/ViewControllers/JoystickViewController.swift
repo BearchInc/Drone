@@ -2,7 +2,7 @@ import UIKit
 
 class JoystickViewController: UIViewController, DJIDroneDelegate {
     var mThrottle : Float = 0.0
-    var drone : DJIDrone = DJIDrone(type: DJIDroneType.Phantom3Professional)
+	lazy var drone = HomeViewController.drone
     
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
@@ -23,15 +23,24 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
         print(status)
     }
     
+    @IBAction func control(sender: AnyObject) {
+        drone.mainController.navigationManager.enterNavigationModeWithResult { (error) -> Void in
+            if error != nil {
+                self.label.text = error.errorDescription
+            }
+        }
+    }
+    
     @IBAction func didTouchThrottleDown(sender: AnyObject) {
-        mThrottle--
+        mThrottle = mThrottle - 10000
     }
     
     @IBAction func didTouchThrottleUp(sender: AnyObject) {
-        mThrottle++
+        mThrottle = mThrottle + 10000
     }
     
     func udpateDrone() {
+        drone.mainController.navigationManager.flightControl.isEnable
         let data = DJIFlightControlData(mPitch: 0.0, mRoll: 0.0, mYaw: 0.0, mThrottle: mThrottle)
         drone.mainController.navigationManager.flightControl.sendFlightControlData(data, withResult: nil)
     }
