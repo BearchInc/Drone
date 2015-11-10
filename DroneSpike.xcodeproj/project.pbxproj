@@ -17,6 +17,7 @@
 		36ADF82C1BF13E2F0021ED2F /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 		36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82D1BF13E3E0021ED2F /* libz.tbd */; };
 		36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */; };
+		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
+		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */,
 				36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */,
 				36ADF7FF1BF13E1E0021ED2F /* ViewController.swift */,
+				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
 				36ADF8011BF13E1E0021ED2F /* Main.storyboard */,
 				36ADF8041BF13E1E0021ED2F /* Assets.xcassets */,
 				36ADF8061BF13E1E0021ED2F /* LaunchScreen.storyboard */,
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36ADF8001BF13E1E0021ED2F /* ViewController.swift in Sources */,
+				550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */,
 				36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +519,7 @@
 				36ADF8241BF13E1E0021ED2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36ADF8251BF13E1E0021ED2F /* Build configuration list for PBXNativeTarget "DroneSpikeTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +528,7 @@
 				36ADF8271BF13E1E0021ED2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36ADF8281BF13E1E0021ED2F /* Build configuration list for PBXNativeTarget "DroneSpikeUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +537,7 @@
 				36ADF82A1BF13E1E0021ED2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
