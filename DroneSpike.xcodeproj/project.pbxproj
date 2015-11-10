@@ -18,6 +18,7 @@
 		36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82D1BF13E3E0021ED2F /* libz.tbd */; };
 		36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */; };
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
+		36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8361BF21A980021ED2F /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
+		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */,
 				36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */,
 				36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */,
 				36ADF82C1BF13E2F0021ED2F /* DJISDK.framework in Frameworks */,
@@ -90,6 +93,7 @@
 		36ADF7F11BF13E1E0021ED2F = {
 			isa = PBXGroup;
 			children = (
+				36ADF8361BF21A980021ED2F /* CoreLocation.framework */,
 				36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */,
 				36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */,
 				36ADF82D1BF13E3E0021ED2F /* libz.tbd */,

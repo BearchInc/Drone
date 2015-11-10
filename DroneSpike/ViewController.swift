@@ -7,18 +7,55 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
+    lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        return manager
+    }()
+    
+    lazy var drone = DJIDrone(type: DJIDroneType.Phantom3Professional)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        drone.connectToDrone()
+        
+        if CLLocationManager.authorizationStatus() == .NotDetermined {
+            locationManager.requestAlwaysAuthorization()
+        }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+        
+        print("Loaded")
+        
+        let waypoint = DJIWaypoint(coordinate: locationManager.location!.coordinate)
+        let mission = drone.mainController.navigationManager.waypointMission
+        mission.addWaypoint(waypoint)
+        mission.uploadMissionWithResult { error -> Void in
+            print("Error \(error.errorDescription)")
+        }
+        
+        mission.startMissionWithResult { error -> Void in
+            print("Error \(error.errorDescription)")
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        drone.disconnectToDrone()
     }
-
-
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        print("Auth status changed to \(status)")
+        if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+    }
 }
 
