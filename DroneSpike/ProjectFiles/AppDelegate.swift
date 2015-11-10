@@ -20,7 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, DJIAppManagerDelegate {
     }
     
     func appManagerDidRegisterWithError(errorCode: Int32) {
-        print("Error registering", errorCode)
+		if errorCode == RegisterSuccess {
+			print("Registered successfully")
+		} else {
+			print("Error registering", errorCode)
+		}
     }
 
     func applicationWillResignActive(application: UIApplication) {
