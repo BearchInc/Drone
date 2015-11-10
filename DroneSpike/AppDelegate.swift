@@ -9,14 +9,18 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, DJIAppManagerDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        DJIAppManager.registerApp("de4fab614ede31c520936e1d", withDelegate: self)
         // Override point for customization after application launch.
         return true
+    }
+    
+    func appManagerDidRegisterWithError(errorCode: Int32) {
+        print("Error registering", errorCode)
     }
 
     func applicationWillResignActive(application: UIApplication) {
