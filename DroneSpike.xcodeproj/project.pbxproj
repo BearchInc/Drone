@@ -14,11 +14,11 @@
 		36ADF8081BF13E1E0021ED2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36ADF8061BF13E1E0021ED2F /* LaunchScreen.storyboard */; };
 		36ADF8131BF13E1E0021ED2F /* DroneSpikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF8121BF13E1E0021ED2F /* DroneSpikeTests.swift */; };
 		36ADF81E1BF13E1E0021ED2F /* DroneSpikeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF81D1BF13E1E0021ED2F /* DroneSpikeUITests.swift */; };
-		36ADF82C1BF13E2F0021ED2F /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 		36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82D1BF13E3E0021ED2F /* libz.tbd */; };
 		36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */; };
-		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
 		36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8361BF21A980021ED2F /* CoreLocation.framework */; };
+		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
+		962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +57,8 @@
 		36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
-		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
 		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */,
 				36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */,
 				36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */,
 				36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */,
-				36ADF82C1BF13E2F0021ED2F /* DJISDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,10 +93,6 @@
 		36ADF7F11BF13E1E0021ED2F = {
 			isa = PBXGroup;
 			children = (
-				36ADF8361BF21A980021ED2F /* CoreLocation.framework */,
-				36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */,
-				36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */,
-				36ADF82D1BF13E3E0021ED2F /* libz.tbd */,
 				36ADF7FC1BF13E1E0021ED2F /* DroneSpike */,
 				36ADF8111BF13E1E0021ED2F /* DroneSpikeTests */,
 				36ADF81C1BF13E1E0021ED2F /* DroneSpikeUITests */,
@@ -117,15 +113,10 @@
 		36ADF7FC1BF13E1E0021ED2F /* DroneSpike */ = {
 			isa = PBXGroup;
 			children = (
-				36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */,
-				36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */,
-				36ADF7FF1BF13E1E0021ED2F /* ViewController.swift */,
-				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
-				36ADF8011BF13E1E0021ED2F /* Main.storyboard */,
-				36ADF8041BF13E1E0021ED2F /* Assets.xcassets */,
-				36ADF8061BF13E1E0021ED2F /* LaunchScreen.storyboard */,
-				36ADF8091BF13E1E0021ED2F /* Info.plist */,
-				36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */,
+				962FB2061BF23620004FD44C /* Frameworks */,
+				962FB2071BF23634004FD44C /* ProjectFiles */,
+				962FB2091BF2363F004FD44C /* ViewControllers */,
+				962FB2081BF2363B004FD44C /* Views */,
 			);
 			path = DroneSpike;
 			sourceTree = "<group>";
@@ -146,6 +137,47 @@
 				36ADF81F1BF13E1E0021ED2F /* Info.plist */,
 			);
 			path = DroneSpikeUITests;
+			sourceTree = "<group>";
+		};
+		962FB2061BF23620004FD44C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36ADF8361BF21A980021ED2F /* CoreLocation.framework */,
+				36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */,
+				36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */,
+				36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */,
+				36ADF82D1BF13E3E0021ED2F /* libz.tbd */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		962FB2071BF23634004FD44C /* ProjectFiles */ = {
+			isa = PBXGroup;
+			children = (
+				36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */,
+				36ADF8041BF13E1E0021ED2F /* Assets.xcassets */,
+				36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */,
+				36ADF8091BF13E1E0021ED2F /* Info.plist */,
+			);
+			path = ProjectFiles;
+			sourceTree = "<group>";
+		};
+		962FB2081BF2363B004FD44C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				36ADF8061BF13E1E0021ED2F /* LaunchScreen.storyboard */,
+				36ADF8011BF13E1E0021ED2F /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		962FB2091BF2363F004FD44C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
+				36ADF7FF1BF13E1E0021ED2F /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +355,7 @@
 				36ADF8021BF13E1E0021ED2F /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		36ADF8061BF13E1E0021ED2F /* LaunchScreen.storyboard */ = {
@@ -331,6 +364,7 @@
 				36ADF8071BF13E1E0021ED2F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -428,12 +462,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DroneSpike",
+					"$(PROJECT_DIR)/DroneSpike/Frameworks",
 				);
-				INFOPLIST_FILE = DroneSpike/Info.plist;
+				INFOPLIST_FILE = DroneSpike/ProjectFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bearch.DroneSpike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DroneSpike/DroneSpike-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DroneSpike/ProjectFiles/DroneSpike-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -447,12 +482,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DroneSpike",
+					"$(PROJECT_DIR)/DroneSpike/Frameworks",
 				);
-				INFOPLIST_FILE = DroneSpike/Info.plist;
+				INFOPLIST_FILE = DroneSpike/ProjectFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bearch.DroneSpike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DroneSpike/DroneSpike-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DroneSpike/ProjectFiles/DroneSpike-Bridging-Header.h";
 			};
 			name = Release;
 		};
