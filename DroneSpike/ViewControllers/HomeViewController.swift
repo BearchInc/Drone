@@ -29,14 +29,14 @@ class HomeViewController: UIViewController {
 extension HomeViewController: DJIAppManagerDelegate, DJIDroneDelegate {
 	
 	func droneOnConnectionStatusChanged(status: DJIConnectionStatus) {
-		print("Status \(status)")
+		setDebugText("Status \(status)")
 	}
 	
-	func appManagerDidRegisterWithError(errorCode: Int32) {
-		if errorCode == RegisterSuccess {
+	func appManagerDidRegisterWithError(statusCode: Int32) {
+		if statusCode == RegisterSuccess {
 			setDebugText("Registered successfully")
 		} else {
-			print("Error registering", errorCode)
+			setDebugText("Error registering \(statusCode)")
 		}
 	}
 	
