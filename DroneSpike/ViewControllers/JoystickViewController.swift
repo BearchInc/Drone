@@ -1,6 +1,7 @@
 import UIKit
 
 class JoystickViewController: UIViewController, DJIDroneDelegate {
+    var mThrottle : Float = 0.0
     var drone : DJIDrone = DJIDrone(type: DJIDroneType.Phantom3Professional)
     
     @IBOutlet weak var label: UILabel!
@@ -19,7 +20,20 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
     }
     
     func droneOnConnectionStatusChanged(status:DJIConnectionStatus) {
-        
+        print(status)
+    }
+    
+    @IBAction func didTouchThrottleDown(sender: AnyObject) {
+        mThrottle--
+    }
+    
+    @IBAction func didTouchThrottleUp(sender: AnyObject) {
+        mThrottle++
+    }
+    
+    func udpateDrone() {
+        let data = DJIFlightControlData(mPitch: 0.0, mRoll: 0.0, mYaw: 0.0, mThrottle: mThrottle)
+        drone.mainController.navigationManager.flightControl.sendFlightControlData(data, withResult: nil)
     }
     
     @IBAction func didTouchTakeOff(sender: AnyObject) {
