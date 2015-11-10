@@ -32,16 +32,18 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
     }
     
     @IBAction func didTouchThrottleDown(sender: AnyObject) {
-        mThrottle = mThrottle - 10000
+        mThrottle = 1
+        udpateDrone()
     }
     
     @IBAction func didTouchThrottleUp(sender: AnyObject) {
-        mThrottle = mThrottle + 10000
+        mThrottle = -1
+        udpateDrone()
     }
     
     func udpateDrone() {
-        drone.mainController.navigationManager.flightControl.isEnable
-        let data = DJIFlightControlData(mPitch: 0.0, mRoll: 0.0, mYaw: 0.0, mThrottle: mThrottle)
+        var data = DJIFlightControlData()
+        data.mThrottle = mThrottle
         drone.mainController.navigationManager.flightControl.sendFlightControlData(data, withResult: nil)
     }
     

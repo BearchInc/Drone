@@ -112,7 +112,6 @@
                                 <state key="normal" title="Control"/>
                                 <connections>
                                     <action selector="control:" destination="BYZ-38-t0r" eventType="touchUpInside" id="meV-EU-GbI"/>
-                                    <action selector="didTouchTakeControl:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xVb-m9-WSQ"/>
                                 </connections>
                             </button>
                         </subviews>
