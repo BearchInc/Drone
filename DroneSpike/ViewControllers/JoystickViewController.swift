@@ -1,8 +1,9 @@
 import UIKit
 
 class JoystickViewController: UIViewController, DJIDroneDelegate {
-    var mThrottle : Float = 0.0
-	lazy var drone = HomeViewController.drone
+    var throttle : Float = 0.0
+    var yaw : Float = 0.0
+    lazy var drone = HomeViewController.drone
     
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
@@ -32,19 +33,36 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
     }
     
     @IBAction func didTouchThrottleDown(sender: AnyObject) {
-        mThrottle = 1
-        udpateDrone()
+        throttle = -1
+        updateDrone()
     }
     
     @IBAction func didTouchThrottleUp(sender: AnyObject) {
-        mThrottle = -1
-        udpateDrone()
+        throttle = 1
+        updateDrone()
     }
     
-    func udpateDrone() {
+    @IBAction func didTouchRight(sender: AnyObject) {
+        yaw = 10
+        updateDrone()
+    }
+    
+    @IBAction func didTouchLeft(sender: AnyObject) {
+        yaw = -10
+        updateDrone()
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Landscape
+    }
+    
+    func updateDrone() {
         var data = DJIFlightControlData()
-        data.mThrottle = mThrottle
+        data.mThrottle = throttle
+        data.mYaw = yaw
         drone.mainController.navigationManager.flightControl.sendFlightControlData(data, withResult: nil)
+        throttle = 0
+        yaw = 0
     }
     
     @IBAction func didTouchTakeOff(sender: AnyObject) {
