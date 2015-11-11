@@ -2,7 +2,7 @@ import UIKit
 
 class JoystickViewController: UIViewController, DJIDroneDelegate {
     var mThrottle : Float = 0.0
-	lazy var drone = HomeViewController.drone!
+	lazy var drone = HomeViewController.drone
     
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {

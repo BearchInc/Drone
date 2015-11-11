@@ -162,28 +162,44 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="2"/>
                                 <animations/>
                             </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THz-Iq-upi">
-                                <rect key="frame" x="20" y="74" width="52" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THz-Iq-upi">
+                                <rect key="frame" x="20" y="84" width="52" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Edit"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="0Ta-sK-1oE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected" title="Done">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="didTouchEditMission:" destination="nqv-AC-OpV" eventType="touchUpInside" id="nzf-Ie-aNr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLP-rm-Aiz">
-                                <rect key="frame" x="80" y="74" width="52" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLP-rm-Aiz">
+                                <rect key="frame" x="80" y="84" width="52" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="XaG-gv-JUY"/>
+                                </constraints>
                                 <state key="normal" title="Clear"/>
                                 <connections>
                                     <action selector="didTouchClearMission:" destination="nqv-AC-OpV" eventType="touchUpInside" id="yuF-AE-nMW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBd-9s-aFX">
-                                <rect key="frame" x="459" y="74" width="121" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBd-9s-aFX">
+                                <rect key="frame" x="459" y="84" width="121" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="bnY-aB-uGI"/>
+                                </constraints>
                                 <state key="normal" title="Start Mission"/>
                                 <connections>
                                     <action selector="didTouchStartMission:" destination="nqv-AC-OpV" eventType="touchUpInside" id="fp6-tk-qGF"/>
@@ -193,17 +209,24 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="THz-Iq-upi" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" constant="20" id="03J-iC-dfU"/>
                             <constraint firstItem="hL0-WA-kHO" firstAttribute="leading" secondItem="OKa-u1-cQE" secondAttribute="leadingMargin" constant="-20" id="39r-o9-81F"/>
                             <constraint firstItem="MJp-9M-YGG" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" id="5SG-SX-Wo9"/>
                             <constraint firstItem="MJp-9M-YGG" firstAttribute="leading" secondItem="OKa-u1-cQE" secondAttribute="leadingMargin" constant="-20" id="6QI-5Z-a9Q"/>
+                            <constraint firstItem="wLP-rm-Aiz" firstAttribute="leading" secondItem="THz-Iq-upi" secondAttribute="trailing" constant="8" id="IDr-Gc-3Tm"/>
                             <constraint firstItem="hL0-WA-kHO" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" id="KTZ-mx-hnk"/>
                             <constraint firstItem="TyP-5H-QHO" firstAttribute="top" secondItem="MJp-9M-YGG" secondAttribute="bottom" id="MnQ-lk-iG3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hL0-WA-kHO" secondAttribute="trailing" constant="-20" id="OcT-2i-9Ji"/>
+                            <constraint firstItem="DBd-9s-aFX" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" constant="20" id="PAb-8v-EfI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MJp-9M-YGG" secondAttribute="trailing" constant="-20" id="SxI-pX-zhx"/>
+                            <constraint firstItem="wLP-rm-Aiz" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" constant="20" id="bua-ou-gCO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DBd-9s-aFX" secondAttribute="trailing" id="jPm-n9-FHO"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="THz-Iq-upi" secondAttribute="leading" id="kB7-3q-luV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="MJp-9M-YGG" id="Zd6-gb-vt6"/>
+                        <outlet property="modeButton" destination="THz-Iq-upi" id="cQS-5b-iDO"/>
                         <outlet property="progressBar" destination="hL0-WA-kHO" id="rhm-YH-940"/>
                     </connections>
                 </viewController>

@@ -2,7 +2,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-	static var drone: DJIDrone?
+	static var drone: DJIDrone = DJIDrone(type: DJIDroneType.Phantom3Professional)
 	
 	@IBOutlet weak var debugLabel: UILabel!
 	
@@ -20,8 +20,10 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: DJIDroneDelegate {
 	func droneOnConnectionStatusChanged(status: DJIConnectionStatus) {
+        setDebugText("Status \(status.rawValue)")
+        
         if (status == DJIConnectionStatus.ConnectionSucceeded) {
-            HomeViewController.drone!.mainController.navigationManager.enterNavigationModeWithResult({ error -> Void in
+            HomeViewController.drone.mainController.navigationManager.enterNavigationModeWithResult({ error -> Void in
                 if error.errorCode == DJIErrorCode.None.rawValue {
                     UIAlertView(title: "Connection Status", message: "Entered Navigation Mode!", delegate: nil, cancelButtonTitle: "OK").show()
                 }
@@ -41,16 +43,9 @@ extension HomeViewController: DJIAppManagerDelegate {
 	}
 	
 	func appManagerDidConnectedDroneChanged(newDrone: DJIDrone!) {
-		
-		var message = "New drone found"
-		if let drone = newDrone {
-			HomeViewController.drone = drone
-			HomeViewController.drone!.delegate = self
-		} else {
-			message = "error getting new drone"
-		}
-		
-		setDebugText(message)
+        HomeViewController.drone = newDrone
+        HomeViewController.drone.delegate = self
+        UIAlertView(title: "", message: "New drone found", delegate: nil, cancelButtonTitle: "OK").show()
 	}
 	
 }
