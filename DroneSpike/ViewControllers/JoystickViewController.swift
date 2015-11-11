@@ -5,7 +5,10 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
     var yaw : Float = 0.0
     var pitch : Float = 0.0
     var roll : Float = 0.0
+    var timer : NSTimer?
+    var i = 1
     lazy var drone = HomeViewController.drone
+//    var drone = DJIDrone()
     
     @IBOutlet weak var label: UILabel!
     
@@ -38,56 +41,80 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
     
     @IBAction func didTouchThrottleDown(sender: AnyObject) {
         throttle = -1
-        updateDrone()
+        touchStarted()
     }
     
     @IBAction func didTouchThrottleUp(sender: AnyObject) {
         throttle = 1
-        updateDrone()
+        touchStarted()
     }
     
     @IBAction func didTouchRollRight(sender: AnyObject) {
-        roll = 1
-        updateDrone()
+        roll = 20
+        touchStarted()
     }
     
     @IBAction func didTouchRollLeft(sender: AnyObject) {
-        roll = -1
-        updateDrone()
+        roll = -20
+        touchStarted()
     }
     
     @IBAction func didTouchPitchFoward(sender: AnyObject) {
-        pitch = 1
-        updateDrone()
+        pitch = -20
+        touchStarted()
     }
     
     @IBAction func didTouchPitchBack(sender: AnyObject) {
-        pitch = -1
-        updateDrone()
+        pitch = 20
+        touchStarted()
     }
     
     
     @IBAction func didTouchRight(sender: AnyObject) {
-        yaw = 10
-        updateDrone()
+        yaw = 30
+        touchStarted()
     }
     
     @IBAction func didTouchLeft(sender: AnyObject) {
-        yaw = -10
-        updateDrone()
+        yaw = -30
+        touchStarted()
+    }
+    
+    @IBAction func touchStopped(sender: UIButton) {
+        let tag = sender.tag
+        if (tag == 3) || (tag == 4) {
+            pitch = 0
+        }
+
+        if (tag == 1) || (tag == 2) {
+            roll = 0
+        }
+        
+        if (tag == 5) || (tag == 6) {
+            yaw = 0
+        }
+        
+        if (tag == 7) || (tag == 8) {
+            throttle = 0
+        }
+    }
+    
+    
+    func touchStarted() {
+        if timer == nil {
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "updateDrone", userInfo: nil, repeats: true)
+        }
     }
     
     func updateDrone() {
+        print("\(i++) \(yaw) \(throttle) \(roll) \(pitch)")
         var data = DJIFlightControlData()
         data.mThrottle = throttle
         data.mYaw = yaw
         data.mPitch = pitch
         data.mRoll = roll
         drone.mainController.navigationManager.flightControl.sendFlightControlData(data, withResult: nil)
-        throttle = 0
-        yaw = 0
-        pitch = 0
-        roll = 0
+
     }
     
     @IBAction func didTouchTakeOff(sender: AnyObject) {
