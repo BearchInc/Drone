@@ -17,6 +17,8 @@
 		36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82D1BF13E3E0021ED2F /* libz.tbd */; };
 		36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */; };
 		36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8361BF21A980021ED2F /* CoreLocation.framework */; };
+		36D889B41BF3874700457A2A /* MissionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D889B31BF3874700457A2A /* MissionControl.swift */; };
+		36D889B61BF3879900457A2A /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D889B51BF3879900457A2A /* Waypoint.swift */; };
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
 		550291741BF26580002F7FD1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291721BF26580002F7FD1 /* Fabric.framework */; };
 		550291751BF26581002F7FD1 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
@@ -61,6 +63,8 @@
 		36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
 		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		36D889B31BF3874700457A2A /* MissionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionControl.swift; sourceTree = "<group>"; };
+		36D889B51BF3879900457A2A /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
 		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		36ADF7FC1BF13E1E0021ED2F /* DroneSpike */ = {
 			isa = PBXGroup;
 			children = (
+				36D889B21BF3873C00457A2A /* Models */,
 				962FB2061BF23620004FD44C /* Frameworks */,
 				962FB2071BF23634004FD44C /* ProjectFiles */,
 				962FB2091BF2363F004FD44C /* ViewControllers */,
@@ -147,6 +152,15 @@
 				36ADF81F1BF13E1E0021ED2F /* Info.plist */,
 			);
 			path = DroneSpikeUITests;
+			sourceTree = "<group>";
+		};
+		36D889B21BF3873C00457A2A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36D889B31BF3874700457A2A /* MissionControl.swift */,
+				36D889B51BF3879900457A2A /* Waypoint.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		962FB2061BF23620004FD44C /* Frameworks */ = {
@@ -340,7 +354,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36D889B41BF3874700457A2A /* MissionControl.swift in Sources */,
 				36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */,
+				36D889B61BF3879900457A2A /* Waypoint.swift in Sources */,
 				550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */,
 				36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */,
 				962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */,
