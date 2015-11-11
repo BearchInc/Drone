@@ -16,15 +16,13 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
         let mission = self.drone.mainController.navigationManager.waypointMission
         mission.maxFlightSpeed = 14.0
         mission.autoFlightSpeed = 10.0
-        mission.headingMode = .Auto
+        mission.headingMode = .UsingWaypointHeading
         mission.finishedAction = .GoHome
         mission.flightPathMode = .Normal
-        
         return mission
     }()
 
  	@IBOutlet weak var debugLabel: UILabel!
-    
     @IBOutlet weak var progressBar: UIProgressView!
     
     @IBAction func didTouchTakeOff(sender: AnyObject) {
@@ -34,14 +32,17 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func didTouchUploadMission(sender: AnyObject) {
-        let currentLocation = locationManager.location!
-        let secondLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude + 0.00002, longitude: currentLocation.coordinate.longitude)
-        
-        let waypoint = DJIWaypoint(coordinate: locationManager.location!.coordinate)
+
+		let currentLocation = CLLocationCoordinate2D(latitude: 22.5270, longitude: 113.9540)
+		let secondLocation = CLLocationCoordinate2D(latitude: 22.52708, longitude: 113.9540)
+		
+        let waypoint = DJIWaypoint(coordinate: currentLocation)
         waypoint.addAction(DJIWaypointAction(actionType: .RotateAircraft, param: 90))
+		waypoint.altitude = 50
         
         let secondWaypoint = DJIWaypoint(coordinate: secondLocation)
         secondWaypoint.addAction(DJIWaypointAction(actionType: .RotateAircraft, param: 180))
+		secondWaypoint.altitude = 50
         
         mission.addWaypoint(waypoint)
         mission.addWaypoint(secondWaypoint)
@@ -61,7 +62,6 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             self.setDebugText("Invalid Mission: \(mission.debugDescription)")
         }
-        
     }
 	
     lazy var locationManager: CLLocationManager = {
@@ -85,7 +85,7 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
 	}
 	
 	func createMission() {
-        self.drone.mainController.navigationManager.enterNavigationModeWithResult { error -> Void in
+        drone.mainController.navigationManager.enterNavigationModeWithResult { error -> Void in
             self.setDebugText("Enter Navigation: \(error.errorDescription)")
         }
     }
