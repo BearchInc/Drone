@@ -3,11 +3,25 @@ import MapKit
 import CoreLocation
 
 class WaypointViewController: UIViewController, CLLocationManagerDelegate {
-    
+    var missionControl : MissionControl!
 	lazy var drone = HomeViewController.drone
-    lazy var missionControl = MissionControl()
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView! {
+        didSet {
+            missionControl = MissionControl(mapView: mapView)
+            mapView.showsBuildings = true
+            mapView.showsUserLocation = true
+            mapView.showsPointsOfInterest = true
+            let cameraLocation = CLLocation(latitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude)
+            var mapCamera = MKMapCamera(
+                lookingAtCenterCoordinate: locationManager.location!.coordinate,
+                fromEyeCoordinate: cameraLocation.coordinate,
+                eyeAltitude: 350.0)
+            
+            print("Location: \(locationManager.location?.coordinate)")
+            mapView.setCamera(mapCamera, animated: true)
+        }
+    }
     
     @IBOutlet weak var modeButton: UIButton!
     
@@ -21,7 +35,15 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
     }()
 	
     @IBAction func didTouchStartMission(sender: AnyObject) {
-        missionControl.startWith(self.drone)
+        missionControl.progressHandler = { progress -> Void in
+            self.progressBar.progress = Float(progress) / 100.0
+            print("progress: \(progress)")
+        }
+        
+        missionControl.startWith(self.drone) { result in
+            let message = result == 0 ? "Mission successfully started" : "Mission Failed with code : \(result.errorCode)"
+            UIAlertView(title: "", message: message, delegate: nil, cancelButtonTitle: "OK").show()
+        }
     }
     
     @IBAction func didTouchClearMission(sender: AnyObject) {
@@ -33,6 +55,17 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
         let nextState = selected ? UIControlState.Selected : UIControlState.Normal
 
         modeButton.selected = selected
+    }
+    
+    @IBAction func didTouchMap(sender: UITapGestureRecognizer) {
+        if modeButton.selected {
+            print("Dropping annotation!")
+            let mapPoint = sender.locationInView(mapView)
+            let location = mapView.convertPoint(mapPoint, toCoordinateFromView: mapView)
+            let waypointAnnotation = Waypoint(coordinate: location)
+            
+            missionControl.addWaypoint(waypointAnnotation)
+        }
     }
     
     override func viewDidLoad() {
