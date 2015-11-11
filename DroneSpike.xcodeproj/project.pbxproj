@@ -62,8 +62,8 @@
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
 		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
-		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../Fabric.framework; sourceTree = "<group>"; };
-		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../Crashlytics.framework; sourceTree = "<group>"; };
+		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		962FB20B1BF23B6B004FD44C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,10 +150,10 @@
 		962FB2061BF23620004FD44C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				550291731BF26580002F7FD1 /* Crashlytics.framework */,
-				550291721BF26580002F7FD1 /* Fabric.framework */,
 				36ADF8361BF21A980021ED2F /* CoreLocation.framework */,
+				550291731BF26580002F7FD1 /* Crashlytics.framework */,
 				36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */,
+				550291721BF26580002F7FD1 /* Fabric.framework */,
 				36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */,
 				36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */,
 				36ADF82D1BF13E3E0021ED2F /* libz.tbd */,
@@ -184,9 +184,9 @@
 		962FB2091BF2363F004FD44C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				962FB20B1BF23B6B004FD44C /* HomeViewController.swift */,
 				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
 				36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */,
-				962FB20B1BF23B6B004FD44C /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
