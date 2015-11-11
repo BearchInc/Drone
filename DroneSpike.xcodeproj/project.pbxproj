@@ -18,8 +18,8 @@
 		36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */; };
 		36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8361BF21A980021ED2F /* CoreLocation.framework */; };
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
-		550291741BF26580002F7FD1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291721BF26580002F7FD1 /* Fabric.framework */; };
-		550291751BF26581002F7FD1 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
+		5541385C1BF39DDE0081183C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291721BF26580002F7FD1 /* Fabric.framework */; };
+		5541385D1BF39DE90081183C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
 		962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 		962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB20B1BF23B6B004FD44C /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -72,11 +72,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5541385D1BF39DE90081183C /* Crashlytics.framework in Frameworks */,
+				5541385C1BF39DDE0081183C /* Fabric.framework in Frameworks */,
 				962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */,
-				550291741BF26580002F7FD1 /* Fabric.framework in Frameworks */,
 				36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */,
 				36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */,
-				550291751BF26581002F7FD1 /* Crashlytics.framework in Frameworks */,
 				36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,7 +331,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run d755fc6afce425dd611af6e6129b210edaa514ba 8cc8bb27b7b0cca83f23953ccd681dea7a61dc8e36791ce88768da1c16b4042b";
+			shellScript = "./DroneSpike/Frameworks/Fabric.framework/run d755fc6afce425dd611af6e6129b210edaa514ba 8cc8bb27b7b0cca83f23953ccd681dea7a61dc8e36791ce88768da1c16b4042b";
 		};
 /* End PBXShellScriptBuildPhase section */
 
