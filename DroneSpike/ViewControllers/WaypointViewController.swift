@@ -4,14 +4,12 @@ import CoreLocation
 
 class WaypointViewController: UIViewController, CLLocationManagerDelegate {
     
-    enum Modes {
-        Edit, Visual
-    }
-    
 	lazy var drone = HomeViewController.drone
     lazy var missionControl = MissionControl()
-
+    
     @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var modeButton: UIButton!
     
     @IBOutlet weak var progressBar: UIProgressView!
 	
@@ -23,7 +21,7 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
     }()
 	
     @IBAction func didTouchStartMission(sender: AnyObject) {
-        missionControl.startWith(self.drone!)
+        missionControl.startWith(self.drone)
     }
     
     @IBAction func didTouchClearMission(sender: AnyObject) {
@@ -31,7 +29,10 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func didTouchEditMission(sender: AnyObject) {
-        self.mode = Modes.Edit
+        let selected = !modeButton.selected
+        let nextState = selected ? UIControlState.Selected : UIControlState.Normal
+
+        modeButton.selected = selected
     }
     
     override func viewDidLoad() {
@@ -49,13 +50,13 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		drone?.connectToDrone()
-        drone?.mainController.startUpdateMCSystemState()
+		drone.connectToDrone()
+        drone.mainController.startUpdateMCSystemState()
 	}
     
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		drone?.disconnectToDrone()
+		drone.disconnectToDrone()
 	}
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
