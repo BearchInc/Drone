@@ -148,7 +148,7 @@
                                 <rect key="frame" x="428" y="239" width="30" height="30"/>
                                 <state key="normal" title="⇧"/>
                                 <connections>
-                                    <action selector="didTouchFoward:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HHE-Hk-zB6"/>
+                                    <action selector="didTouchPitchFoward:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aWg-1L-1cs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxj-Pl-x9O">

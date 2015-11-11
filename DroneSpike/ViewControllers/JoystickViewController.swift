@@ -47,12 +47,12 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
     }
     
     @IBAction func didTouchRollRight(sender: AnyObject) {
-        roll = 10
+        roll = 1
         updateDrone()
     }
     
     @IBAction func didTouchRollLeft(sender: AnyObject) {
-        roll = -10
+        roll = -1
         updateDrone()
     }
     
