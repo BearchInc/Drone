@@ -41,7 +41,7 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         missionControl.startWith(self.drone) { result in
-            let message = result == 0 ? "Mission successfully started" : "Mission Failed with code : \(result.errorCode)"
+            let message = result.errorCode == 0 ? "Mission successfully started" : "Mission Failed with code : \(result.errorCode)"
             UIAlertView(title: "", message: message, delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
