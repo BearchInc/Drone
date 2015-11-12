@@ -18,6 +18,14 @@
 		36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82D1BF13E3E0021ED2F /* libz.tbd */; };
 		36ADF8321BF13E700021ED2F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */; };
 		36ADF8371BF21A980021ED2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF8361BF21A980021ED2F /* CoreLocation.framework */; };
+		36BF2A4D1BF533C200154F78 /* libDJIVTH264Decoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BF2A411BF533C200154F78 /* libDJIVTH264Decoder.a */; };
+		36BF2A4E1BF533C200154F78 /* h264_i_1_720_30.264 in Resources */ = {isa = PBXBuildFile; fileRef = 36BF2A451BF533C200154F78 /* h264_i_1_720_30.264 */; };
+		36BF2A4F1BF533C200154F78 /* h264_i_4_1280_720_24.264 in Resources */ = {isa = PBXBuildFile; fileRef = 36BF2A471BF533C200154F78 /* h264_i_4_1280_720_24.264 */; };
+		36BF2A501BF533C200154F78 /* h264_i_4_1280_720_25.264 in Resources */ = {isa = PBXBuildFile; fileRef = 36BF2A481BF533C200154F78 /* h264_i_4_1280_720_25.264 */; };
+		36BF2A511BF533C200154F78 /* h264_i_4_1280_720_30.264 in Resources */ = {isa = PBXBuildFile; fileRef = 36BF2A491BF533C200154F78 /* h264_i_4_1280_720_30.264 */; };
+		36BF2A521BF533C200154F78 /* h264_i_4_960_720_24.264 in Resources */ = {isa = PBXBuildFile; fileRef = 36BF2A4A1BF533C200154F78 /* h264_i_4_960_720_24.264 */; };
+		36BF2A531BF533C200154F78 /* h264_i_4_960_720_25.264 in Resources */ = {isa = PBXBuildFile; fileRef = 36BF2A4B1BF533C200154F78 /* h264_i_4_960_720_25.264 */; };
+		36BF2A541BF533C200154F78 /* h264_i_4_960_720_30.264 in Resources */ = {isa = PBXBuildFile; fileRef = 36BF2A4C1BF533C200154F78 /* h264_i_4_960_720_30.264 */; };
 		36D889B41BF3874700457A2A /* MissionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D889B31BF3874700457A2A /* MissionControl.swift */; };
 		36D889B61BF3879900457A2A /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D889B51BF3879900457A2A /* Waypoint.swift */; };
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
@@ -82,6 +90,15 @@
 		36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
 		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		36BF2A401BF533C200154F78 /* DJIVTH264DecoderPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIVTH264DecoderPublic.h; sourceTree = "<group>"; };
+		36BF2A411BF533C200154F78 /* libDJIVTH264Decoder.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDJIVTH264Decoder.a; sourceTree = "<group>"; };
+		36BF2A451BF533C200154F78 /* h264_i_1_720_30.264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = h264_i_1_720_30.264; sourceTree = "<group>"; };
+		36BF2A471BF533C200154F78 /* h264_i_4_1280_720_24.264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = h264_i_4_1280_720_24.264; sourceTree = "<group>"; };
+		36BF2A481BF533C200154F78 /* h264_i_4_1280_720_25.264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = h264_i_4_1280_720_25.264; sourceTree = "<group>"; };
+		36BF2A491BF533C200154F78 /* h264_i_4_1280_720_30.264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = h264_i_4_1280_720_30.264; sourceTree = "<group>"; };
+		36BF2A4A1BF533C200154F78 /* h264_i_4_960_720_24.264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = h264_i_4_960_720_24.264; sourceTree = "<group>"; };
+		36BF2A4B1BF533C200154F78 /* h264_i_4_960_720_25.264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = h264_i_4_960_720_25.264; sourceTree = "<group>"; };
+		36BF2A4C1BF533C200154F78 /* h264_i_4_960_720_30.264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = h264_i_4_960_720_30.264; sourceTree = "<group>"; };
 		36D889B31BF3874700457A2A /* MissionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionControl.swift; sourceTree = "<group>"; };
 		36D889B51BF3879900457A2A /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
 		48B4C80D6368851034BE59B1 /* Pods_DroneSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroneSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36BF2A4D1BF533C200154F78 /* libDJIVTH264Decoder.a in Frameworks */,
 				96524FA41BF4EE5500C1A364 /* libavfilter.a in Frameworks */,
 				82483A221BF4F406007CBC2C /* libjpeg.a in Frameworks */,
 				82483A201BF4F296007CBC2C /* libstdc++.tbd in Frameworks */,
@@ -297,6 +315,62 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		36BF2A3E1BF533C200154F78 /* H264Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				36BF2A3F1BF533C200154F78 /* include */,
+				36BF2A411BF533C200154F78 /* libDJIVTH264Decoder.a */,
+				36BF2A421BF533C200154F78 /* Resource */,
+			);
+			path = H264Decoder;
+			sourceTree = "<group>";
+		};
+		36BF2A3F1BF533C200154F78 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				36BF2A401BF533C200154F78 /* DJIVTH264DecoderPublic.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		36BF2A421BF533C200154F78 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				36BF2A431BF533C200154F78 /* sps_pps */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		36BF2A431BF533C200154F78 /* sps_pps */ = {
+			isa = PBXGroup;
+			children = (
+				36BF2A441BF533C200154F78 /* Inspire&P3 PRO */,
+				36BF2A461BF533C200154F78 /* Phantom3Advanced */,
+			);
+			path = sps_pps;
+			sourceTree = "<group>";
+		};
+		36BF2A441BF533C200154F78 /* Inspire&P3 PRO */ = {
+			isa = PBXGroup;
+			children = (
+				36BF2A451BF533C200154F78 /* h264_i_1_720_30.264 */,
+			);
+			path = "Inspire&P3 PRO";
+			sourceTree = "<group>";
+		};
+		36BF2A461BF533C200154F78 /* Phantom3Advanced */ = {
+			isa = PBXGroup;
+			children = (
+				36BF2A471BF533C200154F78 /* h264_i_4_1280_720_24.264 */,
+				36BF2A481BF533C200154F78 /* h264_i_4_1280_720_25.264 */,
+				36BF2A491BF533C200154F78 /* h264_i_4_1280_720_30.264 */,
+				36BF2A4A1BF533C200154F78 /* h264_i_4_960_720_24.264 */,
+				36BF2A4B1BF533C200154F78 /* h264_i_4_960_720_25.264 */,
+				36BF2A4C1BF533C200154F78 /* h264_i_4_960_720_30.264 */,
+			);
+			path = Phantom3Advanced;
+			sourceTree = "<group>";
+		};
 		36D889B21BF3873C00457A2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +440,7 @@
 		96524F381BF4EE5500C1A364 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				36BF2A3E1BF533C200154F78 /* H264Decoder */,
 				96524F391BF4EE5500C1A364 /* VideoPreviewer */,
 			);
 			path = Vendor;
@@ -682,8 +757,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				36ADF8081BF13E1E0021ED2F /* LaunchScreen.storyboard in Resources */,
+				36BF2A501BF533C200154F78 /* h264_i_4_1280_720_25.264 in Resources */,
+				36BF2A531BF533C200154F78 /* h264_i_4_960_720_25.264 in Resources */,
 				36ADF8051BF13E1E0021ED2F /* Assets.xcassets in Resources */,
+				36BF2A521BF533C200154F78 /* h264_i_4_960_720_24.264 in Resources */,
 				36ADF8031BF13E1E0021ED2F /* Main.storyboard in Resources */,
+				36BF2A541BF533C200154F78 /* h264_i_4_960_720_30.264 in Resources */,
+				36BF2A511BF533C200154F78 /* h264_i_4_1280_720_30.264 in Resources */,
+				36BF2A4F1BF533C200154F78 /* h264_i_4_1280_720_24.264 in Resources */,
+				36BF2A4E1BF533C200154F78 /* h264_i_1_720_30.264 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +1022,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DroneSpike/Vendor/VideoPreviewer/ffmpeg/lib",
 					"$(PROJECT_DIR)/DroneSpike/Frameworks",
+					"$(PROJECT_DIR)/DroneSpike/Vendor/H264Decoder",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bearch.DroneSpike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -968,6 +1051,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DroneSpike/Vendor/VideoPreviewer/ffmpeg/lib",
 					"$(PROJECT_DIR)/DroneSpike/Frameworks",
+					"$(PROJECT_DIR)/DroneSpike/Vendor/H264Decoder",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bearch.DroneSpike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
