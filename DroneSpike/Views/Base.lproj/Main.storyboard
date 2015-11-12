@@ -289,10 +289,10 @@
             </objects>
             <point key="canvasLocation" x="1117" y="303"/>
         </scene>
-        <!--View Controller-->
+        <!--Playback View Controller-->
         <scene sceneID="WM9-Mb-uAk">
             <objects>
-                <viewController id="kLh-KO-lnk" sceneMemberID="viewController">
+                <viewController id="kLh-KO-lnk" customClass="PlaybackViewController" customModule="DroneSpike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cCB-hb-pJU"/>
                         <viewControllerLayoutGuide type="bottom" id="IKu-8b-lLX"/>
@@ -300,9 +300,39 @@
                     <view key="view" contentMode="scaleToFill" id="fGR-Bb-N2M">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-SK-Ebd" userLabel="Preview View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.61960784310000006" green="0.81176470590000005" blue="0.3149414062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-vN-jwV" userLabel="Debug Label">
+                                <rect key="frame" x="12" y="64" width="100" height="536"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eZ9-go-vTh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dVJ-SK-Ebd" firstAttribute="leading" secondItem="fGR-Bb-N2M" secondAttribute="leading" id="1ys-N0-bb0"/>
+                            <constraint firstItem="dVJ-SK-Ebd" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" id="8Q4-nK-Yts"/>
+                            <constraint firstItem="IKu-8b-lLX" firstAttribute="top" secondItem="Rat-vN-jwV" secondAttribute="bottom" id="Ag7-0d-Lbo"/>
+                            <constraint firstItem="Rat-vN-jwV" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" id="Chb-LQ-P0g"/>
+                            <constraint firstItem="Rat-vN-jwV" firstAttribute="leading" secondItem="fGR-Bb-N2M" secondAttribute="leadingMargin" constant="-8" id="FkK-7Q-400"/>
+                            <constraint firstAttribute="trailing" secondItem="dVJ-SK-Ebd" secondAttribute="trailing" id="fki-9j-SYM"/>
+                            <constraint firstItem="IKu-8b-lLX" firstAttribute="top" secondItem="dVJ-SK-Ebd" secondAttribute="bottom" id="lVq-e2-GjS"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="debugLabel" destination="Rat-vN-jwV" id="BGd-7X-JAQ"/>
+                        <outlet property="previewView" destination="dVJ-SK-Ebd" id="jmd-bn-D9X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xkL-5c-RZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
