@@ -8,13 +8,16 @@ class HomeViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+        
+        
+        
 		DJIAppManager.registerApp("602797533f7b529cc9470265", withDelegate: self)
     }
 	
 	func setDebugText(message: String) {
 		debugLabel.text = debugLabel.text! + "\n" + message
 	}
+    
 
 }
 

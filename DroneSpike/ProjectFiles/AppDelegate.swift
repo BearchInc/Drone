@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cl = Crashlytics.self()
         cl.debugMode = true
         Fabric.with([cl])
+        
+        
+
 
         return true
     }

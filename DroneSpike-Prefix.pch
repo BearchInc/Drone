@@ -1,0 +1,19 @@
+//
+//  DroneSpike-Prefix.pch
+//  DroneSpike
+//
+//  Created by Ygor Bruxel on 11/12/15.
+//  Copyright © 2015 Bearch Inc. All rights reserved.
+//
+
+#ifndef DroneSpike_Prefix_pch
+#define DroneSpike_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* DroneSpike_Prefix_pch */
+
+#ifdef __cplusplus
+#import <opencv2/opencv.hpp>
+#endif

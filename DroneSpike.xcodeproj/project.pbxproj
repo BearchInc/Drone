@@ -20,6 +20,10 @@
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
 		5541385C1BF39DDE0081183C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291721BF26580002F7FD1 /* Fabric.framework */; };
 		5541385D1BF39DE90081183C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
+		8202A1091BF4F1F300234FB9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */; };
+		82483A201BF4F296007CBC2C /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */; };
+		82483A221BF4F406007CBC2C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82483A211BF4F406007CBC2C /* libjpeg.a */; };
+		82483A261BF4FA90007CBC2C /* DetectVideoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82483A251BF4FA90007CBC2C /* DetectVideoViewController.mm */; };
 		962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 		962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB20B1BF23B6B004FD44C /* HomeViewController.swift */; };
 		96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */; };
@@ -36,6 +40,7 @@
 		96524FAB1BF4EE5500C1A364 /* MovieGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96524F9C1BF4EE5500C1A364 /* MovieGLView.m */; };
 		96524FAC1BF4EE5500C1A364 /* VideoFrameExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 96524F9E1BF4EE5500C1A364 /* VideoFrameExtractor.m */; };
 		96524FAD1BF4EE5500C1A364 /* VideoPreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96524FA01BF4EE5500C1A364 /* VideoPreviewer.m */; };
+		F57FB57D302B895FD4865D0A /* Pods_DroneSpike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F7B651599D4FBFCBECC8B9 /* Pods_DroneSpike.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00F7B651599D4FBFCBECC8B9 /* Pods_DroneSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroneSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADF7FA1BF13E1E0021ED2F /* DroneSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
@@ -75,9 +81,15 @@
 		36ADF8311BF13E700021ED2F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Bridging-Header.h"; sourceTree = "<group>"; };
 		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4F39940901F6E34674B5AE66 /* Pods-DroneSpike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneSpike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike.debug.xcconfig"; sourceTree = "<group>"; };
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
 		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		82483A211BF4F406007CBC2C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
+		82483A231BF4F674007CBC2C /* DroneSpike-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		82483A241BF4FA90007CBC2C /* DetectVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectVideoViewController.h; sourceTree = "<group>"; };
+		82483A251BF4FA90007CBC2C /* DetectVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DetectVideoViewController.mm; sourceTree = "<group>"; };
 		962FB20B1BF23B6B004FD44C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
 		96524F3A1BF4EE5500C1A364 /* DJILinkQueues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJILinkQueues.h; sourceTree = "<group>"; };
@@ -171,6 +183,7 @@
 		96524F9E1BF4EE5500C1A364 /* VideoFrameExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoFrameExtractor.m; sourceTree = "<group>"; };
 		96524F9F1BF4EE5500C1A364 /* VideoPreviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPreviewer.h; sourceTree = "<group>"; };
 		96524FA01BF4EE5500C1A364 /* VideoPreviewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPreviewer.m; sourceTree = "<group>"; };
+		F4BFB78E6ED95170A1C64597 /* Pods-DroneSpike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneSpike.release.xcconfig"; path = "Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +192,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				96524FA41BF4EE5500C1A364 /* libavfilter.a in Frameworks */,
+				82483A221BF4F406007CBC2C /* libjpeg.a in Frameworks */,
+				82483A201BF4F296007CBC2C /* libstdc++.tbd in Frameworks */,
+				8202A1091BF4F1F300234FB9 /* AudioToolbox.framework in Frameworks */,
 				5541385D1BF39DE90081183C /* Crashlytics.framework in Frameworks */,
 				5541385C1BF39DDE0081183C /* Fabric.framework in Frameworks */,
 				96524FA51BF4EE5500C1A364 /* libavformat.a in Frameworks */,
@@ -193,6 +209,7 @@
 				96524FA21BF4EE5500C1A364 /* libavcodec.a in Frameworks */,
 				96524FA91BF4EE5500C1A364 /* libswresample.a in Frameworks */,
 				36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */,
+				F57FB57D302B895FD4865D0A /* Pods_DroneSpike.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,13 +230,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22740F638F90E3E067C72946 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00F7B651599D4FBFCBECC8B9 /* Pods_DroneSpike.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		36ADF7F11BF13E1E0021ED2F = {
 			isa = PBXGroup;
 			children = (
+				8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */,
 				36ADF7FC1BF13E1E0021ED2F /* DroneSpike */,
 				36ADF8111BF13E1E0021ED2F /* DroneSpikeTests */,
 				36ADF81C1BF13E1E0021ED2F /* DroneSpikeUITests */,
 				36ADF7FB1BF13E1E0021ED2F /* Products */,
+				820C97B81BF50FFD00E5DD85 /* Recovered References */,
+				D960EFDC12E116B4D1554723 /* Pods */,
+				22740F638F90E3E067C72946 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -263,9 +292,19 @@
 			path = DroneSpikeUITests;
 			sourceTree = "<group>";
 		};
+		820C97B81BF50FFD00E5DD85 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				4F39940901F6E34674B5AE66 /* Pods-DroneSpike.debug.xcconfig */,
+				F4BFB78E6ED95170A1C64597 /* Pods-DroneSpike.release.xcconfig */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		962FB2061BF23620004FD44C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82483A211BF4F406007CBC2C /* libjpeg.a */,
 				36ADF8361BF21A980021ED2F /* CoreLocation.framework */,
 				550291731BF26580002F7FD1 /* Crashlytics.framework */,
 				36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */,
@@ -280,6 +319,7 @@
 		962FB2071BF23634004FD44C /* ProjectFiles */ = {
 			isa = PBXGroup;
 			children = (
+				82483A231BF4F674007CBC2C /* DroneSpike-Prefix.pch */,
 				36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */,
 				36ADF8041BF13E1E0021ED2F /* Assets.xcassets */,
 				36ADF8331BF214FA0021ED2F /* DroneSpike-Bridging-Header.h */,
@@ -300,6 +340,8 @@
 		962FB2091BF2363F004FD44C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				82483A241BF4FA90007CBC2C /* DetectVideoViewController.h */,
+				82483A251BF4FA90007CBC2C /* DetectVideoViewController.mm */,
 				962FB20B1BF23B6B004FD44C /* HomeViewController.swift */,
 				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
 				96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */,
@@ -510,6 +552,13 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		D960EFDC12E116B4D1554723 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -517,10 +566,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36ADF8221BF13E1E0021ED2F /* Build configuration list for PBXNativeTarget "DroneSpike" */;
 			buildPhases = (
+				2742FD59C012D069DB8B1923 /* Check Pods Manifest.lock */,
 				36ADF7F61BF13E1E0021ED2F /* Sources */,
 				36ADF7F71BF13E1E0021ED2F /* Frameworks */,
 				36ADF7F81BF13E1E0021ED2F /* Resources */,
 				550291711BF2654E002F7FD1 /* Run Script */,
+				D22B591BE68273DDCA201C56 /* Embed Pods Frameworks */,
+				C7959BA79F31CB3245FD3E3F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -638,6 +690,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2742FD59C012D069DB8B1923 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		550291711BF2654E002F7FD1 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -651,6 +718,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./DroneSpike/Frameworks/Fabric.framework/run d755fc6afce425dd611af6e6129b210edaa514ba 8cc8bb27b7b0cca83f23953ccd681dea7a61dc8e36791ce88768da1c16b4042b";
+		};
+		C7959BA79F31CB3245FD3E3F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D22B591BE68273DDCA201C56 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -667,6 +764,7 @@
 				96524FAD1BF4EE5500C1A364 /* VideoPreviewer.m in Sources */,
 				36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */,
 				96524FAC1BF4EE5500C1A364 /* VideoFrameExtractor.m in Sources */,
+				82483A261BF4FA90007CBC2C /* DetectVideoViewController.mm in Sources */,
 				962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,6 +907,7 @@
 		};
 		36ADF8231BF13E1E0021ED2F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F39940901F6E34674B5AE66 /* Pods-DroneSpike.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -824,6 +923,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DroneSpike/Vendor/VideoPreviewer/ffmpeg/lib",
+					"$(PROJECT_DIR)/DroneSpike/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bearch.DroneSpike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -835,6 +935,7 @@
 		};
 		36ADF8241BF13E1E0021ED2F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4BFB78E6ED95170A1C64597 /* Pods-DroneSpike.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -850,6 +951,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DroneSpike/Vendor/VideoPreviewer/ffmpeg/lib",
+					"$(PROJECT_DIR)/DroneSpike/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bearch.DroneSpike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
