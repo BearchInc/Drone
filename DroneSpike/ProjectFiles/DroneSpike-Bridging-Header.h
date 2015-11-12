@@ -3,3 +3,4 @@
 //
 
 #import <DJISDK/DJISDK.h>
+#import "VideoPreviewer.h"
