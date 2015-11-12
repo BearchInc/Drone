@@ -8,7 +8,6 @@ class JoystickViewController: UIViewController, DJIDroneDelegate {
     var timer : NSTimer?
     var i = 1
     lazy var drone = HomeViewController.drone
-//    var drone = DJIDrone()
     
     @IBOutlet weak var label: UILabel!
     

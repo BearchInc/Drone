@@ -413,66 +413,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xE6-Tq-VNU" userLabel="Debug Label">
-                                <rect key="frame" x="20" y="64" width="291" height="516"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MJp-9M-YGG">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="291" id="2US-QK-jJr"/>
-                                    <constraint firstAttribute="height" constant="516" id="nXz-hv-aAM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIM-Jy-IA6">
-                                <rect key="frame" x="466" y="74" width="134" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="HN2-cj-gwZ"/>
-                                </constraints>
-                                <state key="normal" title="Take Off"/>
-                                <connections>
-                                    <action selector="didTouchTakeOff:" destination="nqv-AC-OpV" eventType="touchUpInside" id="FDK-O9-KMd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4g-Wp-02U">
-                                <rect key="frame" x="466" y="113" width="134" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="X5Z-h5-dYK"/>
-                                </constraints>
-                                <state key="normal" title="Upload Mission"/>
-                                <connections>
-                                    <action selector="didTouchUploadMission:" destination="nqv-AC-OpV" eventType="touchUpInside" id="EZd-rQ-aH5"/>
-                                </connections>
-                            </button>
+                            </mapView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hL0-WA-kHO">
                                 <rect key="frame" x="0.0" y="64" width="600" height="2"/>
                                 <animations/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THz-Iq-upi">
+                                <rect key="frame" x="20" y="74" width="52" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="didTouchEditMission:" destination="nqv-AC-OpV" eventType="touchUpInside" id="nzf-Ie-aNr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLP-rm-Aiz">
+                                <rect key="frame" x="80" y="74" width="52" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="didTouchClearMission:" destination="nqv-AC-OpV" eventType="touchUpInside" id="yuF-AE-nMW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBd-9s-aFX">
+                                <rect key="frame" x="459" y="74" width="121" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Start Mission"/>
+                                <connections>
+                                    <action selector="didTouchStartMission:" destination="nqv-AC-OpV" eventType="touchUpInside" id="fp6-tk-qGF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xE6-Tq-VNU" firstAttribute="leading" secondItem="OKa-u1-cQE" secondAttribute="leadingMargin" id="1fe-7f-2tt"/>
                             <constraint firstItem="hL0-WA-kHO" firstAttribute="leading" secondItem="OKa-u1-cQE" secondAttribute="leadingMargin" constant="-20" id="39r-o9-81F"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bIM-Jy-IA6" secondAttribute="trailing" constant="-20" id="CtM-j7-ESr"/>
-                            <constraint firstItem="k4g-Wp-02U" firstAttribute="top" secondItem="bIM-Jy-IA6" secondAttribute="bottom" constant="9" id="DV1-Us-lCC"/>
+                            <constraint firstItem="MJp-9M-YGG" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" id="5SG-SX-Wo9"/>
+                            <constraint firstItem="MJp-9M-YGG" firstAttribute="leading" secondItem="OKa-u1-cQE" secondAttribute="leadingMargin" constant="-20" id="6QI-5Z-a9Q"/>
                             <constraint firstItem="hL0-WA-kHO" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" id="KTZ-mx-hnk"/>
+                            <constraint firstItem="TyP-5H-QHO" firstAttribute="top" secondItem="MJp-9M-YGG" secondAttribute="bottom" id="MnQ-lk-iG3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hL0-WA-kHO" secondAttribute="trailing" constant="-20" id="OcT-2i-9Ji"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="k4g-Wp-02U" secondAttribute="trailing" constant="-20" id="Uld-Tl-iXD"/>
-                            <constraint firstItem="k4g-Wp-02U" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" constant="49" id="bW1-JP-JcG"/>
-                            <constraint firstItem="xE6-Tq-VNU" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" id="ntv-gj-3f5"/>
-                            <constraint firstItem="bIM-Jy-IA6" firstAttribute="top" secondItem="VyH-ZD-Jzc" secondAttribute="bottom" constant="10" id="udd-XK-Nza"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MJp-9M-YGG" secondAttribute="trailing" constant="-20" id="SxI-pX-zhx"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="bW1-JP-JcG"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
-                        <outlet property="debugLabel" destination="xE6-Tq-VNU" id="Aep-DN-yOc"/>
+                        <outlet property="mapView" destination="MJp-9M-YGG" id="Zd6-gb-vt6"/>
                         <outlet property="progressBar" destination="hL0-WA-kHO" id="rhm-YH-940"/>
                     </connections>
                 </viewController>
