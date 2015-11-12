@@ -206,9 +206,14 @@
             [_videoExtractor decode:inputData length:inputDataSize callback:^(BOOL b)
              {
                  pthread_rwlock_wrlock(&(_renderYUVFrame[_decodeFrameIndex]->mutex));
+                 
                  [_videoExtractor getYuvFrame:_renderYUVFrame[_decodeFrameIndex]];
                  _renderYUVFrame[_decodeFrameIndex]->gray = 0;
+                 
+    
+                 
                  pthread_rwlock_unlock(&(_renderYUVFrame[_decodeFrameIndex]->mutex));
+                 
                  _renderFrameIndex = _decodeFrameIndex;
                  if(_status.isGLViewInit && !_status.isPause && !_status.isBackground)
                  {

@@ -106,9 +106,15 @@ ss += ll; \
 //                struct timeval ta,tb;
 //                gettimeofday(&ta, NULL);
                 
-                if(_delegate!=nil && [_delegate respondsToSelector:@selector(processVideoData:length:)]){
-                    [_delegate processVideoData:packet.data length:packet.size];
-                }                
+                
+                NSLog(@"############ Checking delegate not nil");
+                if(self.delegate!=nil){
+                    NSLog(@"############ Checking delegate responds to selector");
+                    if ([self.delegate respondsToSelector:@selector(processVideoData:length:)]) {
+                        NSLog(@"############ Delegate met!");
+                        [self.delegate processVideoData:packet.data length:packet.size];
+                    }
+                }
                 
                 decode_data_length = avcodec_decode_video2(_pCodecCtx, _pFrame, &got_picture, &packet);
                 if(_pFrame->key_frame){
