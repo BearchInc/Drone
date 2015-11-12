@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B52EB78768152F60E487539 /* Pods_DroneSpike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B4C80D6368851034BE59B1 /* Pods_DroneSpike.framework */; };
 		36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */; };
 		36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */; };
 		36ADF8031BF13E1E0021ED2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36ADF8011BF13E1E0021ED2F /* Main.storyboard */; };
@@ -42,7 +43,6 @@
 		96524FAB1BF4EE5500C1A364 /* MovieGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96524F9C1BF4EE5500C1A364 /* MovieGLView.m */; };
 		96524FAC1BF4EE5500C1A364 /* VideoFrameExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 96524F9E1BF4EE5500C1A364 /* VideoFrameExtractor.m */; };
 		96524FAD1BF4EE5500C1A364 /* VideoPreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96524FA01BF4EE5500C1A364 /* VideoPreviewer.m */; };
-		F57FB57D302B895FD4865D0A /* Pods_DroneSpike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F7B651599D4FBFCBECC8B9 /* Pods_DroneSpike.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00F7B651599D4FBFCBECC8B9 /* Pods_DroneSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroneSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADF7FA1BF13E1E0021ED2F /* DroneSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
@@ -85,9 +84,11 @@
 		36ADF8361BF21A980021ED2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		36D889B31BF3874700457A2A /* MissionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionControl.swift; sourceTree = "<group>"; };
 		36D889B51BF3879900457A2A /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
+		48B4C80D6368851034BE59B1 /* Pods_DroneSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroneSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
 		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		6679D6583CBEA7DF0A007FD1 /* Pods-DroneSpike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneSpike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike.debug.xcconfig"; sourceTree = "<group>"; };
 		8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		82483A211BF4F406007CBC2C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
 		82483A231BF4F674007CBC2C /* DroneSpike-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -212,7 +213,7 @@
 				96524FA21BF4EE5500C1A364 /* libavcodec.a in Frameworks */,
 				96524FA91BF4EE5500C1A364 /* libswresample.a in Frameworks */,
 				36ADF82E1BF13E3E0021ED2F /* libz.tbd in Frameworks */,
-				F57FB57D302B895FD4865D0A /* Pods_DroneSpike.framework in Frameworks */,
+				2B52EB78768152F60E487539 /* Pods_DroneSpike.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,14 +234,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		22740F638F90E3E067C72946 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				00F7B651599D4FBFCBECC8B9 /* Pods_DroneSpike.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		36ADF7F11BF13E1E0021ED2F = {
 			isa = PBXGroup;
 			children = (
@@ -249,9 +242,9 @@
 				36ADF8111BF13E1E0021ED2F /* DroneSpikeTests */,
 				36ADF81C1BF13E1E0021ED2F /* DroneSpikeUITests */,
 				36ADF7FB1BF13E1E0021ED2F /* Products */,
-				820C97B81BF50FFD00E5DD85 /* Recovered References */,
-				D960EFDC12E116B4D1554723 /* Pods */,
-				22740F638F90E3E067C72946 /* Frameworks */,
+				36B5C9B41BF51A3C000047E8 /* Recovered References */,
+				827543E2FADEF679994BB8A8 /* Pods */,
+				9A6928EE8704BC9C136F7721 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -296,6 +289,14 @@
 			path = DroneSpikeUITests;
 			sourceTree = "<group>";
 		};
+		36B5C9B41BF51A3C000047E8 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F4BFB78E6ED95170A1C64597 /* Pods-DroneSpike.release.xcconfig */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		36D889B21BF3873C00457A2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +304,14 @@
 				36D889B51BF3879900457A2A /* Waypoint.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		827543E2FADEF679994BB8A8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6679D6583CBEA7DF0A007FD1 /* Pods-DroneSpike.debug.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		962FB2061BF23620004FD44C /* Frameworks */ = {
@@ -556,11 +565,12 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		D960EFDC12E116B4D1554723 /* Pods */ = {
+		9A6928EE8704BC9C136F7721 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48B4C80D6368851034BE59B1 /* Pods_DroneSpike.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,13 +580,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36ADF8221BF13E1E0021ED2F /* Build configuration list for PBXNativeTarget "DroneSpike" */;
 			buildPhases = (
-				2742FD59C012D069DB8B1923 /* Check Pods Manifest.lock */,
+				88B424107B142E534E961C0A /* Check Pods Manifest.lock */,
 				36ADF7F61BF13E1E0021ED2F /* Sources */,
 				36ADF7F71BF13E1E0021ED2F /* Frameworks */,
 				36ADF7F81BF13E1E0021ED2F /* Resources */,
 				550291711BF2654E002F7FD1 /* Run Script */,
-				D22B591BE68273DDCA201C56 /* Embed Pods Frameworks */,
-				C7959BA79F31CB3245FD3E3F /* Copy Pods Resources */,
+				5024A1585DF78445EFF28B59 /* Embed Pods Frameworks */,
+				C0D518462E093AF102A5A40E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -694,19 +704,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2742FD59C012D069DB8B1923 /* Check Pods Manifest.lock */ = {
+		5024A1585DF78445EFF28B59 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		550291711BF2654E002F7FD1 /* Run Script */ = {
@@ -723,7 +733,22 @@
 			shellPath = /bin/sh;
 			shellScript = "./DroneSpike/Frameworks/Fabric.framework/run d755fc6afce425dd611af6e6129b210edaa514ba 8cc8bb27b7b0cca83f23953ccd681dea7a61dc8e36791ce88768da1c16b4042b";
 		};
-		C7959BA79F31CB3245FD3E3F /* Copy Pods Resources */ = {
+		88B424107B142E534E961C0A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C0D518462E093AF102A5A40E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -736,21 +761,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D22B591BE68273DDCA201C56 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -913,7 +923,7 @@
 		};
 		36ADF8231BF13E1E0021ED2F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F39940901F6E34674B5AE66 /* Pods-DroneSpike.debug.xcconfig */;
+			baseConfigurationReference = 6679D6583CBEA7DF0A007FD1 /* Pods-DroneSpike.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
