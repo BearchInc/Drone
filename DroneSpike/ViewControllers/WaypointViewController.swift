@@ -2,10 +2,17 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class WaypointViewController: UIViewController, CLLocationManagerDelegate {
+class WaypointViewController: UIViewController {
     var missionControl : MissionControl!
 	lazy var drone = HomeViewController.drone
     
+    lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        return manager
+    }()
+	
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
             missionControl = MissionControl(mapView: mapView)
@@ -26,13 +33,6 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var modeButton: UIButton!
     
     @IBOutlet weak var progressBar: UIProgressView!
-	
-    lazy var locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        return manager
-    }()
 	
     @IBAction func didTouchStartMission(sender: AnyObject) {
         missionControl.progressHandler = { progress -> Void in
@@ -91,6 +91,10 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
 		super.viewWillDisappear(animated)
 		drone.disconnectToDrone()
 	}
+    
+}
+
+extension WaypointViewController : CLLocationManagerDelegate  {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {

@@ -42,15 +42,28 @@ class PlaybackViewController: UIViewController {
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
 		VideoPreviewer.instance().setView(previewView)
 	}
+    @IBOutlet weak var imageView: UIImageView!
+    
+    
 }
 
 extension PlaybackViewController: DJICameraDelegate {
 	
+    private func imageFromUnsafeMutablePointer(buffer: UnsafeMutablePointer<UInt8>, length: Int) -> UIImage {
+        let data  = NSData()
+        data.getBytes(buffer, length: length)
+        return UIImage(data: data)!
+    }
+    
 	func camera(camera: DJICamera!, didReceivedVideoData videoBuffer: UnsafeMutablePointer<UInt8>, length: Int32) {
 		// keep as var
 		var buffer = UnsafeMutablePointer<UInt8>.alloc(Int(length))
+        
 		memcpy(buffer, videoBuffer, Int(length))
+        
 		VideoPreviewer.instance().dataQueue.push(buffer, length: length)
+        
+        imageView.image = imageFromUnsafeMutablePointer(buffer, length: Int(length))
 	}
 	
 	func camera(camera: DJICamera!, didUpdateSystemState systemState: DJICameraSystemState!) {
