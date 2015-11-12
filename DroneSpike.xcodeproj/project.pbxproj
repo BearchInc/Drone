@@ -22,6 +22,7 @@
 		5541385D1BF39DE90081183C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
 		962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 		962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB20B1BF23B6B004FD44C /* HomeViewController.swift */; };
+		96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		962FB20B1BF23B6B004FD44C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			children = (
 				962FB20B1BF23B6B004FD44C /* HomeViewController.swift */,
 				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
+				96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */,
 				36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */,
 			);
 			path = ViewControllers;
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */,
+				96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */,
 				550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */,
 				36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */,
 				962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */,
