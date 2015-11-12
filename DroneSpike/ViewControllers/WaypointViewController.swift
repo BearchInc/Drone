@@ -34,10 +34,10 @@ class WaypointViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func didTouchUploadMission(sender: AnyObject) {
-        let currentLocation = locationManager.location!
-        let secondLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude + 0.00002, longitude: currentLocation.coordinate.longitude)
-        
-        let waypoint = DJIWaypoint(coordinate: locationManager.location!.coordinate)
+		let currentLocation = CLLocationCoordinate2D(latitude: 22.5270, longitude: 113.9540)
+		let secondLocation = CLLocationCoordinate2D(latitude:  22.5271, longitude: 113.9540)
+		
+        let waypoint = DJIWaypoint(coordinate: currentLocation)
         waypoint.addAction(DJIWaypointAction(actionType: .RotateAircraft, param: 90))
         
         let secondWaypoint = DJIWaypoint(coordinate: secondLocation)
