@@ -66,4 +66,6 @@
 
 -(void)getYuvFrame:(VideoFrameYUV *)yuv;
 
+-(void)getPixelBuffer:(CVPixelBufferRef *)pbuf;
+
 @end

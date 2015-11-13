@@ -2,7 +2,8 @@ import UIKit
 import Foundation
 
 class PlaybackViewController: UIViewController {
-
+    
+    var flag = true
 	lazy var drone = HomeViewController.drone
 	var camera: DJICamera!
 	
@@ -17,7 +18,7 @@ class PlaybackViewController: UIViewController {
 	}
 	
 	func addDebugInformation(message: String) {
-		debugLabel.text = debugLabel.text! + "\n" + message
+		debugLabel.text = message + "\n" + debugLabel.text!
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -52,11 +53,11 @@ extension PlaybackViewController : VideoDataProcessDelegate {
         
 //        let bytes = UnsafeBufferPointer<UInt8>(start:decodedData, count:Int(length))
 //
-        NSLog("######### Length: %d", length)
+//        NSLog("######### Length: %d", length)
 //        for i in 0 ..< Int(length) {
 //            NSLog("######### Byte: %@", bytes[i])
 //        }
-//        
+//
 //        NSLog("####### process video data of length %d", bytes.count)
 //        if length > 0 {
 //            let data = NSData()
@@ -75,12 +76,42 @@ extension PlaybackViewController: DJICameraDelegate {
 //        return UIImage(data: data)!
 //    }
     
+
+
+    
     
 	func camera(camera: DJICamera!, didReceivedVideoData videoBuffer: UnsafeMutablePointer<UInt8>, length: Int32) {
 		// keep as var
 		var buffer = UnsafeMutablePointer<UInt8>.alloc(Int(length))
         
 		memcpy(buffer, videoBuffer, Int(length))
+    
+        
+        var pixelBuffer = VideoPreviewer.instance().getPixelBuffer()
+        var pbm = pixelBuffer.memory?.takeUnretainedValue()
+
+//        if flag && length > 0 {
+        NSLog("#################################  Pixel buffer: \(pbm)")
+        
+            
+        var image = CIImage(CVPixelBuffer: pbm!, options: nil)
+    
+        var temporaryContext = CIContext(options: nil)
+        
+        let width = CGFloat(CVPixelBufferGetWidth(pbm!))
+        let height = CGFloat(CVPixelBufferGetHeight(pbm!))
+        var videoImage = temporaryContext.createCGImage(image, fromRect: CGRectMake(0, 0, width, height))
+        var uiimage = UIImage(CIImage: image)
+    
+        NSLog("Will put image somewhere")
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            NSLog("Will put image somewhere")
+            self.imageView.image = uiimage
+            let imageData = UIImagePNGRepresentation(uiimage)
+            NSLog("\(imageData)")
+            NSLog("\(imageData?.length)")
+        })
         
 		VideoPreviewer.instance().dataQueue.push(buffer, length: length)
 	}

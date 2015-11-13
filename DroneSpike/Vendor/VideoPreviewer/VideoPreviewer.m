@@ -305,7 +305,6 @@
                 }
                 if (!_status.isPause && !_status.isBackground) {
                     //use hardware decode
-                    NSLog(@"#### using hardware a.k.a _videoExtractor.parse");
                     [_videoExtractor parse:inputData length:inputDataSize callback:^(uint8_t *frame, int length, int frame_width, int frame_height) {
                         NSLog(@"FrameSize{%d, %d}", frame_width, frame_height);
                         BOOL sizeChanged = NO;
@@ -345,7 +344,6 @@
             }
             else
             {
-                NSLog(@"#### not using hardware a.k.a _videoExtractor.decode");
                 if (self.isHardwareDecoding) {
                     self.isHardwareDecoding = NO;
                 }
@@ -438,6 +436,29 @@
             CVPixelBufferUnlockBaseAddress(image, 0);
         }
     }
+}
+
+-(CVPixelBufferRef *)getPixelBuffer {
+    CVPixelBufferRef *pixelBuffer;
+    [_videoExtractor getPixelBuffer: [self emptyPixelBuffer:pixelBuffer]];
+    return pixelBuffer;
+}
+
+- (CVPixelBufferRef *)emptyPixelBuffer:(CVPixelBufferRef *) pixelBuffer {
+    CGSize frameSize = CGSizeMake(1000, 1000);
+    NSDictionary *options = @{
+                              (__bridge NSString *)kCVPixelBufferCGImageCompatibilityKey: @(NO),
+                              (__bridge NSString *)kCVPixelBufferCGBitmapContextCompatibilityKey: @(NO)
+                              };
+    
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, frameSize.width,
+                                          frameSize.height,  kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+                                          pixelBuffer);
+    if (status != kCVReturnSuccess) {
+        return NULL;
+    }
+    
+    return pixelBuffer;
 }
 
 @end

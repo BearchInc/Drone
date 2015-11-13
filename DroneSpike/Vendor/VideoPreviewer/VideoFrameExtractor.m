@@ -84,7 +84,6 @@ ss += ll; \
             
             if (packet.size > 0)
             {
-                NSLog(@"Checking delegate");
                 if(_delegate!=nil && [_delegate respondsToSelector:@selector(processVideoData:length:)]){
                     [_delegate processVideoData:packet.data length:packet.size];
                 }                
@@ -235,6 +234,68 @@ ss += ll; \
                 NSLog(@"Could not oped avcodec");
             }
         }
+    }
+}
+
+-(void)getPixelBuffer:(CVPixelBufferRef *)pbuf {
+    @synchronized (self) {
+        
+        if(!_pFrame || !_pFrame->data[0])
+            return;
+        
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 //                             [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
+                                 //                             [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
+                                 @(_pFrame->linesize[0]), kCVPixelBufferBytesPerRowAlignmentKey,
+                                 [NSNumber numberWithBool:YES], kCVPixelBufferOpenGLESCompatibilityKey,
+                                 [NSDictionary dictionary], kCVPixelBufferIOSurfacePropertiesKey,
+                                 nil];
+        
+        
+        if (_pFrame->linesize[1] != _pFrame->linesize[2]) {
+            return;
+        }
+        
+        size_t srcPlaneSize = _pFrame->linesize[1]*_pFrame->height/2;
+        size_t dstPlaneSize = srcPlaneSize *2;
+        uint8_t *dstPlane = malloc(dstPlaneSize);
+        
+        // interleave Cb and Cr plane
+        for(size_t i = 0; i<srcPlaneSize; i++){
+            dstPlane[2*i  ]=_pFrame->data[1][i];
+            dstPlane[2*i+1]=_pFrame->data[2][i];
+        }
+        
+        
+        int ret = CVPixelBufferCreate(kCFAllocatorDefault,
+                                      _pFrame->width,
+                                      _pFrame->height,
+                                      kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange,
+                                      (__bridge CFDictionaryRef)(options),
+                                      pbuf);
+        
+        CVPixelBufferLockBaseAddress(*pbuf, 0);
+        
+        size_t bytePerRowY = CVPixelBufferGetBytesPerRowOfPlane(*pbuf, 0);
+        size_t bytesPerRowUV = CVPixelBufferGetBytesPerRowOfPlane(*pbuf, 1);
+        
+        void* base =  CVPixelBufferGetBaseAddressOfPlane(*pbuf, 0);
+        memcpy(base, _pFrame->data[0], bytePerRowY*_pFrame->height);
+        
+        base = CVPixelBufferGetBaseAddressOfPlane(*pbuf, 1);
+        memcpy(base, dstPlane, bytesPerRowUV*_pFrame->height/2);
+        
+        
+        CVPixelBufferUnlockBaseAddress(*pbuf, 0);
+        
+        free(dstPlane);
+        
+        
+        if(ret != kCVReturnSuccess)
+        {
+            NSLog(@"CVPixelBufferCreate Failed");
+        }
+        
     }
 }
 
