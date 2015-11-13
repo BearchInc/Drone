@@ -27,6 +27,7 @@ class PlaybackViewController: UIViewController {
 		
 		VideoPreviewer.instance().start()
 		VideoPreviewer.instance().setView(previewView)
+        VideoPreviewer.instance().videoExtractor.delegate = self
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
@@ -39,29 +40,41 @@ class PlaybackViewController: UIViewController {
 	override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
 		
 	}
+    
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
 		VideoPreviewer.instance().setView(previewView)
 	}
     @IBOutlet weak var imageView: UIImageView!
-    
-    lazy var videoExtractor : VideoFrameExtractor = {
-        let videoExtractor = VideoFrameExtractor()
-        videoExtractor.delegate = self
-        return videoExtractor
-    }()
 }
 
-extension PlaybackViewController: DJICameraDelegate, VideoDataProcessDelegate {
-	
-    private func imageFromUnsafeMutablePointer(buffer: UnsafeMutablePointer<UInt8>, length: Int) -> UIImage {
-        let data  = NSData()
-        data.getBytes(buffer, length: length)
-        return UIImage(data: data)!
+extension PlaybackViewController : VideoDataProcessDelegate {
+    func processVideoData(start: UnsafeMutablePointer<UInt8>, length: Int32) {
+        
+//        let bytes = UnsafeBufferPointer<UInt8>(start:decodedData, count:Int(length))
+//
+        NSLog("######### Length: %d", length)
+//        for i in 0 ..< Int(length) {
+//            NSLog("######### Byte: %@", bytes[i])
+//        }
+//        
+//        NSLog("####### process video data of length %d", bytes.count)
+//        if length > 0 {
+//            let data = NSData()
+//            data.getBytes(start, length: Int(length))
+//            let data = NSData(bytesNoCopy: start, length: Int(length))
+//            NSLog("####### decoded data %@, length %@", data, length)
+//        }
     }
+}
+
+extension PlaybackViewController: DJICameraDelegate {
+//
+//    private func imageFromUnsafeMutablePointer(buffer: UnsafeMutablePointer<UInt8>, length: Int) -> UIImage {
+//        let data  = NSData()
+//        data.getBytes(buffer, length: length)
+//        return UIImage(data: data)!
+//    }
     
-    func processVideoData(decodedData: UnsafeMutablePointer<UInt8>, length: Int32) {
-        imageView.image = imageFromUnsafeMutablePointer(decodedData, length: Int(length))
-    }
     
 	func camera(camera: DJICamera!, didReceivedVideoData videoBuffer: UnsafeMutablePointer<UInt8>, length: Int32) {
 		// keep as var
@@ -70,10 +83,6 @@ extension PlaybackViewController: DJICameraDelegate, VideoDataProcessDelegate {
 		memcpy(buffer, videoBuffer, Int(length))
         
 		VideoPreviewer.instance().dataQueue.push(buffer, length: length)
-        
-        videoExtractor.decode(buffer, length: length) { worked in
-            print("DECODED")
-        }
 	}
 	
 	func camera(camera: DJICamera!, didUpdateSystemState systemState: DJICameraSystemState!) {

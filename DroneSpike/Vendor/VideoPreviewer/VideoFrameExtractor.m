@@ -64,27 +64,6 @@ ss += ll; \
     }
 }
 
--(uint8_t*) getIFrameFromBuffer:(uint8_t*)buffer length:(int)bufferSize;
-{
-    if (buffer == NULL || bufferSize < 5) {
-        return NULL;
-    }
-    
-    uint8_t* pIter = buffer;
-    uint8_t* pIterEnd = buffer + (bufferSize - 5);
-    while (pIter <= pIterEnd) {
-        if ((*pIter == 0x00 && *(pIter + 1) == 0x00 && *(pIter + 2) == 0x00 && *(pIter + 3) == 0x01)) {
-            uint8_t flag = *(pIter + 4);
-            if (flag == 0x65 || flag == 0x67 || flag == 0x68) {
-                return pIter;
-            }
-        }
-        pIter++;
-    }
-    
-    return NULL;
-}
-
 -(int)decode:(uint8_t*)buf length:(int)length callback:(void(^)(BOOL b))callback
 {
     @synchronized (self)
@@ -95,6 +74,61 @@ ss += ll; \
         int decode_data_length;
         int got_picture = 0;
         uint8_t *paserBuffer_In = buf;
+        while (paserLength_In > 0)
+        {
+            AVPacket packet;
+            av_init_packet(&packet);
+            paserLen = av_parser_parse2(_pCodecPaser, _pCodecCtx, &packet.data, &packet.size, paserBuffer_In, paserLength_In, AV_NOPTS_VALUE, AV_NOPTS_VALUE, AV_NOPTS_VALUE);
+            paserLength_In -= paserLen;
+            paserBuffer_In += paserLen;
+            
+            if (packet.size > 0)
+            {
+                NSLog(@"Checking delegate");
+                if(_delegate!=nil && [_delegate respondsToSelector:@selector(processVideoData:length:)]){
+                    [_delegate processVideoData:packet.data length:packet.size];
+                }                
+                
+                decode_data_length = avcodec_decode_video2(_pCodecCtx, _pFrame, &got_picture, &packet);
+            }
+            else
+            {
+                break;
+            }
+            
+            av_free_packet(&packet);
+            _outputWidth = _pCodecCtx->width;
+            
+            
+            if(got_picture)
+            {
+                callback(YES);
+            }
+            else
+            {
+                callback(NO);
+            }
+        }
+        
+        if(!got_picture)
+            return NO;
+        
+        if (!_pFrame->data[0])
+            return NO;
+    }
+    return  YES;
+}
+
+-(int)parse:(uint8_t*)buf length:(int)length callback:(void(^)(uint8_t* frame, int length, int frame_width, int frame_height))callback
+{
+    @synchronized (self)
+    {
+        if(_pCodecCtx == NULL) return false;
+        
+        int paserLength_In = length;
+        int paserLen;
+        uint8_t *paserBuffer_In = buf;
+        
         while (paserLength_In > 0) {
             AVPacket packet;
             av_init_packet(&packet);
@@ -103,66 +137,17 @@ ss += ll; \
             paserBuffer_In += paserLen;
             
             if (packet.size > 0) {
-//                struct timeval ta,tb;
-//                gettimeofday(&ta, NULL);
-                
-                
-                NSLog(@"############ Checking delegate not nil");
-                if(self.delegate!=nil){
-                    NSLog(@"############ Checking delegate responds to selector");
-                    if ([self.delegate respondsToSelector:@selector(processVideoData:length:)]) {
-                        NSLog(@"############ Delegate met!");
-                        [self.delegate processVideoData:packet.data length:packet.size];
-                    }
+                if (callback) {
+                    callback(packet.data, packet.size, _pCodecPaser->width_in_pixel, _pCodecPaser->height_in_pixel);
                 }
-                
-                decode_data_length = avcodec_decode_video2(_pCodecCtx, _pFrame, &got_picture, &packet);
-                if(_pFrame->key_frame){
-//                    NSLog(@"该关键帧大小为:%d",packet.size);
-                }
-//                gettimeofday(&tb, NULL);
-//                static long t = 0;
-//                static int i = 0;
-//                if(ta.tv_sec==tb.tv_sec){
-//                    t += tb.tv_usec-ta.tv_usec;
-//                }
-//                else if(ta.tv_sec<tb.tv_sec){
-//                    t += tb.tv_usec+1000000-ta.tv_usec;
-//                }
-//                i++;
-//                if(i>=421){
-//                    NSLog(@"%d解码经过的时间为:%ld",i,t);
-//                }
-//                if(i>=422){
-//                    i=0;
-//                    t=0;
-//                }
             } else {
                 break;
             }
             
             av_free_packet(&packet);
-            _outputWidth = _pCodecCtx->width;
-            
-            
-            if(_pFrame->decode_error_flags){
-//                NSLog(@"解码发生错误");
-            }
-            if(!got_picture)
-            {
-//                NSLog(@"XXXXXXX无图像显示");
-            }
-            else
-            {
-//                NSLog(@"已解码包大小为:%d,指针位置为:%d",packet.size,got_picture);
-                callback(YES);
-            }
+            _outputWidth = _pCodecPaser->width_in_pixel;
+            _outputHeight = _pCodecPaser->height_in_pixel;
         }
-        
-        if(!got_picture)
-            return NO;
-        
-        if (!_pFrame->data[0]) return NO;
     }
     return  YES;
 }
@@ -170,7 +155,8 @@ ss += ll; \
 
 -(id)initExtractor
 {
-    @synchronized (self) {
+    @synchronized (self)
+    {
         AVCodec *pCodec;
         if(_pFrame == NULL)
         {
@@ -178,30 +164,22 @@ ss += ll; \
             
             pCodec = avcodec_find_decoder(AV_CODEC_ID_H264);
             _pCodecCtx = avcodec_alloc_context3(pCodec);
-            _pFrame = avcodec_alloc_frame();
+            _pFrame = av_frame_alloc();
             _pCodecPaser = av_parser_init(AV_CODEC_ID_H264);
             if (_pCodecPaser == NULL) {
-                // NSLog(@"Can't find H264 frame paser!");
+                 NSLog(@"Can't find H264 frame paser!");
             }
             _pCodecCtx->flags2|=CODEC_FLAG2_FAST;
             _pCodecCtx->thread_count = 2;
-//            _pCodecCtx->thread_type = FF_THREAD_SLICE;
             _pCodecCtx->thread_type = FF_THREAD_FRAME;
             
             if(pCodec->capabilities&CODEC_FLAG_LOW_DELAY){
-//                NSLog(@"capabilities: %X,flags: %X",pCodec->capabilities,pCodecCtx->flags);
                 _pCodecCtx->flags|=CODEC_FLAG_LOW_DELAY;
             }
             
-            if (avcodec_open2(_pCodecCtx, pCodec, NULL)) {
-                // NSLog(@"Could not open codec");
-                //Could not open codec
+            if (avcodec_open2(_pCodecCtx, pCodec, NULL) != 0) {
+                 NSLog(@"Could not open codec");
             }
-            
-//            pCodecCtx->ticks_per_frame = 2;
-//            pCodecCtx->delay = 0;
-//            NSLog(@"Init param:%d %d %d %d %d",_pCodecCtx->ticks_per_frame,_pCodecCtx->delay,_pCodecCtx->thread_count,_pCodecCtx->thread_type,_pCodecCtx->active_thread_type);
-            //NSLog(@"init success~");
         }
     }
     return self;
@@ -212,7 +190,8 @@ ss += ll; \
 -(void)freeExtractor
 {
     @synchronized (self) {
-        if (_pFrame) av_free(_pFrame);
+        if (_pFrame)
+            av_free(_pFrame);
         _pFrame = NULL;
         
         if (_pCodecCtx) {
@@ -228,44 +207,39 @@ ss += ll; \
     }
 }
 
-- (void)clearBuffer{
+- (void)clearBuffer
+{
     [self freeExtractor];
-    @synchronized (self) {
+    @synchronized (self)
+    {
         AVCodec *pCodec;
         if(_pFrame == NULL)
         {
             av_register_all();
             pCodec = avcodec_find_decoder(AV_CODEC_ID_H264);
             _pCodecCtx = avcodec_alloc_context3(pCodec);
-            _pFrame = avcodec_alloc_frame();
+            _pFrame = av_frame_alloc();
             _pCodecPaser = av_parser_init(AV_CODEC_ID_H264);
             if (_pCodecPaser == NULL) {
-                // NSLog(@"Can't find H264 frame paser!");
+                 NSLog(@"Can't find H264 frame paser!");
             }
             _pCodecCtx->flags2|=CODEC_FLAG2_FAST;
             _pCodecCtx->thread_count = 2;
-            //            _pCodecCtx->thread_type = FF_THREAD_SLICE;
             _pCodecCtx->thread_type = FF_THREAD_FRAME;
             
             if(pCodec->capabilities&CODEC_FLAG_LOW_DELAY){
-                //                NSLog(@"capabilities: %X,flags: %X",pCodec->capabilities,pCodecCtx->flags);
                 _pCodecCtx->flags|=CODEC_FLAG_LOW_DELAY;
             }
             
-            if (avcodec_open2(_pCodecCtx, pCodec, NULL)) {
-                // NSLog(@"Could not open codec");
-                //Could not open codec
+            if (avcodec_open2(_pCodecCtx, pCodec, NULL) != 0) {
+                NSLog(@"Could not oped avcodec");
             }
-            
-            //            pCodecCtx->ticks_per_frame = 2;
-            //            pCodecCtx->delay = 0;
-            NSLog(@"Init param:%d %d %d %d %d",_pCodecCtx->ticks_per_frame,_pCodecCtx->delay,_pCodecCtx->thread_count,_pCodecCtx->thread_type,_pCodecCtx->active_thread_type);
-            //NSLog(@"init success~");
         }
     }
 }
 
--(void)dealloc {
+-(void)dealloc
+{
 	[self freeExtractor];
 }
 

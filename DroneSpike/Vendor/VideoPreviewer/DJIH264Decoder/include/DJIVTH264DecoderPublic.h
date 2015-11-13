@@ -75,7 +75,7 @@ typedef enum : NSUInteger {
 -(void) dequeueAllFrames;
 
 /**
- *  Reset the decoder later.
+ *  Reset the decoder.
  */
 -(void) resetLater;
 
