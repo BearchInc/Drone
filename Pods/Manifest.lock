@@ -1,10 +1,16 @@
 PODS:
+  - EKMovieMaker (0.0.1)
   - OpenCV (2.4.10)
+  - PBJVideoPlayer (0.2.4)
 
 DEPENDENCIES:
+  - EKMovieMaker (~> 0.0.1)
   - OpenCV (= 2.4.10)
+  - PBJVideoPlayer
 
 SPEC CHECKSUMS:
+  EKMovieMaker: 701c66e7c740afa52c8a6b35dde10079a5829092
   OpenCV: 26e7fa4f6f727a50467c245b2eee1489f478d0f5
+  PBJVideoPlayer: 69e94215f248409735db936225f6b92a4b268389
 
 COCOAPODS: 0.39.0

@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MKI-2g-2hQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MKI-2g-2hQ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Video Motion View Controller-->
+        <scene sceneID="AhN-RK-fXV">
+            <objects>
+                <viewController id="pOg-Lo-jpF" customClass="VideoMotionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tHy-vK-BqA"/>
+                        <viewControllerLayoutGuide type="bottom" id="AyI-DV-ouW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p5u-f2-KRc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dqv-ae-a1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="234" y="18"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="oPe-fI-gyU">
             <objects>
@@ -18,8 +37,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0R-dH-iWv" userLabel="Joystick Button">
-                                <rect key="frame" x="272" y="264" width="57" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0R-dH-iWv" userLabel="Joystick Button">
+                                <rect key="frame" x="272" y="214" width="57" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Joystick"/>
                                 <connections>
@@ -34,14 +53,6 @@
                                     <segue destination="nqv-AC-OpV" kind="show" id="QbH-Ju-FKh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2YT-W5-Q86" userLabel="Playback Button">
-                                <rect key="frame" x="269" y="374" width="62" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Playback"/>
-                                <connections>
-                                    <segue destination="kLh-KO-lnk" kind="show" id="dk2-tm-Gbz"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpd-ei-CWi" userLabel="Debug Label">
                                 <rect key="frame" x="20" y="64" width="150" height="300"/>
                                 <animations/>
@@ -53,12 +64,28 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2T6-xv-Zl3">
-                                <rect key="frame" x="255" y="418" width="91" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2T6-xv-Zl3">
+                                <rect key="frame" x="255" y="368" width="91" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Video Motion"/>
                                 <connections>
                                     <segue destination="d7p-ij-gPD" kind="show" id="b7b-3z-z5A"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2YT-W5-Q86" userLabel="Playback Button">
+                                <rect key="frame" x="270" y="437" width="62" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Playback"/>
+                                <connections>
+                                    <segue destination="kLh-KO-lnk" kind="show" id="dk2-tm-Gbz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlk-kz-jrR" userLabel="Video Motion Detection">
+                                <rect key="frame" x="242" y="156" width="118" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Motion Detection"/>
+                                <connections>
+                                    <segue destination="pOg-Lo-jpF" kind="presentation" modalPresentationStyle="currentContext" id="EKP-CA-IxD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -67,12 +94,16 @@
                         <constraints>
                             <constraint firstItem="2YT-W5-Q86" firstAttribute="top" secondItem="xER-uH-eBV" secondAttribute="bottom" constant="50" id="0kU-6M-Qkk"/>
                             <constraint firstItem="xER-uH-eBV" firstAttribute="top" secondItem="a0R-dH-iWv" secondAttribute="bottom" constant="50" id="6MV-Oz-EcJ"/>
+                            <constraint firstItem="2YT-W5-Q86" firstAttribute="centerX" secondItem="2T6-xv-Zl3" secondAttribute="centerX" id="Ab2-K5-FAp"/>
                             <constraint firstItem="a0R-dH-iWv" firstAttribute="top" secondItem="Dai-Sx-JSY" secondAttribute="bottom" constant="150" id="AwS-6K-6Ms"/>
                             <constraint firstItem="xER-uH-eBV" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="IUO-qI-rCZ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="kpd-ei-CWi" secondAttribute="leading" id="ScC-5g-1Ja"/>
                             <constraint firstItem="a0R-dH-iWv" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="TvW-bP-GPm"/>
+                            <constraint firstItem="2YT-W5-Q86" firstAttribute="top" secondItem="2T6-xv-Zl3" secondAttribute="bottom" constant="39" id="U6w-Si-PpD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2T6-xv-Zl3" secondAttribute="trailing" constant="234" id="UBh-xc-wx1"/>
+                            <constraint firstItem="vlk-kz-jrR" firstAttribute="centerX" secondItem="a0R-dH-iWv" secondAttribute="centerX" id="aLU-dH-0jF"/>
                             <constraint firstItem="2T6-xv-Zl3" firstAttribute="leading" secondItem="xER-uH-eBV" secondAttribute="trailing" constant="-77" id="jZD-1t-iR6"/>
+                            <constraint firstItem="a0R-dH-iWv" firstAttribute="top" secondItem="vlk-kz-jrR" secondAttribute="bottom" constant="28" id="jun-5w-cct"/>
                             <constraint firstItem="2T6-xv-Zl3" firstAttribute="centerX" secondItem="xER-uH-eBV" secondAttribute="centerX" id="n7x-In-w1t"/>
                             <constraint firstItem="kpd-ei-CWi" firstAttribute="top" secondItem="Dai-Sx-JSY" secondAttribute="bottom" id="rsk-4M-EaN"/>
                             <constraint firstItem="2T6-xv-Zl3" firstAttribute="leading" secondItem="EU4-Ws-WcS" secondAttribute="leadingMargin" constant="235" id="sfJ-Sg-3h9"/>
@@ -83,6 +114,7 @@
                                 <exclude reference="UBh-xc-wx1"/>
                                 <exclude reference="jZD-1t-iR6"/>
                                 <exclude reference="sfJ-Sg-3h9"/>
+                                <exclude reference="0kU-6M-Qkk"/>
                             </mask>
                         </variation>
                     </view>

@@ -5,6 +5,8 @@ use_frameworks!
 
 target 'DroneSpike' do
 	pod 'OpenCV', '2.4.10'
+    pod 'PBJVideoPlayer'
+    pod 'EKMovieMaker', '~> 0.0.1'
 end
 
 target 'DroneSpikeTests' do

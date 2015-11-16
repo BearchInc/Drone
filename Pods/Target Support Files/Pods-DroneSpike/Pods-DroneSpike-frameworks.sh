@@ -82,3 +82,12 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-DroneSpike/EKMovieMaker.framework"
+  install_framework "Pods-DroneSpike/PBJVideoPlayer.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-DroneSpike/EKMovieMaker.framework"
+  install_framework "Pods-DroneSpike/PBJVideoPlayer.framework"
+fi
