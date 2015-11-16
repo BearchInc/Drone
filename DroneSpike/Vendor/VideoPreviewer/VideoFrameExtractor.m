@@ -84,12 +84,18 @@ ss += ll; \
             
             if (packet.size > 0)
             {
-                NSLog(@"Checking delegate");
                 if(_delegate!=nil && [_delegate respondsToSelector:@selector(processVideoData:length:)]){
                     [_delegate processVideoData:packet.data length:packet.size];
                 }                
                 
                 decode_data_length = avcodec_decode_video2(_pCodecCtx, _pFrame, &got_picture, &packet);
+                
+                NSLog(@"#### Checking for frame processor delegate");
+                
+                if(_frameProcessorDelegate !=nil && [_frameProcessorDelegate respondsToSelector:@selector(didReceiveFrame:)]){
+                    NSLog(@"#### Calling frame processor delegate");
+                    [_frameProcessorDelegate didReceiveFrame:*_pFrame];
+                }
             }
             else
             {

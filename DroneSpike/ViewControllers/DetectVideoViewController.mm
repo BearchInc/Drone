@@ -17,7 +17,6 @@
 
 @interface DetectVideoViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *videoView;
-
 @end
 
 @implementation DetectVideoViewController

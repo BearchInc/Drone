@@ -34,6 +34,12 @@
 @end
 
 
+@protocol VideoFrameProcessorDelegate <NSObject>
+
+-(void) didReceiveFrame:(AVFrame)frame;
+
+@end
+
 @interface VideoFrameExtractor : NSObject
 {
 	AVCodecContext *_pCodecCtx;
@@ -47,6 +53,7 @@
 }
 
 @property (weak) id<VideoDataProcessDelegate> delegate;
+@property (weak) id<VideoFrameProcessorDelegate> frameProcessorDelegate;
 
 
 -(id)initExtractor;
