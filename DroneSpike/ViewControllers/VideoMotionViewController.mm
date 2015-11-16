@@ -21,7 +21,6 @@
     
     EKMovieMaker *movieMaker    = [[EKMovieMaker alloc] initWithImages: images];
     movieMaker.movieSize       = CGSizeMake(320.0f, 568.0f);
-    movieMaker.framesPerSecond = 30.0f;
     movieMaker.frameDuration   = .1f;
     
     [movieMaker createMovieWithCompletion:^(NSString *moviePath) {
@@ -48,15 +47,19 @@
     
     CMTime totalDuration = movieAsset.duration;
     
+    
     AVAssetImageGenerator *assetImageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:movieAsset];
+    assetImageGenerator.requestedTimeToleranceBefore = kCMTimeZero;
+    assetImageGenerator.requestedTimeToleranceAfter = kCMTimeZero;
     assetImageGenerator.appliesPreferredTrackTransform = YES;
 
     int currentFrame = 2;
     
     while (currentFrame < totalDuration.value - 200) {
         CGImageRef frameRef = [assetImageGenerator copyCGImageAtTime:CMTimeMake(currentFrame, totalDuration.timescale) actualTime:nil error:nil];
+        
         UIImage *currentImage = [[UIImage alloc] initWithCGImage:frameRef];
-        currentFrame = currentFrame + 100;
+        currentFrame += 60;
         [uiImages addObject: currentImage];
         
         // Create path.
@@ -66,7 +69,7 @@
         
         // Save image.
         [UIImagePNGRepresentation(currentImage) writeToFile:filePath atomically:YES];
-        NSLog(filePath);
+        NSLog(@"%@", filePath);
     }
     
 
