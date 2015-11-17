@@ -46,6 +46,7 @@
 		82483A201BF4F296007CBC2C /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */; };
 		82483A221BF4F406007CBC2C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82483A211BF4F406007CBC2C /* libjpeg.a */; };
 		82483A261BF4FA90007CBC2C /* DetectVideoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82483A251BF4FA90007CBC2C /* DetectVideoViewController.mm */; };
+		82E9E2391BFB618900129800 /* ImageUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82E9E2381BFB618900129800 /* ImageUtils.mm */; };
 		962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 		962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB20B1BF23B6B004FD44C /* HomeViewController.swift */; };
 		96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */; };
@@ -219,6 +220,8 @@
 		82483A231BF4F674007CBC2C /* DroneSpike-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		82483A241BF4FA90007CBC2C /* DetectVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectVideoViewController.h; sourceTree = "<group>"; };
 		82483A251BF4FA90007CBC2C /* DetectVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DetectVideoViewController.mm; sourceTree = "<group>"; };
+		82E9E2371BFB618900129800 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		82E9E2381BFB618900129800 /* ImageUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageUtils.mm; sourceTree = "<group>"; };
 		962FB20B1BF23B6B004FD44C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
 		F4BFB78E6ED95170A1C64597 /* Pods-DroneSpike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneSpike.release.xcconfig"; path = "Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike.release.xcconfig"; sourceTree = "<group>"; };
@@ -300,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				36BF2B731BFA165E00154F78 /* Opencv */,
+				82E9E2361BFB616E00129800 /* Utils */,
 				36D889B21BF3873C00457A2A /* Models */,
 				962FB2061BF23620004FD44C /* Frameworks */,
 				962FB2071BF23634004FD44C /* ProjectFiles */,
@@ -608,6 +612,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		82E9E2361BFB616E00129800 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				82E9E2371BFB618900129800 /* ImageUtils.h */,
+				82E9E2381BFB618900129800 /* ImageUtils.mm */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		962FB2061BF23620004FD44C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,6 +903,7 @@
 				962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */,
 				36BF2B6D1BF6130700154F78 /* VideoFrameExtractor.m in Sources */,
 				36BF2B6E1BF6130700154F78 /* VideoPreviewer.m in Sources */,
+				82E9E2391BFB618900129800 /* ImageUtils.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
