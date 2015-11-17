@@ -6,6 +6,8 @@
 #import "opencv2/video/tracking.hpp"
 #import "opencv2/imgproc/imgproc.hpp"
 
+
+
 using namespace cv;
 using namespace std;
 
@@ -24,7 +26,7 @@ using namespace std;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mov"];
     NSMutableArray *array = [self extractFrames: path];
     
-    Mat result = [self meanShift: array];
+    Mat result = [self meanShift2: array[0]];
     
     UIImage *resultImage = [ImageUtils UIImageFromCVMat:result];
     
@@ -37,79 +39,6 @@ using namespace std;
 //    [self createVideo: array];
 }
 
-- (Mat) meanShift:(NSMutableArray *) images {
-    cv::BackgroundSubtractorMOG2 *backgroundSubtractor;
-    backgroundSubtractor = new cv::BackgroundSubtractorMOG2(10, 16, false);
-    
-    
-
-//    for (int i = 0; i < images.count; i++) {
-    
-        Mat bgr, hsv, dst, hist = Mat::zeros(200, 320, CV_8UC3), backproj;
-    
-        // it was not a pointer in the function
-        Mat imageMat = [ImageUtils cvMatFromUIImage:images[0]];
-        cvtColor(imageMat, bgr, CV_BGRA2BGR);
-        cvtColor(bgr, hsv, CV_BGR2HSV);
-    
-//    CV_BGR2HSV
-    
-//    return hsv;
-    
-    
-        vector<int> vec = vector<int>(0);
-        vector<float> floatVec = vector<float>(0, 180);
-        float hranges[] = {0,180};
-        const float* phranges = hranges;
-//        vector<Mat> hsVector = vector<Mat>(hsv);
-        NSLog(@"%@", @"heck");
-//        calcBackProject(hsv, vec, imageMat, dst, floatVec, 1);
-        NSLog(@"%d", hist.dims);
-        int *channels = 0;
-        calcBackProject(&hsv, 1, channels, hist, backproj, &phranges);
-//        calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
-    
-//# Setup the termination criteria, either 10 iteration or move by atleast 1 pt
-//        21 term_crit = ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1 )
-    
-    NSLog(@"%@", @"ygor");
-        cv::Rect trackWindow = cv::Rect(10,20,20,20);
-        RotatedRect rotatedRect = CamShift(dst, trackWindow, TermCriteria( TermCriteria::EPS | TermCriteria::COUNT, 10, 1 ));
-            NSLog(@"%@", @"lagarto");
-        rectangle(dst, trackWindow.tl(), trackWindow.br(), 1);
-    
-    return dst;
-//#Draw it on image
-        
-//    }
-}
-
-//while(1):
-//ret ,frame = cap.read()
-//
-//if ret == True:
-//hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-//dst = cv2.calcBackProject([hsv],[0],roi_hist,[0,180],1)
-//
-//# apply meanshift to get the new location
-//ret, track_window = cv2.meanShift(dst, track_window, term_crit)
-//
-//# Draw it on image
-//x,y,w,h = track_window
-//img2 = cv2.rectangle(frame, (x,y), (x+w,y+h), 255,2)
-//cv2.imshow('img2',img2)
-//
-//k = cv2.waitKey(60) & 0xff
-//if k == 27:
-//break
-//else:
-//cv2.imwrite(chr(k)+".jpg",img2)
-//
-//else:
-//break
-//
-//cv2.destroyAllWindows()
-//cap.release()
 
 - (void) createVideo:(NSMutableArray *) images {
     
@@ -166,6 +95,116 @@ using namespace std;
     }
     
     return uiImages;
+}
+
+- (Mat)meanShift2:(UIImage *) _image {
+    
+    int vmin = 10, vmax = 256, smin = 30;
+    int hsize = 16;
+    cv::Rect selection = cv::Rect(38, 30, 170, 280);
+    float hranges[] = {0,180};
+    const float* phranges = hranges;
+    cv::Rect trackWindow;
+    
+    
+    
+    
+    Mat frame, hsv, hue, mask, hist, histimg = Mat::zeros(200, 320, CV_8UC3), backproj;
+    
+    Mat imageMat = [ImageUtils cvMatFromUIImage:_image];
+    cvtColor(imageMat, frame, CV_BGRA2BGR);
+    cvtColor(frame, hsv, CV_BGR2HSV);
+    
+    
+    int _vmin = vmin, _vmax = vmax;
+    
+    inRange(hsv, Scalar(0, smin, MIN(_vmin,_vmax)),
+            Scalar(180, 256, MAX(_vmin, _vmax)), mask);
+    int ch[] = {0, 0};
+    hue.create(hsv.size(), hsv.depth());
+    mixChannels(&hsv, 1, &hue, 1, ch, 1);
+    
+    Mat roi(hue, selection), maskroi(mask, selection);
+    calcHist(&roi, 1, 0, maskroi, hist, 1, &hsize, &phranges);
+    normalize(hist, hist, 0, 255, NORM_MINMAX);
+    
+    trackWindow = selection;
+    
+    histimg = Scalar::all(0);
+    int binW = histimg.cols / hsize;
+    Mat buf(1, hsize, CV_8UC3);
+    for( int i = 0; i < hsize; i++ )
+        buf.at<Vec3b>(i) = Vec3b(saturate_cast<uchar>(i*180./hsize), 255, 255);
+    cvtColor(buf, buf, COLOR_HSV2BGR);
+    
+    for( int i = 0; i < hsize; i++ ) {
+        int val = saturate_cast<int>(hist.at<float>(i)*histimg.rows/255);
+        rectangle( histimg, cv::Point(i * binW, histimg.rows),
+                  cv::Point((i + 1) * binW, histimg.rows - val),
+                  Scalar(buf.at<Vec3b>(i)), -1, 8 );
+    }
+    
+    calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
+    backproj &= mask;
+    RotatedRect trackBox = CamShift(backproj, trackWindow,
+                                    TermCriteria( TermCriteria::EPS | TermCriteria::COUNT, 10, 1 ));
+    if( trackWindow.area() <= 1 ) {
+        int cols = backproj.cols, rows = backproj.rows, r = (MIN(cols, rows) + 5)/6;
+        trackWindow = cv::Rect(trackWindow.x - r, trackWindow.y - r,
+                           trackWindow.x + r, trackWindow.y + r) &
+        cv::Rect(0, 0, cols, rows);
+    }
+    
+//    if( backprojMode )
+//        cvtColor( backproj, image, COLOR_GRAY2BGR );
+//    ellipse( image, trackBox, NULL, 3, 1);
+    ellipse(imageMat, trackBox, Scalar(0,0,255));
+    
+    return imageMat;
+}
+
+
+- (Mat) meanShift:(NSMutableArray *) images {
+    cv::BackgroundSubtractorMOG2 *backgroundSubtractor;
+    backgroundSubtractor = new cv::BackgroundSubtractorMOG2(10, 16, false);
+    
+    Mat bgr, hsv, dst, hist = Mat::zeros(200, 320, CV_8UC3), backproj;
+    
+    // it was not a pointer in the function
+    Mat imageMat = [ImageUtils cvMatFromUIImage:images[0]];
+    cvtColor(imageMat, bgr, CV_BGRA2BGR);
+    cvtColor(bgr, hsv, CV_BGR2HSV);
+    
+    //    CV_BGR2HSV
+    
+    //    return hsv;
+    
+    
+    vector<int> vec = vector<int>(0);
+    vector<float> floatVec = vector<float>(0, 180);
+    float hranges[] = {0,180};
+    const float* phranges = hranges;
+    //        vector<Mat> hsVector = vector<Mat>(hsv);
+    NSLog(@"%@", @"heck");
+    //        calcBackProject(hsv, vec, imageMat, dst, floatVec, 1);
+    NSLog(@"%d", hist.dims);
+    int *channels = 0;
+    calcBackProject(&hsv, 1, channels, hist, backproj, &phranges);
+    //        calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
+    
+    //# Setup the termination criteria, either 10 iteration or move by atleast 1 pt
+    //        21 term_crit = ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1 )
+    
+    NSLog(@"%@", @"ygor");
+    cv::Rect trackWindow = cv::Rect(10,20,20,20);
+    RotatedRect rotatedRect = CamShift(dst, trackWindow, TermCriteria( TermCriteria::EPS | TermCriteria::COUNT, 10, 1 ));
+    NSLog(@"%@", @"lagarto");
+    rectangle(dst, trackWindow.tl(), trackWindow.br(), 1);
+    
+    return dst;
+    //#Draw it on image
+    
+    //    }
 }
 
 
