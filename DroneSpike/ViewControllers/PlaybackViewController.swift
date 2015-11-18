@@ -49,8 +49,11 @@ class PlaybackViewController: UIViewController {
 
 extension PlaybackViewController : VideoFrameProcessorDelegate {
     func didReceiveFrame(frame: AVFrame) {
-//        CVConverters.cvMatFromAVFrame(frame)
-        NSLog("####### frame w: %d, frame h: %d", frame.width, frame.height)
+        CVConverters.imageFromAVFrame(frame)
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.imageView.image = CVConverters.imageFromAVFrame(frame)
+        }
     }
 }
 
