@@ -10,6 +10,9 @@
 		2B52EB78768152F60E487539 /* Pods_DroneSpike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B4C80D6368851034BE59B1 /* Pods_DroneSpike.framework */; };
 		361C09501BFCB74A001AE0D5 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 361C094F1BFCB74A001AE0D5 /* libbz2.tbd */; };
 		361C09521BFCB752001AE0D5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 361C09511BFCB752001AE0D5 /* libiconv.tbd */; };
+		361C09551BFCD79A001AE0D5 /* MissionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361C09531BFCD79A001AE0D5 /* MissionControl.swift */; };
+		361C09561BFCD79A001AE0D5 /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361C09541BFCD79A001AE0D5 /* Waypoint.swift */; };
+		361C09591BFCD7A6001AE0D5 /* CVConverters.mm in Sources */ = {isa = PBXBuildFile; fileRef = 361C09581BFCD7A6001AE0D5 /* CVConverters.mm */; };
 		36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */; };
 		36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */; };
 		36ADF8031BF13E1E0021ED2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36ADF8011BF13E1E0021ED2F /* Main.storyboard */; };
@@ -34,9 +37,6 @@
 		36BF2B6C1BF6130700154F78 /* MovieGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2B5C1BF6130700154F78 /* MovieGLView.m */; };
 		36BF2B6D1BF6130700154F78 /* VideoFrameExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2B5E1BF6130700154F78 /* VideoFrameExtractor.m */; };
 		36BF2B6E1BF6130700154F78 /* VideoPreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2B601BF6130700154F78 /* VideoPreviewer.m */; };
-		36BF2B751BFA16F400154F78 /* CVConverters.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2B741BFA16F400154F78 /* CVConverters.mm */; };
-		36D889B41BF3874700457A2A /* MissionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D889B31BF3874700457A2A /* MissionControl.swift */; };
-		36D889B61BF3879900457A2A /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D889B51BF3879900457A2A /* Waypoint.swift */; };
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
 		5541385C1BF39DDE0081183C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291721BF26580002F7FD1 /* Fabric.framework */; };
 		5541385D1BF39DE90081183C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
@@ -69,6 +69,10 @@
 /* Begin PBXFileReference section */
 		361C094F1BFCB74A001AE0D5 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		361C09511BFCB752001AE0D5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		361C09531BFCD79A001AE0D5 /* MissionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissionControl.swift; path = Models/MissionControl.swift; sourceTree = "<group>"; };
+		361C09541BFCD79A001AE0D5 /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Waypoint.swift; path = Models/Waypoint.swift; sourceTree = "<group>"; };
+		361C09571BFCD7A6001AE0D5 /* CVConverters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CVConverters.h; path = Opencv/CVConverters.h; sourceTree = "<group>"; };
+		361C09581BFCD7A6001AE0D5 /* CVConverters.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CVConverters.mm; path = Opencv/CVConverters.mm; sourceTree = "<group>"; };
 		366B68B01BFA3DB3003FE32F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		36ADF7FA1BF13E1E0021ED2F /* DroneSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -200,10 +204,6 @@
 		36BF2B5E1BF6130700154F78 /* VideoFrameExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoFrameExtractor.m; sourceTree = "<group>"; };
 		36BF2B5F1BF6130700154F78 /* VideoPreviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPreviewer.h; sourceTree = "<group>"; };
 		36BF2B601BF6130700154F78 /* VideoPreviewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPreviewer.m; sourceTree = "<group>"; };
-		36BF2B741BFA16F400154F78 /* CVConverters.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVConverters.mm; sourceTree = "<group>"; };
-		36BF2B761BFA258500154F78 /* CVConverters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVConverters.h; sourceTree = "<group>"; };
-		36D889B31BF3874700457A2A /* MissionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionControl.swift; sourceTree = "<group>"; };
-		36D889B51BF3879900457A2A /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
 		48B4C80D6368851034BE59B1 /* Pods_DroneSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroneSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
 		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -571,8 +571,8 @@
 		36BF2B731BFA165E00154F78 /* Opencv */ = {
 			isa = PBXGroup;
 			children = (
-				36BF2B741BFA16F400154F78 /* CVConverters.mm */,
-				36BF2B761BFA258500154F78 /* CVConverters.h */,
+				361C09571BFCD7A6001AE0D5 /* CVConverters.h */,
+				361C09581BFCD7A6001AE0D5 /* CVConverters.mm */,
 			);
 			name = Opencv;
 			sourceTree = "<group>";
@@ -580,8 +580,8 @@
 		36D889B21BF3873C00457A2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				36D889B31BF3874700457A2A /* MissionControl.swift */,
-				36D889B51BF3879900457A2A /* Waypoint.swift */,
+				361C09531BFCD79A001AE0D5 /* MissionControl.swift */,
+				361C09541BFCD79A001AE0D5 /* Waypoint.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -861,14 +861,14 @@
 			files = (
 				36BF2B6C1BF6130700154F78 /* MovieGLView.m in Sources */,
 				36BF2B621BF6130700154F78 /* DJILinkQueues.m in Sources */,
-				36D889B41BF3874700457A2A /* MissionControl.swift in Sources */,
 				36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */,
 				96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */,
-				36D889B61BF3879900457A2A /* Waypoint.swift in Sources */,
+				361C09591BFCD7A6001AE0D5 /* CVConverters.mm in Sources */,
+				361C09551BFCD79A001AE0D5 /* MissionControl.swift in Sources */,
 				550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */,
 				36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */,
 				82483A261BF4FA90007CBC2C /* DetectVideoViewController.mm in Sources */,
-				36BF2B751BFA16F400154F78 /* CVConverters.mm in Sources */,
+				361C09561BFCD79A001AE0D5 /* Waypoint.swift in Sources */,
 				962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */,
 				36BF2B6D1BF6130700154F78 /* VideoFrameExtractor.m in Sources */,
 				36BF2B6E1BF6130700154F78 /* VideoPreviewer.m in Sources */,
