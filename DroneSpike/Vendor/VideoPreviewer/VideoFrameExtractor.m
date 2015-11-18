@@ -90,10 +90,7 @@ ss += ll; \
                 
                 decode_data_length = avcodec_decode_video2(_pCodecCtx, _pFrame, &got_picture, &packet);
                 
-                NSLog(@"#### Checking for frame processor delegate");
-                
-                if(_frameProcessorDelegate !=nil && [_frameProcessorDelegate respondsToSelector:@selector(didReceiveFrame:)]){
-                    NSLog(@"#### Calling frame processor delegate");
+                if(_frameProcessorDelegate !=nil && [_frameProcessorDelegate respondsToSelector:@selector(didReceiveFrame:)] && _pFrame->format != AV_PIX_FMT_NONE){
                     [_frameProcessorDelegate didReceiveFrame:*_pFrame];
                 }
             }

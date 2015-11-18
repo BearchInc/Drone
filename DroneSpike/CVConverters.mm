@@ -23,13 +23,9 @@ extern "C" {
     enum PixelFormat src_pixfmt = (enum PixelFormat)frame.format;
     enum PixelFormat dst_pixfmt = PIX_FMT_BGR24;
     
-    if (w != 0 || h != 0) {
-        NSLog(@"######## w=%d, h=%d, src_pixfmt=%d, dst_pixfmt=%d", w, h, src_pixfmt, dst_pixfmt);
-        convert_ctx = sws_getContext(w, h, src_pixfmt, w, h, dst_pixfmt, SWS_FAST_BILINEAR, NULL, NULL, NULL);
-        sws_scale(convert_ctx, frame.data, frame.linesize, 0, h, dst.data, dst.linesize);
-        sws_freeContext(convert_ctx);
-    }
-    
+    convert_ctx = sws_getContext(w, h, src_pixfmt, w, h, dst_pixfmt, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+    sws_scale(convert_ctx, frame.data, frame.linesize, 0, h, dst.data, dst.linesize);
+    sws_freeContext(convert_ctx);
     
     return [CVConverters UIImageFromCVMat: m];
 }
