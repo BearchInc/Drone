@@ -12,31 +12,36 @@ using namespace cv;
 using namespace std;
 
 @interface VideoMotionViewController ()
-
-
-
 @end
 
 @implementation VideoMotionViewController
 
 - (void)viewDidLoad {
-//    cv::
     [super viewDidLoad];
 
     NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mov"];
     NSMutableArray *array = [self extractFrames: path];
     
-    Mat result = [self meanShift2: array[0]];
+//    Mat result = [self meanShift2: array[0]];
+    NSMutableArray *uiimages = [[NSMutableArray alloc] init];
     
-    UIImage *resultImage = [ImageUtils UIImageFromCVMat:result];
+    for (UIImage *image in array) {
+        Mat result = [self meanShift2: image];
+        UIImage *resultImage = [ImageUtils UIImageFromCVMat:result];
+        
+        [uiimages addObject:resultImage];
+    }
     
-    UIImageView *ygoView = [[UIImageView alloc] initWithImage:resultImage];
     
-    ygoView.frame = self.view.bounds;
-    [self.view addSubview:ygoView];
+//    UIImage *resultImage = [ImageUtils UIImageFromCVMat:result];
+//    
+//    UIImageView *ygoView = [[UIImageView alloc] initWithImage:resultImage];
+//    
+//    ygoView.frame = self.view.bounds;
+//    [self.view addSubview:ygoView];
     
     
-//    [self createVideo: array];
+    [self createVideo: uiimages];
 }
 
 
@@ -101,7 +106,7 @@ using namespace std;
     
     int vmin = 10, vmax = 256, smin = 30;
     int hsize = 16;
-    cv::Rect selection = cv::Rect(38, 30, 170, 280);
+    cv::Rect selection = cv::Rect(30, 10, 100, 80);
     float hranges[] = {0,180};
     const float* phranges = hranges;
     cv::Rect trackWindow;
@@ -118,8 +123,7 @@ using namespace std;
     
     int _vmin = vmin, _vmax = vmax;
     
-    inRange(hsv, Scalar(0, smin, MIN(_vmin,_vmax)),
-            Scalar(180, 256, MAX(_vmin, _vmax)), mask);
+    inRange(hsv, Scalar(0, smin, MIN(_vmin,_vmax)), Scalar(180, 256, MAX(_vmin, _vmax)), mask);
     int ch[] = {0, 0};
     hue.create(hsv.size(), hsv.depth());
     mixChannels(&hsv, 1, &hue, 1, ch, 1);
@@ -137,11 +141,16 @@ using namespace std;
         buf.at<Vec3b>(i) = Vec3b(saturate_cast<uchar>(i*180./hsize), 255, 255);
     cvtColor(buf, buf, COLOR_HSV2BGR);
     
+//    Scalar colors[6] = { Scalar(255, 0, 0), Scalar(0, 255, 0), Scalar(0, 0, 255), Scalar(0, 255, 255), Scalar(255, 255, 0), Scalar(255, 0, 255) };
+    
+    
     for( int i = 0; i < hsize; i++ ) {
         int val = saturate_cast<int>(hist.at<float>(i)*histimg.rows/255);
-        rectangle( histimg, cv::Point(i * binW, histimg.rows),
-                  cv::Point((i + 1) * binW, histimg.rows - val),
-                  Scalar(buf.at<Vec3b>(i)), -1, 8 );
+        
+        cv::Point topLeft = cv::Point(i * binW, histimg.rows);
+        cv::Point bottomRight = cv::Point((i + 1) * binW, histimg.rows - val);
+        
+        rectangle(histimg, topLeft, bottomRight, Scalar(buf.at<Vec3b>(i)), -1, 8 );
     }
     
     calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
@@ -150,8 +159,7 @@ using namespace std;
                                     TermCriteria( TermCriteria::EPS | TermCriteria::COUNT, 10, 1 ));
     if( trackWindow.area() <= 1 ) {
         int cols = backproj.cols, rows = backproj.rows, r = (MIN(cols, rows) + 5)/6;
-        trackWindow = cv::Rect(trackWindow.x - r, trackWindow.y - r,
-                           trackWindow.x + r, trackWindow.y + r) &
+        trackWindow = cv::Rect(trackWindow.x - r, trackWindow.y - r, trackWindow.x + r, trackWindow.y + r) &
         cv::Rect(0, 0, cols, rows);
     }
     
@@ -159,6 +167,7 @@ using namespace std;
 //        cvtColor( backproj, image, COLOR_GRAY2BGR );
 //    ellipse( image, trackBox, NULL, 3, 1);
     ellipse(imageMat, trackBox, Scalar(0,0,255));
+    rectangle(imageMat, selection.tl(), selection.br(), Scalar(0, 0, 255));
     
     return imageMat;
 }
