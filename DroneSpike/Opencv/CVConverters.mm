@@ -1,5 +1,6 @@
 #import "CVConverters.h"
 #import <opencv2/core/core.hpp>
+#import <opencv2/imgproc/imgproc.hpp>
 
 extern "C" {
 #import "libavcodec/avcodec.h"
@@ -8,7 +9,26 @@ extern "C" {
 
 @implementation CVConverters : NSObject
 
-+ (UIImage *) imageFromAVFrame: (AVFrame) frame {
+
+#ifdef __cplusplus
++ (UIImage *) imageWithGrayscale: (AVFrame) frame {
+
+    cv::Mat image = [CVConverters cvMatFromAVFrame: frame];
+    cv::Mat image_copy;
+    
+    //    cv::cv
+    cvtColor(image, image_copy, CV_BGRA2BGR);
+    
+    // invert image
+    bitwise_not(image_copy, image_copy);
+    cvtColor(image_copy, image, CV_BGR2BGRA);
+    
+    return [CVConverters imageFromCVMat: image];
+}
+
+#endif
+
++ (cv::Mat) cvMatFromAVFrame: (AVFrame) frame {
     AVFrame dst;
     cv::Mat m;
     
@@ -26,12 +46,16 @@ extern "C" {
     convert_ctx = sws_getContext(w, h, src_pixfmt, w, h, dst_pixfmt, SWS_FAST_BILINEAR, NULL, NULL, NULL);
     sws_scale(convert_ctx, frame.data, frame.linesize, 0, h, dst.data, dst.linesize);
     sws_freeContext(convert_ctx);
-    
-    return [CVConverters UIImageFromCVMat: m];
+    return m;
+}
+
++ (UIImage *) imageFromAVFrame: (AVFrame) frame {
+    cv::Mat m = [CVConverters cvMatFromAVFrame: frame];
+    return [CVConverters imageFromCVMat: m];
 }
 
 
-+ (UIImage *) UIImageFromCVMat: (cv::Mat) cvMat
++ (UIImage *) imageFromCVMat: (cv::Mat) cvMat
 {
     NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
     CGColorSpaceRef colorSpace;
