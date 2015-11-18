@@ -6,31 +6,38 @@
 #import "opencv2/video/tracking.hpp"
 #import "opencv2/imgproc/imgproc.hpp"
 
-
-
 using namespace cv;
 using namespace std;
 
-@interface VideoMotionViewController ()
+@interface VideoMotionViewController () {
+    cv::Rect selection;
+    BOOL hasHist;
+    RotatedRect trackBox;
+    int vmin;
+    int vmax;
+    int smin;
+}
+
 @end
 
 @implementation VideoMotionViewController
 
+- (void)initValues {
+    selection = cv::Rect(30, 10, 100, 80);
+    hasHist = false;
+    
+    vmin = 10;
+    vmax = 256;
+    smin = 30;
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mov"];
-    NSMutableArray *array = [self extractFrames: path];
     
-//    Mat result = [self meanShift2: array[0]];
-    NSMutableArray *uiimages = [[NSMutableArray alloc] init];
-    
-    for (UIImage *image in array) {
-        Mat result = [self meanShift2: image];
-        UIImage *resultImage = [ImageUtils UIImageFromCVMat:result];
-        
-        [uiimages addObject:resultImage];
-    }
+    [self initValues];
+    NSArray *frames = [self extractFrames:@"test" andExtension:@"mov"];
+    NSArray *images = [self meanShift: frames];
     
     
 //    UIImage *resultImage = [ImageUtils UIImageFromCVMat:result];
@@ -41,11 +48,11 @@ using namespace std;
 //    [self.view addSubview:ygoView];
     
     
-    [self createVideo: uiimages];
+    [self createVideo: images];
 }
 
 
-- (void) createVideo:(NSMutableArray *) images {
+- (void) createVideo:(NSArray *) images {
     
     EKMovieMaker *movieMaker    = [[EKMovieMaker alloc] initWithImages: images];
     movieMaker.movieSize       = CGSizeMake(320.0f, 568.0f);
@@ -67,11 +74,12 @@ using namespace std;
     }];
 }
 
-- (NSMutableArray *)extractFrames:(NSString *)filepath
-{
+- (NSMutableArray *)extractFrames:(NSString *)fileName andExtension:(NSString *)extension {
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:extension];
     NSMutableArray *uiImages = [NSMutableArray new];
     
-    AVURLAsset *movieAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:filepath] options:nil];
+    AVURLAsset *movieAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:filePath] options:nil];
     
     CMTime totalDuration = movieAsset.duration;
     
@@ -102,124 +110,81 @@ using namespace std;
     return uiImages;
 }
 
-- (Mat)meanShift2:(UIImage *) _image {
-    
-    int vmin = 10, vmax = 256, smin = 30;
-    int hsize = 16;
-    cv::Rect selection = cv::Rect(30, 10, 100, 80);
-    float hranges[] = {0,180};
-    const float* phranges = hranges;
+- (NSArray *)meanShift:(NSArray *)frames {
     cv::Rect trackWindow;
     
-    
-    
-    
-    Mat frame, hsv, hue, mask, hist, histimg = Mat::zeros(200, 320, CV_8UC3), backproj;
-    
-    Mat imageMat = [ImageUtils cvMatFromUIImage:_image];
-    cvtColor(imageMat, frame, CV_BGRA2BGR);
-    cvtColor(frame, hsv, CV_BGR2HSV);
-    
-    
-    int _vmin = vmin, _vmax = vmax;
-    
-    inRange(hsv, Scalar(0, smin, MIN(_vmin,_vmax)), Scalar(180, 256, MAX(_vmin, _vmax)), mask);
-    int ch[] = {0, 0};
-    hue.create(hsv.size(), hsv.depth());
-    mixChannels(&hsv, 1, &hue, 1, ch, 1);
-    
-    Mat roi(hue, selection), maskroi(mask, selection);
-    calcHist(&roi, 1, 0, maskroi, hist, 1, &hsize, &phranges);
-    normalize(hist, hist, 0, 255, NORM_MINMAX);
-    
-    trackWindow = selection;
-    
-    histimg = Scalar::all(0);
-    int binW = histimg.cols / hsize;
-    Mat buf(1, hsize, CV_8UC3);
-    for( int i = 0; i < hsize; i++ )
-        buf.at<Vec3b>(i) = Vec3b(saturate_cast<uchar>(i*180./hsize), 255, 255);
-    cvtColor(buf, buf, COLOR_HSV2BGR);
-    
-//    Scalar colors[6] = { Scalar(255, 0, 0), Scalar(0, 255, 0), Scalar(0, 0, 255), Scalar(0, 255, 255), Scalar(255, 255, 0), Scalar(255, 0, 255) };
-    
-    
-    for( int i = 0; i < hsize; i++ ) {
-        int val = saturate_cast<int>(hist.at<float>(i)*histimg.rows/255);
-        
-        cv::Point topLeft = cv::Point(i * binW, histimg.rows);
-        cv::Point bottomRight = cv::Point((i + 1) * binW, histimg.rows - val);
-        
-        rectangle(histimg, topLeft, bottomRight, Scalar(buf.at<Vec3b>(i)), -1, 8 );
-    }
-    
-    calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
-    backproj &= mask;
-    RotatedRect trackBox = CamShift(backproj, trackWindow,
-                                    TermCriteria( TermCriteria::EPS | TermCriteria::COUNT, 10, 1 ));
-    if( trackWindow.area() <= 1 ) {
-        int cols = backproj.cols, rows = backproj.rows, r = (MIN(cols, rows) + 5)/6;
-        trackWindow = cv::Rect(trackWindow.x - r, trackWindow.y - r, trackWindow.x + r, trackWindow.y + r) &
-        cv::Rect(0, 0, cols, rows);
-    }
-    
-//    if( backprojMode )
-//        cvtColor( backproj, image, COLOR_GRAY2BGR );
-//    ellipse( image, trackBox, NULL, 3, 1);
-    ellipse(imageMat, trackBox, Scalar(0,0,255));
-    rectangle(imageMat, selection.tl(), selection.br(), Scalar(0, 0, 255));
-    
-    return imageMat;
-}
-
-
-- (Mat) meanShift:(NSMutableArray *) images {
-    cv::BackgroundSubtractorMOG2 *backgroundSubtractor;
-    backgroundSubtractor = new cv::BackgroundSubtractorMOG2(10, 16, false);
-    
-    Mat bgr, hsv, dst, hist = Mat::zeros(200, 320, CV_8UC3), backproj;
-    
-    // it was not a pointer in the function
-    Mat imageMat = [ImageUtils cvMatFromUIImage:images[0]];
-    cvtColor(imageMat, bgr, CV_BGRA2BGR);
-    cvtColor(bgr, hsv, CV_BGR2HSV);
-    
-    //    CV_BGR2HSV
-    
-    //    return hsv;
-    
-    
-    vector<int> vec = vector<int>(0);
-    vector<float> floatVec = vector<float>(0, 180);
+    NSMutableArray *resultImages = [NSMutableArray new];
+    int hsize = 16;
     float hranges[] = {0,180};
     const float* phranges = hranges;
-    //        vector<Mat> hsVector = vector<Mat>(hsv);
-    NSLog(@"%@", @"heck");
-    //        calcBackProject(hsv, vec, imageMat, dst, floatVec, 1);
-    NSLog(@"%d", hist.dims);
-    int *channels = 0;
-    calcBackProject(&hsv, 1, channels, hist, backproj, &phranges);
-    //        calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
+    Mat frame, hsv, hue, mask, hist, histimg = Mat::zeros(200, 320, CV_8UC3), backproj;
     
-    //# Setup the termination criteria, either 10 iteration or move by atleast 1 pt
-    //        21 term_crit = ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1 )
-    
-    NSLog(@"%@", @"ygor");
-    cv::Rect trackWindow = cv::Rect(10,20,20,20);
-    RotatedRect rotatedRect = CamShift(dst, trackWindow, TermCriteria( TermCriteria::EPS | TermCriteria::COUNT, 10, 1 ));
-    NSLog(@"%@", @"lagarto");
-    rectangle(dst, trackWindow.tl(), trackWindow.br(), 1);
-    
-    return dst;
-    //#Draw it on image
-    
-    //    }
+    for (UIImage *image in frames) {
+        Mat imageMat = [ImageUtils cvMatFromUIImage:image];
+        
+        
+        cvtColor(imageMat, frame, CV_BGRA2BGR);
+        cvtColor(frame, hsv, CV_BGR2HSV);
+        
+        
+//        if(??)
+        
+        
+            int _vmin = vmin, _vmax = vmax;
+            inRange(hsv, Scalar(0, smin, MIN(_vmin,_vmax)), Scalar(180, 256, MAX(_vmin, _vmax)), mask);
+            int ch[] = {0, 0};
+            hue.create(hsv.size(), hsv.depth());
+            mixChannels(&hsv, 1, &hue, 1, ch, 1);
+        
+            if (!hasHist) {
+                hasHist = true;
+                
+                Mat roi(hue, selection), maskroi(mask, selection);
+                
+                calcHist(&roi, 1, 0, maskroi, hist, 1, &hsize, &phranges);
+                normalize(hist, hist, 0, 255, NORM_MINMAX);
+                
+                trackWindow = selection;
+                
+                histimg = Scalar::all(0);
+                int binW = histimg.cols / hsize;
+                Mat buf(1, hsize, CV_8UC3);
+                for( int i = 0; i < hsize; i++ ) {
+                    buf.at<Vec3b>(i) = Vec3b(saturate_cast<uchar>(i*180./hsize), 255, 255);
+                }
+                cvtColor(buf, buf, COLOR_HSV2BGR);
+                
+                for( int i = 0; i < hsize; i++ ) {
+                    int val = saturate_cast<int>(hist.at<float>(i)*histimg.rows/255);
+                    
+                    cv::Point topLeft = cv::Point(i * binW, histimg.rows);
+                    cv::Point bottomRight = cv::Point((i + 1) * binW, histimg.rows - val);
+                    
+                    rectangle(histimg, topLeft, bottomRight, Scalar(buf.at<Vec3b>(i)), -1, 8 );
+                }
+            }
+        
+            calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
+            backproj &= mask;
+            trackBox = CamShift(backproj, trackWindow,
+                                TermCriteria( TermCriteria::EPS | TermCriteria::COUNT, 10, 1 ));
+        
+            if( trackWindow.area() <= 1 ) {
+                int cols = backproj.cols;
+                int rows = backproj.rows;
+                int r = (MIN(cols, rows) + 5)/6;
+                trackWindow = cv::Rect(trackWindow.x - r, trackWindow.y - r, trackWindow.x + r, trackWindow.y + r) &
+                cv::Rect(0, 0, cols, rows);
+            }
+        
+            //    if( backprojMode )
+            //        cvtColor( backproj, image, COLOR_GRAY2BGR );
+            ellipse(imageMat, trackBox, Scalar(0,0,255));
+            rectangle(imageMat, trackWindow.tl(), trackWindow.br(), Scalar(0, 0, 255));
+            [resultImages addObject:[ImageUtils UIImageFromCVMat:imageMat]];
+//    }
+    }
+
+    return resultImages;
 }
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 @end
