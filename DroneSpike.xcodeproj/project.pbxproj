@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B52EB78768152F60E487539 /* Pods_DroneSpike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B4C80D6368851034BE59B1 /* Pods_DroneSpike.framework */; };
+		361C09501BFCB74A001AE0D5 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 361C094F1BFCB74A001AE0D5 /* libbz2.tbd */; };
+		361C09521BFCB752001AE0D5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 361C09511BFCB752001AE0D5 /* libiconv.tbd */; };
 		36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */; };
 		36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */; };
 		36ADF8031BF13E1E0021ED2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36ADF8011BF13E1E0021ED2F /* Main.storyboard */; };
@@ -65,6 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		361C094F1BFCB74A001AE0D5 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		361C09511BFCB752001AE0D5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		366B68B01BFA3DB3003FE32F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		36ADF7FA1BF13E1E0021ED2F /* DroneSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				361C09521BFCB752001AE0D5 /* libiconv.tbd in Frameworks */,
+				361C09501BFCB74A001AE0D5 /* libbz2.tbd in Frameworks */,
 				36BF2B631BF6130700154F78 /* libavcodec.a in Frameworks */,
 				36BF2B641BF6130700154F78 /* libavdevice.a in Frameworks */,
 				36BF2B651BF6130700154F78 /* libavfilter.a in Frameworks */,
@@ -648,6 +654,8 @@
 		9A6928EE8704BC9C136F7721 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				361C09511BFCB752001AE0D5 /* libiconv.tbd */,
+				361C094F1BFCB74A001AE0D5 /* libbz2.tbd */,
 				366B68B01BFA3DB3003FE32F /* AssetsLibrary.framework */,
 				48B4C80D6368851034BE59B1 /* Pods_DroneSpike.framework */,
 			);
@@ -1016,6 +1024,11 @@
 					"$(PROJECT_DIR)/DroneSpike/Frameworks",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenCV\"",
+				);
 				INFOPLIST_FILE = DroneSpike/ProjectFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1044,6 +1057,11 @@
 					"$(PROJECT_DIR)/DroneSpike",
 					"$(PROJECT_DIR)/DroneSpike/Frameworks",
 					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenCV\"",
 				);
 				INFOPLIST_FILE = DroneSpike/ProjectFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
