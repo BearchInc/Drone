@@ -16,14 +16,17 @@ using namespace std;
     int vmin;
     int vmax;
     int smin;
+    UIImage *histUIImage;
 }
+@property (weak, nonatomic) IBOutlet UIImageView *uiImageView;
+@property (weak, nonatomic) IBOutlet UIView *videoContainer;
 
 @end
 
 @implementation VideoMotionViewController
 
 - (void)initValues {
-    selection = cv::Rect(180, 242, 13, 13);
+    selection = cv::Rect(180, 234, 24, 25);
     hasHist = false;
     
     vmin = 10;
@@ -68,7 +71,7 @@ using namespace std;
             videoPlayerController.videoPath = moviePath;
             
             [self addChildViewController:videoPlayerController];
-            [self.view addSubview:videoPlayerController.view];
+            [self.videoContainer addSubview:videoPlayerController.view];
             [videoPlayerController didMoveToParentViewController:self];
         });
     }];
@@ -139,8 +142,8 @@ using namespace std;
                                            cv::Size( (2 * 1 + 1), (2 * 1 + 1)),
                                            cv::Point( 1, 1 ) );
         
-        erode(hsv, hsv, kernel);
-        dilate(hsv, hsv, kernel);
+        erode(hsv, hsv, kernel, cv::Point(-1,-1), 2);
+        dilate(hsv, hsv, kernel, cv::Point(-1,-1), 2);
         
 //        mask = cv2.inRange(hsv, greenLower, greenUpper)
 //        mask = cv2.erode(mask, None, iterations=2)
@@ -159,6 +162,9 @@ using namespace std;
             normalize(hist, hist, 0, 255, NORM_MINMAX);
             
             trackWindow = selection;
+            rectangle(imageMat, selection.tl(), selection.br(), Scalar(0, 0, 255), 1);
+            
+            
             previewsTrackWindow = selection;
             
             histimg = Scalar::all(0);
@@ -177,6 +183,9 @@ using namespace std;
                 
                 rectangle(histimg, topLeft, bottomRight, Scalar(buf.at<Vec3b>(i)), -1, 8 );
             }
+            
+            histUIImage = [ImageUtils UIImageFromCVMat: histimg];
+            self.uiImageView.image = histUIImage;
         }
     
         calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
@@ -194,9 +203,9 @@ using namespace std;
     
         //    if( backprojMode )
         //        cvtColor( backproj, image, COLOR_GRAY2BGR );
-        ellipse(imageMat, trackBox, Scalar(0,0,255));
         
         Scalar color = (previewsTrackWindow.area() * 1.1) < trackWindow.area() ? redColor : greenColor;
+//        ellipse(imageMat, trackBox, color);
         rectangle(imageMat, trackWindow.tl(), trackWindow.br(), color);
         [resultImages addObject:[ImageUtils UIImageFromCVMat:imageMat]];
         previewsTrackWindow = trackWindow;

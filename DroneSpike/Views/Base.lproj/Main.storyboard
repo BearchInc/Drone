@@ -17,9 +17,38 @@
                     <view key="view" contentMode="scaleToFill" id="p5u-f2-KRc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLL-ai-pVh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YiM-Be-bXk">
+                                <rect key="frame" x="20" y="20" width="152" height="127"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="eLL-ai-pVh" secondAttribute="bottom" id="7jP-hq-xKf"/>
+                            <constraint firstItem="eLL-ai-pVh" firstAttribute="leading" secondItem="p5u-f2-KRc" secondAttribute="leadingMargin" id="9dt-md-8vL"/>
+                            <constraint firstItem="eLL-ai-pVh" firstAttribute="top" secondItem="p5u-f2-KRc" secondAttribute="topMargin" id="C0f-KY-abP"/>
+                            <constraint firstItem="eLL-ai-pVh" firstAttribute="leading" secondItem="p5u-f2-KRc" secondAttribute="leading" id="EE5-hl-4OJ"/>
+                            <constraint firstAttribute="trailing" secondItem="eLL-ai-pVh" secondAttribute="trailing" id="ZPu-ri-saU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eLL-ai-pVh" secondAttribute="trailing" id="eD9-eo-Csd"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9dt-md-8vL"/>
+                                <exclude reference="eD9-eo-Csd"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="uiImageView" destination="YiM-Be-bXk" id="eOX-gQ-sZS"/>
+                        <outlet property="videoContainer" destination="eLL-ai-pVh" id="EPw-nO-ivk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dqv-ae-a1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
