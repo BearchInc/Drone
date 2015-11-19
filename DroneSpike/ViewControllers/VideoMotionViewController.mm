@@ -23,7 +23,7 @@ using namespace std;
 @implementation VideoMotionViewController
 
 - (void)initValues {
-    selection = cv::Rect(30, 10, 100, 80);
+    selection = cv::Rect(180, 242, 13, 13);
     hasHist = false;
     
     vmin = 10;
@@ -36,7 +36,7 @@ using namespace std;
     [super viewDidLoad];
     
     [self initValues];
-    NSArray *frames = [self extractFrames:@"test" andExtension:@"mov"];
+    NSArray *frames = [self extractFrames:@"test3" andExtension:@"mov"];
     NSArray *images = [self meanShift: frames];
     
     
@@ -56,7 +56,7 @@ using namespace std;
     
     EKMovieMaker *movieMaker    = [[EKMovieMaker alloc] initWithImages: images];
     movieMaker.movieSize       = CGSizeMake(320.0f, 568.0f);
-    movieMaker.frameDuration   = .1f;
+    movieMaker.frameDuration   = .05f;
     
     [movieMaker createMovieWithCompletion:^(NSString *moviePath) {
         
@@ -94,7 +94,7 @@ using namespace std;
         CGImageRef frameRef = [assetImageGenerator copyCGImageAtTime:CMTimeMake(currentFrame, totalDuration.timescale) actualTime:nil error:nil];
         
         UIImage *currentImage = [[UIImage alloc] initWithCGImage:frameRef];
-        currentFrame += 60;
+        currentFrame += 30;
         [uiImages addObject: currentImage];
         
         // Create path.
