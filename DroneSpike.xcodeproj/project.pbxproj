@@ -41,9 +41,13 @@
 		5541385C1BF39DDE0081183C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291721BF26580002F7FD1 /* Fabric.framework */; };
 		5541385D1BF39DE90081183C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
 		8202A1091BF4F1F300234FB9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */; };
+		82101A101BFD0B8E00D9D3C6 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 82101A0F1BFD0B8E00D9D3C6 /* test.mov */; };
+		82101A121BFD0F6300D9D3C6 /* test3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 82101A111BFD0F6300D9D3C6 /* test3.mov */; };
+		82340B5A1BFA42EC0005565F /* VideoMotionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82340B591BFA42EC0005565F /* VideoMotionViewController.mm */; };
 		82483A201BF4F296007CBC2C /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */; };
 		82483A221BF4F406007CBC2C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82483A211BF4F406007CBC2C /* libjpeg.a */; };
 		82483A261BF4FA90007CBC2C /* DetectVideoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82483A251BF4FA90007CBC2C /* DetectVideoViewController.mm */; };
+		82E9E2391BFB618900129800 /* ImageUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82E9E2381BFB618900129800 /* ImageUtils.mm */; };
 		962FB20A1BF236D2004FD44C /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82B1BF13E2F0021ED2F /* DJISDK.framework */; };
 		962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB20B1BF23B6B004FD44C /* HomeViewController.swift */; };
 		96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */; };
@@ -210,10 +214,16 @@
 		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6679D6583CBEA7DF0A007FD1 /* Pods-DroneSpike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneSpike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike.debug.xcconfig"; sourceTree = "<group>"; };
 		8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		82101A0F1BFD0B8E00D9D3C6 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test.mov; sourceTree = "<group>"; };
+		82101A111BFD0F6300D9D3C6 /* test3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test3.mov; sourceTree = "<group>"; };
+		82340B581BFA42EC0005565F /* VideoMotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoMotionViewController.h; sourceTree = "<group>"; };
+		82340B591BFA42EC0005565F /* VideoMotionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VideoMotionViewController.mm; sourceTree = "<group>"; };
 		82483A211BF4F406007CBC2C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
 		82483A231BF4F674007CBC2C /* DroneSpike-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DroneSpike-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		82483A241BF4FA90007CBC2C /* DetectVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectVideoViewController.h; sourceTree = "<group>"; };
 		82483A251BF4FA90007CBC2C /* DetectVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DetectVideoViewController.mm; sourceTree = "<group>"; };
+		82E9E2371BFB618900129800 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		82E9E2381BFB618900129800 /* ImageUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageUtils.mm; sourceTree = "<group>"; };
 		962FB20B1BF23B6B004FD44C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
 		F4BFB78E6ED95170A1C64597 /* Pods-DroneSpike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneSpike.release.xcconfig"; path = "Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike.release.xcconfig"; sourceTree = "<group>"; };
@@ -273,10 +283,11 @@
 				36ADF7FC1BF13E1E0021ED2F /* DroneSpike */,
 				36ADF8111BF13E1E0021ED2F /* DroneSpikeTests */,
 				36ADF81C1BF13E1E0021ED2F /* DroneSpikeUITests */,
+				9A6928EE8704BC9C136F7721 /* Frameworks */,
+				827543E2FADEF679994BB8A8 /* Pods */,
 				36ADF7FB1BF13E1E0021ED2F /* Products */,
 				36B5C9B41BF51A3C000047E8 /* Recovered References */,
-				827543E2FADEF679994BB8A8 /* Pods */,
-				9A6928EE8704BC9C136F7721 /* Frameworks */,
+				82340B551BFA410B0005565F /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				36BF2B731BFA165E00154F78 /* Opencv */,
+				82E9E2361BFB616E00129800 /* Utils */,
 				36D889B21BF3873C00457A2A /* Models */,
 				962FB2061BF23620004FD44C /* Frameworks */,
 				962FB2071BF23634004FD44C /* ProjectFiles */,
@@ -586,12 +598,30 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		82340B551BFA410B0005565F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				82101A111BFD0F6300D9D3C6 /* test3.mov */,
+				82101A0F1BFD0B8E00D9D3C6 /* test.mov */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		827543E2FADEF679994BB8A8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				6679D6583CBEA7DF0A007FD1 /* Pods-DroneSpike.debug.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		82E9E2361BFB616E00129800 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				82E9E2371BFB618900129800 /* ImageUtils.h */,
+				82E9E2381BFB618900129800 /* ImageUtils.mm */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		962FB2061BF23620004FD44C /* Frameworks */ = {
@@ -639,6 +669,8 @@
 				550291631BF21DA6002F7FD1 /* JoystickViewController.swift */,
 				96524F361BF4EA9900C1A364 /* PlaybackViewController.swift */,
 				36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */,
+				82340B581BFA42EC0005565F /* VideoMotionViewController.h */,
+				82340B591BFA42EC0005565F /* VideoMotionViewController.mm */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -770,7 +802,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82101A101BFD0B8E00D9D3C6 /* test.mov in Resources */,
 				36ADF8081BF13E1E0021ED2F /* LaunchScreen.storyboard in Resources */,
+				82101A121BFD0F6300D9D3C6 /* test3.mov in Resources */,
 				36ADF8051BF13E1E0021ED2F /* Assets.xcassets in Resources */,
 				36ADF8031BF13E1E0021ED2F /* Main.storyboard in Resources */,
 			);
@@ -860,6 +894,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36BF2B6C1BF6130700154F78 /* MovieGLView.m in Sources */,
+				82340B5A1BFA42EC0005565F /* VideoMotionViewController.mm in Sources */,
 				36BF2B621BF6130700154F78 /* DJILinkQueues.m in Sources */,
 				36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */,
 				96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */,
@@ -872,6 +907,7 @@
 				962FB20C1BF23B6B004FD44C /* HomeViewController.swift in Sources */,
 				36BF2B6D1BF6130700154F78 /* VideoFrameExtractor.m in Sources */,
 				36BF2B6E1BF6130700154F78 /* VideoPreviewer.m in Sources */,
+				82E9E2391BFB618900129800 /* ImageUtils.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
