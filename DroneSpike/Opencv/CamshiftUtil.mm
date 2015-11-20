@@ -16,36 +16,50 @@ using namespace std;
 using namespace cv;
 
 @interface CamshiftUtil() {
-    CGRect _selection;
+    cv::Rect selection;
+    int vmin;
+    int vmax;
+    int smin;
+    Scalar redColor;
+    Scalar greenColor;
+    RotatedRect trackBox;
+    cv::Rect trackWindow;
+    cv::Rect previewsTrackWindow;
+    bool hasHist;
+    int hsize;
+    const float* phranges;
 }
 
 @end
 
 @implementation CamshiftUtil
 
-- (instancetype)initWithSelection:(CGRect)selection {
+- (instancetype)initWithSelection:(CGRect)regionOfInterest {
     self = [super init];
     if (self) {
-        _selection = selection;
+        selection = cv::Rect(regionOfInterest.origin.x, regionOfInterest.origin.y, regionOfInterest.size.width, regionOfInterest.size.height);
+        vmin = 10;
+        vmax = 256;
+        smin = 30;
+        redColor = Scalar(255, 0, 0);
+        greenColor = Scalar(0, 255, 0);
+        hasHist = false;
+        hsize = 16;
+        
+        float* hranges = new float[2]{0,180};
+        phranges = hranges;
     }
     return self;
 }
 
 - (NSArray *)meanShift:(NSArray *)frames {
-    cv::Rect trackWindow;
-    cv::Rect previewsTrackWindow;
-    cv::Rect selection = cv::Rect(180, 234, 24, 25);
-    RotatedRect trackBox;
-    bool hasHist = false;
+
+
     
     NSMutableArray *resultImages = [NSMutableArray new];
-    int hsize = 16;
-    float hranges[] = {0,180};
-    const float* phranges = hranges;
+
+
     Mat frame, hsv, hue, mask, hist, histimg = Mat::zeros(200, 320, CV_8UC3), backproj;
-    
-    Scalar redColor = Scalar(255, 0, 0);
-    Scalar greenColor = Scalar(0, 255, 0);
     
     for (UIImage *image in frames) {
         Mat imageMat = [ImageUtils cvMatFromUIImage:image];
@@ -54,13 +68,7 @@ using namespace cv;
         cvtColor(imageMat, frame, CV_BGRA2BGR);
         cvtColor(frame, hsv, CV_BGR2HSV);
         
-
-        int vmin = 10;
-        int vmax = 256;
-        int smin = 30;
-        
-        int _vmin = vmin, _vmax = vmax;
-        inRange(hsv, Scalar(0, smin, MIN(_vmin,_vmax)), Scalar(180, 256, MAX(_vmin, _vmax)), mask);
+        inRange(hsv, Scalar(0, smin, MIN(vmin, vmax)), Scalar(180, 256, MAX(vmin, vmax)), mask);
         
         Mat kernel = getStructuringElement( MORPH_RECT,
                                            cv::Size( (2 * 1 + 1), (2 * 1 + 1)),
