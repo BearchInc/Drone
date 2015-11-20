@@ -43,6 +43,7 @@
 		8202A1091BF4F1F300234FB9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */; };
 		82101A101BFD0B8E00D9D3C6 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 82101A0F1BFD0B8E00D9D3C6 /* test.mov */; };
 		82101A121BFD0F6300D9D3C6 /* test3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 82101A111BFD0F6300D9D3C6 /* test3.mov */; };
+		82101A1D1BFF5DF300D9D3C6 /* CamshiftUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82101A1C1BFF5DF300D9D3C6 /* CamshiftUtil.mm */; };
 		82340B5A1BFA42EC0005565F /* VideoMotionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82340B591BFA42EC0005565F /* VideoMotionViewController.mm */; };
 		82483A201BF4F296007CBC2C /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 36ADF82F1BF13E4F0021ED2F /* libstdc++.tbd */; };
 		82483A221BF4F406007CBC2C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82483A211BF4F406007CBC2C /* libjpeg.a */; };
@@ -216,6 +217,8 @@
 		8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		82101A0F1BFD0B8E00D9D3C6 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test.mov; sourceTree = "<group>"; };
 		82101A111BFD0F6300D9D3C6 /* test3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test3.mov; sourceTree = "<group>"; };
+		82101A1B1BFF5DF300D9D3C6 /* CamshiftUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CamshiftUtil.h; path = Opencv/CamshiftUtil.h; sourceTree = "<group>"; };
+		82101A1C1BFF5DF300D9D3C6 /* CamshiftUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CamshiftUtil.mm; path = Opencv/CamshiftUtil.mm; sourceTree = "<group>"; };
 		82340B581BFA42EC0005565F /* VideoMotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoMotionViewController.h; sourceTree = "<group>"; };
 		82340B591BFA42EC0005565F /* VideoMotionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VideoMotionViewController.mm; sourceTree = "<group>"; };
 		82483A211BF4F406007CBC2C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
@@ -585,6 +588,8 @@
 			children = (
 				361C09571BFCD7A6001AE0D5 /* CVConverters.h */,
 				361C09581BFCD7A6001AE0D5 /* CVConverters.mm */,
+				82101A1B1BFF5DF300D9D3C6 /* CamshiftUtil.h */,
+				82101A1C1BFF5DF300D9D3C6 /* CamshiftUtil.mm */,
 			);
 			name = Opencv;
 			sourceTree = "<group>";
@@ -899,6 +904,7 @@
 				36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */,
 				96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */,
 				361C09591BFCD7A6001AE0D5 /* CVConverters.mm in Sources */,
+				82101A1D1BFF5DF300D9D3C6 /* CamshiftUtil.mm in Sources */,
 				361C09551BFCD79A001AE0D5 /* MissionControl.swift in Sources */,
 				550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */,
 				36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */,
