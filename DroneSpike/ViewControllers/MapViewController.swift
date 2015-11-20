@@ -6,6 +6,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var button: UIButton!
     let regionRadius: CLLocationDistance = 1000
     
     override func viewDidLoad() {
@@ -18,15 +19,36 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func saveImage() {
+        let screenshot = captureScreen()
+        imageView.image = CVConverters.markElements(screenshot)
+        //UIImageWriteToSavedPhotosAlbum(screenShot, nil, nil, nil)
+
+    }
+    
+    func captureScreen() -> UIImage {
         imageView.hidden = true
+        button.hidden = true
         UIGraphicsBeginImageContext(self.view.bounds.size);
         self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let screenshot = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         imageView.hidden = false
-        imageView.image = CVConverters.thresholding(screenshot)
-        //UIImageWriteToSavedPhotosAlbum(screenShot, nil, nil, nil)
+        button.hidden = false
+        return screenshot
 
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = event?.allTouches()?.first! as UITouch!
+        let point = touch.locationInView(self.view)
+        showColorInPoint(point)
+        
+    }
+    
+    func showColorInPoint(point: CGPoint) {
+        let screenshot = captureScreen()
+        let result = CVConverters.colorIn(screenshot, atX: Int32(point.x), andY: Int32(point.y))
+        imageView.image = result
     }
 }
 
