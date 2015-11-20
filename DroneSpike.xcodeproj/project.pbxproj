@@ -40,6 +40,7 @@
 		550291641BF21DA6002F7FD1 /* JoystickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550291631BF21DA6002F7FD1 /* JoystickViewController.swift */; };
 		5541385C1BF39DDE0081183C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291721BF26580002F7FD1 /* Fabric.framework */; };
 		5541385D1BF39DE90081183C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550291731BF26580002F7FD1 /* Crashlytics.framework */; };
+		55E2BBB41BFF35AF00EFA714 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E2BBB31BFF35AF00EFA714 /* MapViewController.swift */; };
 		8202A1091BF4F1F300234FB9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */; };
 		82101A101BFD0B8E00D9D3C6 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 82101A0F1BFD0B8E00D9D3C6 /* test.mov */; };
 		82101A121BFD0F6300D9D3C6 /* test3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 82101A111BFD0F6300D9D3C6 /* test3.mov */; };
@@ -212,6 +213,7 @@
 		550291631BF21DA6002F7FD1 /* JoystickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickViewController.swift; sourceTree = "<group>"; };
 		550291721BF26580002F7FD1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		550291731BF26580002F7FD1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		55E2BBB31BFF35AF00EFA714 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6679D6583CBEA7DF0A007FD1 /* Pods-DroneSpike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneSpike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroneSpike/Pods-DroneSpike.debug.xcconfig"; sourceTree = "<group>"; };
 		8202A1081BF4F1F300234FB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		82101A0F1BFD0B8E00D9D3C6 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test.mov; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */,
 				82340B581BFA42EC0005565F /* VideoMotionViewController.h */,
 				82340B591BFA42EC0005565F /* VideoMotionViewController.mm */,
+				55E2BBB31BFF35AF00EFA714 /* MapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -908,6 +911,7 @@
 				36BF2B6D1BF6130700154F78 /* VideoFrameExtractor.m in Sources */,
 				36BF2B6E1BF6130700154F78 /* VideoPreviewer.m in Sources */,
 				82E9E2391BFB618900129800 /* ImageUtils.mm in Sources */,
+				55E2BBB41BFF35AF00EFA714 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

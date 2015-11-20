@@ -1,4 +1,5 @@
 #import "CVConverters.h"
+#import "ImageUtils.h"
 #import <opencv2/core/core.hpp>
 #import <opencv2/imgproc/imgproc.hpp>
 
@@ -10,9 +11,8 @@ extern "C" {
 @implementation CVConverters : NSObject
 
 
-#ifdef __cplusplus
 + (UIImage *) imageWithGrayscale: (AVFrame) frame {
-
+    
     cv::Mat image = [CVConverters cvMatFromAVFrame: frame];
     cv::Mat image_copy;
     
@@ -26,7 +26,36 @@ extern "C" {
     return [CVConverters imageFromCVMat: image];
 }
 
-#endif
++ (UIImage *) thresholding: (UIImage*) image {
+    cv::Mat matrix = [ImageUtils cvMatFromUIImage:image];
+    cv::Scalar ceilingColor = CV_RGB(234, 230, 222);
+    
+    for(int y=0;y<matrix.rows;y++)
+    {
+        for(int x=0;x<matrix.cols;x++)
+        {
+            cv::Vec3b color = matrix.at<cv::Vec3b>(cv::Point(x,y));
+            if([CVConverters isCeilingColor:color])
+            {
+                color[0] = 255;
+                color[1] = 255;
+                color[2] = 0;
+                matrix.at<cv::Vec3b>(cv::Point(x,y)) = color;
+            }
+            
+        }
+    }
+    
+    return [ImageUtils UIImageFromCVMat:matrix];
+}
+
++ (BOOL) isCeilingColor: (cv::Vec3b)pixel {
+    int r = (int)pixel[0];
+    int g = (int)pixel[1];
+    int b = (int)pixel[2];
+    return (r >= 233 && r <= 235) && (g >= 229 && g <= 231) && (b >= 221 && b <= 223);
+}
+
 
 + (cv::Mat) cvMatFromAVFrame: (AVFrame) frame {
     AVFrame dst;

@@ -7,6 +7,7 @@
 @interface CVConverters : NSObject
 + (UIImage *) imageFromAVFrame: (AVFrame) frame;
 + (UIImage *) imageWithGrayscale: (AVFrame) frame;
++ (UIImage *) thresholding: (UIImage*) image;
 @end
 
 #endif /* Converters_h */
