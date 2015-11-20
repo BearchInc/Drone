@@ -425,11 +425,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-SK-Ebd" userLabel="Preview View">
-                                <rect key="frame" x="0.0" y="423" width="600" height="177"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.61960784310000006" green="0.81176470590000005" blue="0.3149414062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-vN-jwV" userLabel="Debug Label">
                                 <rect key="frame" x="12" y="64" width="100" height="536"/>
                                 <animations/>
@@ -445,6 +440,15 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.1370868782722513" green="0.1370868782722513" blue="0.1370868782722513" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-SK-Ebd" userLabel="Preview View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.61960784310000006" green="0.81176470590000005" blue="0.3149414062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="I62-Sg-kQc" appends="YES" id="qsu-am-TVq"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -452,7 +456,7 @@
                             <constraint firstItem="dVJ-SK-Ebd" firstAttribute="leading" secondItem="fGR-Bb-N2M" secondAttribute="leading" id="1ys-N0-bb0"/>
                             <constraint firstItem="J1N-Y0-vb8" firstAttribute="leading" secondItem="dVJ-SK-Ebd" secondAttribute="leading" id="2TN-gk-vKs"/>
                             <constraint firstItem="J1N-Y0-vb8" firstAttribute="top" secondItem="Rat-vN-jwV" secondAttribute="top" id="3k5-aS-EIr"/>
-                            <constraint firstItem="dVJ-SK-Ebd" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" constant="359" id="8Q4-nK-Yts"/>
+                            <constraint firstItem="dVJ-SK-Ebd" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" id="8Q4-nK-Yts"/>
                             <constraint firstItem="IKu-8b-lLX" firstAttribute="top" secondItem="Rat-vN-jwV" secondAttribute="bottom" id="Ag7-0d-Lbo"/>
                             <constraint firstItem="Rat-vN-jwV" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" id="Chb-LQ-P0g"/>
                             <constraint firstItem="Rat-vN-jwV" firstAttribute="leading" secondItem="fGR-Bb-N2M" secondAttribute="leadingMargin" constant="-8" id="FkK-7Q-400"/>
@@ -469,6 +473,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xkL-5c-RZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="I62-Sg-kQc">
+                    <connections>
+                        <action selector="panGesture:" destination="kLh-KO-lnk" id="Gbd-8D-TEp"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-120" y="1536"/>
         </scene>

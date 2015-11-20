@@ -5,15 +5,21 @@ class PlaybackViewController: UIViewController {
 
 	lazy var drone = HomeViewController.drone
 	var camera: DJICamera!
+    var camshiftUtil: CamShiftUtil?
+    
+    var selectionBox: CGRect?
+    var topLeft: CGPoint!
 	
 	@IBOutlet weak var previewView: UIView!
 	@IBOutlet weak var debugLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		addDebugInformation("Starting playback")
 		camera = drone.camera
 		camera.delegate = self
+
 	}
 	
 	func addDebugInformation(message: String) {
@@ -44,13 +50,41 @@ class PlaybackViewController: UIViewController {
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
 		VideoPreviewer.instance().setView(previewView)
 	}
-    @IBOutlet weak var imageView: UIImageView!
+    
+    
+    @IBAction func panGesture(sender: UIPanGestureRecognizer) {
+        if sender.state == UIGestureRecognizerState.Began {
+            topLeft = sender.locationInView(previewView)
+        } else if sender.state == .Ended {
+            let bottomRight = sender.locationInView(previewView)
+            let width = topLeft.x + bottomRight.x
+            let height = topLeft.y + bottomRight.y
+            
+            selectionBox = CGRectMake(topLeft.x, topLeft.y, width, height)
+        }
+        
+    }
+
 }
 
 extension PlaybackViewController : VideoFrameProcessorDelegate {
     func didReceiveFrame(frame: AVFrame) {
+        
+        //create uiimage and detect elements;
+        var frameImage = CVConverters.imageFromAVFrame(frame)
+        
+        if camshiftUtil == nil {
+            if let selectionBox = selectionBox {
+                camshiftUtil = CamShiftUtil(box: selectionBox, andImage: frameImage)
+            }
+        }
+        
+        if camshiftUtil != nil {
+            frameImage = camshiftUtil?.processImage(frameImage)
+        }
+        
         dispatch_async(dispatch_get_main_queue()) {
-            self.imageView.image = CVConverters.imageWithGrayscale(frame)
+            self.imageView.image = frameImage
         }
     }
 }
@@ -68,5 +102,4 @@ extension PlaybackViewController: DJICameraDelegate {
 	func camera(camera: DJICamera!, didUpdateSystemState systemState: DJICameraSystemState!) {
 //		addDebugInformation("Sys state: \(systemState)")
 	}
-	
 }

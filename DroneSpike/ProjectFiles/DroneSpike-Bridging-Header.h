@@ -3,3 +3,4 @@
 #import "VideoPreviewer.h"
 #import "CVConverters.h"
 #import "DJIVTH264DecoderPublic.h"
+#import "CamShiftUtil.h"
