@@ -425,11 +425,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-SK-Ebd" userLabel="Preview View">
-                                <rect key="frame" x="0.0" y="423" width="600" height="177"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.61960784310000006" green="0.81176470590000005" blue="0.3149414062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-vN-jwV" userLabel="Debug Label">
                                 <rect key="frame" x="12" y="64" width="100" height="536"/>
                                 <animations/>
@@ -437,11 +432,16 @@
                                     <constraint firstAttribute="width" constant="100" id="eZ9-go-vTh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1N-Y0-vb8">
-                                <rect key="frame" x="0.0" y="64" width="600" height="360"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-SK-Ebd" userLabel="Preview View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.61960784310000006" green="0.81176470590000005" blue="0.3149414062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1N-Y0-vb8">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.1370868782722513" green="0.1370868782722513" blue="0.1370868782722513" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -450,16 +450,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dVJ-SK-Ebd" firstAttribute="leading" secondItem="fGR-Bb-N2M" secondAttribute="leading" id="1ys-N0-bb0"/>
-                            <constraint firstItem="J1N-Y0-vb8" firstAttribute="leading" secondItem="dVJ-SK-Ebd" secondAttribute="leading" id="2TN-gk-vKs"/>
-                            <constraint firstItem="J1N-Y0-vb8" firstAttribute="top" secondItem="Rat-vN-jwV" secondAttribute="top" id="3k5-aS-EIr"/>
-                            <constraint firstItem="dVJ-SK-Ebd" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" constant="359" id="8Q4-nK-Yts"/>
+                            <constraint firstItem="dVJ-SK-Ebd" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" id="8Q4-nK-Yts"/>
                             <constraint firstItem="IKu-8b-lLX" firstAttribute="top" secondItem="Rat-vN-jwV" secondAttribute="bottom" id="Ag7-0d-Lbo"/>
                             <constraint firstItem="Rat-vN-jwV" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" id="Chb-LQ-P0g"/>
                             <constraint firstItem="Rat-vN-jwV" firstAttribute="leading" secondItem="fGR-Bb-N2M" secondAttribute="leadingMargin" constant="-8" id="FkK-7Q-400"/>
-                            <constraint firstItem="J1N-Y0-vb8" firstAttribute="trailing" secondItem="dVJ-SK-Ebd" secondAttribute="trailing" id="KFr-YJ-EHm"/>
+                            <constraint firstItem="IKu-8b-lLX" firstAttribute="top" secondItem="J1N-Y0-vb8" secondAttribute="bottom" id="GqX-Xw-xOZ"/>
+                            <constraint firstItem="J1N-Y0-vb8" firstAttribute="leading" secondItem="fGR-Bb-N2M" secondAttribute="leading" id="Gx0-G7-ngh"/>
+                            <constraint firstAttribute="trailing" secondItem="J1N-Y0-vb8" secondAttribute="trailing" id="Mcu-Zq-DNy"/>
+                            <constraint firstItem="J1N-Y0-vb8" firstAttribute="top" secondItem="cCB-hb-pJU" secondAttribute="bottom" id="abL-fK-JzJ"/>
                             <constraint firstAttribute="trailing" secondItem="dVJ-SK-Ebd" secondAttribute="trailing" id="fki-9j-SYM"/>
                             <constraint firstItem="IKu-8b-lLX" firstAttribute="top" secondItem="dVJ-SK-Ebd" secondAttribute="bottom" id="lVq-e2-GjS"/>
-                            <constraint firstItem="IKu-8b-lLX" firstAttribute="top" secondItem="J1N-Y0-vb8" secondAttribute="bottom" constant="176" id="s2v-9x-OHW"/>
                         </constraints>
                     </view>
                     <connections>
