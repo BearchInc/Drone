@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface CamshiftUtil : NSObject
 
+- (instancetype)initWithSelection:(CGRect)selection;
 - (NSArray *)meanShift:(NSArray *)frames;
 
 @end
