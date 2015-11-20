@@ -25,11 +25,15 @@ using namespace std;
     [super viewDidLoad];
     
     NSArray *frames = [self extractFrames:@"test3" andExtension:@"mov"];
-    
+    NSMutableArray *matFrames = [NSMutableArray new];
+
     CGRect selection = CGRectMake(180, 234, 24, 25);
     CamshiftUtil *camshiftUtil = [[CamshiftUtil alloc] initWithSelection: selection];
-    NSArray *images = [camshiftUtil meanShift:frames];
     
+    for (UIImage *frame in frames) {
+        UIImage *resultImage = [camshiftUtil meanShift:frame];
+        [matFrames addObject: resultImage];
+    }
     
 //    UIImage *resultImage = [ImageUtils UIImageFromCVMat:result];
 //    
@@ -38,8 +42,7 @@ using namespace std;
 //    ygoView.frame = self.view.bounds;
 //    [self.view addSubview:ygoView];
     
-    
-    [self createVideo: images];
+    [self createVideo: matFrames];
 }
 
 

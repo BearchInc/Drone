@@ -12,6 +12,6 @@
 @interface CamshiftUtil : NSObject
 
 - (instancetype)initWithSelection:(CGRect)selection;
-- (NSArray *)meanShift:(NSArray *)frames;
+- (UIImage *)meanShift:(UIImage *)uiFrame;
 
 @end

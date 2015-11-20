@@ -49,8 +49,12 @@ class PlaybackViewController: UIViewController {
 
 extension PlaybackViewController : VideoFrameProcessorDelegate {
     func didReceiveFrame(frame: AVFrame) {
+
+        var uiframe = CVConverters.imageFromAVFrame(frame)
+        
+        
         dispatch_async(dispatch_get_main_queue()) {
-            self.imageView.image = CVConverters.imageWithGrayscale(frame)
+            self.imageView.image = uiframe
         }
     }
 }
