@@ -15,7 +15,21 @@
 using namespace std;
 using namespace cv;
 
+@interface CamshiftUtil() {
+    CGRect _selection;
+}
+
+@end
+
 @implementation CamshiftUtil
+
+- (instancetype)initWithSelection:(CGRect)selection {
+    self = [super init];
+    if (self) {
+        _selection = selection;
+    }
+    return self;
+}
 
 - (NSArray *)meanShift:(NSArray *)frames {
     cv::Rect trackWindow;

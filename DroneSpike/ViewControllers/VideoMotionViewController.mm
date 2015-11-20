@@ -26,7 +26,8 @@ using namespace std;
     
     NSArray *frames = [self extractFrames:@"test3" andExtension:@"mov"];
     
-    CamshiftUtil *camshiftUtil = [[CamshiftUtil alloc] init];
+    CGRect selection = CGRectMake(180, 234, 24, 25);
+    CamshiftUtil *camshiftUtil = [[CamshiftUtil alloc] initWithSelection: selection];
     NSArray *images = [camshiftUtil meanShift:frames];
     
     
