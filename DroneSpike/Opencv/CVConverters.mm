@@ -28,7 +28,7 @@ extern "C" {
 
 + (UIImage *) markElements: (UIImage*) image {
     cv::Mat matrix = [ImageUtils cvMatFromUIImage:image];
-    
+    int blackColor [3] = {0, 0, 0};
     for(int y=0;y<matrix.rows;y++)
     {
         for(int x=0;x<matrix.cols;x++)
@@ -36,32 +36,57 @@ extern "C" {
             cv::Vec3b color = matrix.at<cv::Vec3b>(cv::Point(x,y));
             if([CVConverters isCeilingColor:color])
             {
-                color[0] = 255;
+                color[0] = 0;
                 color[1] = 0;
-                color[2] = 255;
+                color[2] = 0;
                 matrix.at<cv::Vec3b>(cv::Point(x,y)) = color;
+            } else if(![CVConverters equals:color color:blackColor]) {
+                color[0] = 255;
+                color[1] = 255;
+                color[2] = 255;
+                //matrix.at<cv::Vec3b>(cv::Point(x,y)) = color;
             }
             
         }
     }
     
-    return [ImageUtils UIImageFromCVMat:matrix];
+//    return [ImageUtils UIImageFromCVMat:matrix];
+
+    cv::cvtColor(matrix, matrix, CV_BGR2GRAY);
+    cv::threshold(matrix, matrix, 0, 255, CV_THRESH_BINARY);
+    std::vector<std::vector<cv::Point> > contours;
+    cv::Mat contourOutput = matrix.clone();
+    cv::findContours( contourOutput, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE );
+
+    //Draw the contours
+    cv::Mat contourImage(matrix.size(), CV_8UC3, cv::Scalar(0,0,0));
+    cv::Scalar colors[3];
+    colors[0] = cv::Scalar(255, 0, 0);
+    colors[1] = cv::Scalar(0, 255, 0);
+    colors[2] = cv::Scalar(0, 0, 255);
+    for (size_t idx = 0; idx < contours.size(); idx++) {
+        cv::drawContours(contourImage, contours, idx, colors[idx % 3]);
+    }
+
+    return [ImageUtils UIImageFromCVMat:contourImage];
 }
 
-/*2015-11-20 17:55:24.690 DroneSpike[2230:797497] X220 Y393: R224 G220 B213 A95
- 2015-11-20 17:55:25.680 DroneSpike[2230:797497] X310 Y475: R212 G255 B223 A95
- 2015-11-20 17:55:26.927 DroneSpike[2230:797497] X199 Y461: R212 G205 B255 A95
- 2015-11-20 17:55:27.984 DroneSpike[2230:797497] X212 Y329: R225 G221 B214 A95
- 2015-11-20 17:55:29.528 DroneSpike[2230:797497] X259 Y394: R220 G213 B255 A95
- 2015-11-20 17:55:31.109 DroneSpike[2230:797497] X80 Y576: R226 G223 B215 A95
- 2015-11-20 17:55:32.336 DroneSpike[2230:797497] X71 Y432: R225 G217 B255 A95
- 2015-11-20 17:55:34.894 DroneSpike[2230:797497] X347 Y453: R219 G212 B255 A95*/
-
 + (BOOL) isCeilingColor: (cv::Vec3b)pixel {
-    int ceiling1 [3] = {230, 222, 255};
-    int ceiling2 [3] = {234, 230, 222};
-    int ceiling3 [3] = {222, 255, 234};
-    return [CVConverters equals:pixel color:ceiling1] || [CVConverters equals:pixel color:ceiling2] || [CVConverters equals:pixel color:ceiling3];
+    int ceilingColors[6][3] = {
+        {236, 255, 249},
+        {214, 207, 249},
+        {222, 255, 234},
+        {230, 222, 255},
+        {234, 230, 222},
+        {255, 234, 230}
+    };
+    
+    for(int i=0; i<10; i++) {
+        if ([CVConverters equals:pixel color:ceilingColors[i]]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 

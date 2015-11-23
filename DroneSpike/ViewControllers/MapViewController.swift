@@ -13,15 +13,16 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         let location = CLLocationCoordinate2D(latitude: 40.702866, longitude: -74.011391)
         mapView.showsBuildings = true
+        mapView.showsPointsOfInterest = false
         mapView.mapType = MKMapType.Standard
-        let camera = MKMapCamera(lookingAtCenterCoordinate: location, fromDistance: 900.0, pitch: 45.0, heading: 90.0)
+        let camera = MKMapCamera(lookingAtCenterCoordinate: location, fromDistance: 600.0, pitch: 45.0, heading: 90.0)
         mapView.camera = camera
     }
     
     @IBAction func saveImage() {
         let screenshot = captureScreen()
         imageView.image = CVConverters.markElements(screenshot)
-        //UIImageWriteToSavedPhotosAlbum(screenShot, nil, nil, nil)
+//        UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
 
     }
     
