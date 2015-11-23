@@ -41,7 +41,7 @@ extern "C" {
     
     struct SwsContext *convert_ctx=NULL;
     enum PixelFormat src_pixfmt = (enum PixelFormat)frame.format;
-    enum PixelFormat dst_pixfmt = PIX_FMT_BGR24;
+    enum PixelFormat dst_pixfmt = PIX_FMT_RGB24;
     
     convert_ctx = sws_getContext(w, h, src_pixfmt, w, h, dst_pixfmt, SWS_FAST_BILINEAR, NULL, NULL, NULL);
     sws_scale(convert_ctx, frame.data, frame.linesize, 0, h, dst.data, dst.linesize);
