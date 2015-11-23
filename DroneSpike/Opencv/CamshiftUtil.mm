@@ -49,26 +49,28 @@ using namespace cv;
         
         float* hranges = new float[2]{0,180};
         phranges = hranges;
-        hue = Mat::zeros(200, 320, CV_8UC3);
-        mask = Mat::zeros(200, 320, CV_8UC3);
+        hue = Mat::zeros(180, 320, CV_8UC3);
+        mask = Mat::zeros(180, 320, CV_8UC3);
     }
     return self;
 }
 
 - (UIImage *)meanShift:(UIImage *)uiFrame {
-    Mat frame, hsv = Mat::zeros(200, 320, CV_8UC3), backproj;
-    
-    Mat imageMat = [ImageUtils cvMatFromUIImage:uiFrame];
+    Mat frame, hsv = Mat::zeros(180, 320, CV_8UC3), backproj;
 
+	NSLog(@"Image wxh: %f x %f", uiFrame.size.width, uiFrame.size.height);
+    Mat imageMat = [ImageUtils cvMatFromUIImage:uiFrame];
+	
     cvtColor(imageMat, frame, CV_BGRA2BGR);
+	
     cvtColor(frame, hsv, CV_BGR2HSV);
-    
+	
     inRange(hsv, Scalar(0, smin, MIN(vmin, vmax)), Scalar(180, 256, MAX(vmin, vmax)), mask);
-    
+	
     Mat kernel = getStructuringElement( MORPH_RECT,
                                        cv::Size( (2 * 1 + 1), (2 * 1 + 1)),
                                        cv::Point( 1, 1 ) );
-    
+	
     erode(hsv, hsv, kernel, cv::Point(-1,-1), 2);
     dilate(hsv, hsv, kernel, cv::Point(-1,-1), 2);
 
@@ -107,9 +109,10 @@ using namespace cv;
             
             rectangle(histimg, topLeft, bottomRight, Scalar(buf.at<Vec3b>(i)), -1, 8 );
         }
-        
+		
+		
     }
-    
+	
     calcBackProject(&hue, 1, 0, hist, backproj, &phranges);
     backproj &= mask;
     trackBox = CamShift(backproj, trackWindow,
@@ -126,11 +129,12 @@ using namespace cv;
     //    if( backprojMode )
     //        cvtColor( backproj, image, COLOR_GRAY2BGR );
     Scalar color = (previewsTrackWindow.area() * 1.1) < trackWindow.area() ? redColor : greenColor;
-//                ellipse(imageMat, trackBox, color);
+//	ellipse(imageMat, trackBox, color);
     rectangle(imageMat, trackWindow.tl(), trackWindow.br(), color);
 //        [resultImages addObject:;
     previewsTrackWindow = trackWindow;
 //    }
+	rectangle(imageMat, selection.tl(), selection.br(), Scalar(0, 0, 255), 2);
     
     return [ImageUtils UIImageFromCVMat:imageMat];
 }
