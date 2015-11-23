@@ -44,8 +44,10 @@ extern "C" {
     enum PixelFormat dst_pixfmt = PIX_FMT_RGB24;
     
     convert_ctx = sws_getContext(w, h, src_pixfmt, w, h, dst_pixfmt, SWS_FAST_BILINEAR, NULL, NULL, NULL);
-    sws_scale(convert_ctx, frame.data, frame.linesize, 0, h, dst.data, dst.linesize);
+	sws_scale(convert_ctx, frame.data, frame.linesize, 0, h, dst.data, dst.linesize);
     sws_freeContext(convert_ctx);
+	
+	cv::resize(m, m, cv::Size(320, 180));
     return m;
 }
 
