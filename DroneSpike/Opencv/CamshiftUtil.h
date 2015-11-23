@@ -13,5 +13,6 @@
 
 - (instancetype)initWithSelection:(CGRect)selection;
 - (UIImage *)meanShift:(UIImage *)uiFrame;
+- (UIImage *)camshift:(UIImage *)uiFrame;
 
 @end

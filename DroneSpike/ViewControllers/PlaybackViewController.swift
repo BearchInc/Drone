@@ -92,7 +92,7 @@ extension PlaybackViewController : VideoFrameProcessorDelegate {
 //		
 		if let camshiftUtil = camshiftUtil {
 //			NSLog(">>>>>>>>>>>>>>> Will process image")
-			uiframe = camshiftUtil.meanShift(uiframe)
+			uiframe = camshiftUtil.camshift(uiframe)
 		}
 	
 		NSLog("Thread - %@", NSThread.currentThread().name!)
