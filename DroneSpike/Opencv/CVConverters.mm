@@ -27,43 +27,44 @@ extern "C" {
 }
 
 + (UIImage *) markElements: (UIImage*) image {
-    cv::Mat matrix = [ImageUtils cvMatFromUIImage:image];
+    cv::Mat originalImage = [ImageUtils cvMatFromUIImage:image];
+    cv::Mat buildingImage = originalImage.clone();
+    cv::cvtColor(originalImage, buildingImage, CV_BGR2GRAY);
+    cv::Mat ceilingImage = buildingImage.clone();
+    
     cv::Vec3b blackColor = {0, 0, 0};
-    cv::cvtColor(matrix, matrix, CV_BGR2GRAY);
-    for(int y=0;y<matrix.rows;y++)
+    for(int y=0;y<buildingImage.rows;y++)
     {
-        for(int x=0;x<matrix.cols;x++)
+        for(int x=0;x<buildingImage.cols;x++)
         {
-            cv::Vec3b color = matrix.at<cv::Vec3b>(cv::Point(x,y));
+            cv::Vec3b color = buildingImage.at<cv::Vec3b>(cv::Point(x,y));
             if([CVConverters isCeilingColor:color])
             {
-//                matrix.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
+                ceilingImage.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
             } else if([CVConverters isBuildingColor:color]) {
-                matrix.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
+                buildingImage.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
             }
-            
         }
     }
-    
 //    return [ImageUtils UIImageFromCVMat:matrix];
-
-
-    cv::threshold(matrix, matrix, 1, 255, CV_THRESH_BINARY);
-    std::vector<std::vector<cv::Point> > contours;
-    cv::Mat contourOutput = matrix.clone();
-    cv::findContours( contourOutput, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE );
-
-    //Draw the contours
-    cv::Mat contourImage(matrix.size(), CV_8UC3, cv::Scalar(0,0,0));
-    cv::Scalar colors[3];
-    colors[0] = cv::Scalar(255, 0, 0);
-    colors[1] = cv::Scalar(0, 255, 0);
-    colors[2] = cv::Scalar(0, 0, 255);
-    for (size_t idx = 0; idx < contours.size(); idx++) {
-        cv::drawContours(contourImage, contours, idx, colors[idx % 3]);
+    cv::threshold(buildingImage, buildingImage, 1, 255, CV_THRESH_BINARY);
+    cv::threshold(ceilingImage, ceilingImage, 1, 255, CV_THRESH_BINARY);
+    std::vector<std::vector<cv::Point> > buildingContours;
+    std::vector<std::vector<cv::Point> > ceilingContours;
+    
+    cv::findContours(buildingImage, buildingContours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE );
+    cv::findContours(ceilingImage, ceilingContours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE );
+    
+    cv::Scalar ceilingColor = cv::Scalar(255, 0, 0);
+    cv::Scalar buildingColor = cv::Scalar(0, 255, 0);
+    for (size_t idx = 0; idx < buildingContours.size(); idx++) {
+        cv::drawContours(originalImage, buildingContours, idx, buildingColor);
+    }
+    for (size_t idx = 0; idx < ceilingContours.size(); idx++) {
+        cv::drawContours(originalImage, ceilingContours, idx, ceilingColor);
     }
 
-    return [ImageUtils UIImageFromCVMat:contourImage];
+    return [ImageUtils UIImageFromCVMat:originalImage];
 }
 
 + (BOOL) isCeilingColor: (cv::Vec3b)pixel {
