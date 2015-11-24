@@ -28,7 +28,8 @@ extern "C" {
 
 + (UIImage *) markElements: (UIImage*) image {
     cv::Mat matrix = [ImageUtils cvMatFromUIImage:image];
-    int blackColor [3] = {0, 0, 0};
+    cv::Vec3b blackColor = {0, 0, 0};
+    cv::cvtColor(matrix, matrix, CV_BGR2GRAY);
     for(int y=0;y<matrix.rows;y++)
     {
         for(int x=0;x<matrix.cols;x++)
@@ -36,15 +37,9 @@ extern "C" {
             cv::Vec3b color = matrix.at<cv::Vec3b>(cv::Point(x,y));
             if([CVConverters isCeilingColor:color])
             {
-                color[0] = 0;
-                color[1] = 0;
-                color[2] = 0;
-                matrix.at<cv::Vec3b>(cv::Point(x,y)) = color;
-            } else if(![CVConverters equals:color color:blackColor]) {
-                color[0] = 255;
-                color[1] = 255;
-                color[2] = 255;
-                //matrix.at<cv::Vec3b>(cv::Point(x,y)) = color;
+//                matrix.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
+            } else if([CVConverters isBuildingColor:color]) {
+                matrix.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
             }
             
         }
@@ -52,8 +47,8 @@ extern "C" {
     
 //    return [ImageUtils UIImageFromCVMat:matrix];
 
-    cv::cvtColor(matrix, matrix, CV_BGR2GRAY);
-    cv::threshold(matrix, matrix, 0, 255, CV_THRESH_BINARY);
+
+    cv::threshold(matrix, matrix, 1, 255, CV_THRESH_BINARY);
     std::vector<std::vector<cv::Point> > contours;
     cv::Mat contourOutput = matrix.clone();
     cv::findContours( contourOutput, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE );
@@ -72,23 +67,15 @@ extern "C" {
 }
 
 + (BOOL) isCeilingColor: (cv::Vec3b)pixel {
-    int ceilingColors[6][3] = {
-        {236, 255, 249},
-        {214, 207, 249},
-        {222, 255, 234},
-        {230, 222, 255},
-        {234, 230, 222},
-        {255, 234, 230}
-    };
-    
-    for(int i=0; i<10; i++) {
-        if ([CVConverters equals:pixel color:ceilingColors[i]]) {
-            return true;
-        }
-    }
-    return false;
+    int ceilingColor[3] = {228, 228, 228};
+    return [CVConverters equals:pixel color:ceilingColor];
 }
 
++ (BOOL) isBuildingColor: (cv::Vec3b)pixel {
+    return (pixel[0] >= 198 && pixel[0] <= 233) &&
+            (pixel[1] >= 198 && pixel[1] <= 233) &&
+            (pixel[2] >= 198 && pixel[2] <= 233);
+}
 
 + (UIImage *) colorIn: (UIImage*)image atX:(int)x andY:(int)y {
     cv::Mat matrix = [ImageUtils cvMatFromUIImage:image];
