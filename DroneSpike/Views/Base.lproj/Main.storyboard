@@ -604,7 +604,7 @@
                                     <action selector="saveImage" destination="hJL-OB-R9Z" eventType="touchUpInside" id="cbX-Cj-LgG"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F7x-CE-Bj5">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F7x-CE-Bj5">
                                 <rect key="frame" x="378" y="208" width="216" height="384"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="384" id="8d9-SD-SBo"/>

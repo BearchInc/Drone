@@ -11,11 +11,11 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let location = CLLocationCoordinate2D(latitude: 40.702866, longitude: -74.011391)
+        let location = CLLocationCoordinate2D(latitude: 30.264781, longitude: -97.744461)
         mapView.showsBuildings = true
         mapView.showsPointsOfInterest = false
         mapView.mapType = MKMapType.Standard
-        let camera = MKMapCamera(lookingAtCenterCoordinate: location, fromDistance: 600.0, pitch: 45.0, heading: 90.0)
+        let camera = MKMapCamera(lookingAtCenterCoordinate: location, fromDistance: 900.0, pitch: 45.0, heading: 0.0)
         mapView.camera = camera
     }
     
@@ -40,6 +40,7 @@ class MapViewController: UIViewController {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        return
         let touch = event?.allTouches()?.first! as UITouch!
         let point = touch.locationInView(self.view)
         showColorInPoint(point)

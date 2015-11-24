@@ -56,30 +56,33 @@ extern "C" {
     cv::findContours(ceilingImage, ceilingContours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE );
     
     cv::Scalar ceilingColor = cv::Scalar(255, 0, 0);
-    cv::Scalar buildingColor = cv::Scalar(0, 255, 0);
+    cv::Scalar buildingColor = cv::Scalar(0, 0, 255);
     for (size_t idx = 0; idx < buildingContours.size(); idx++) {
         cv::drawContours(originalImage, buildingContours, idx, buildingColor);
     }
     for (size_t idx = 0; idx < ceilingContours.size(); idx++) {
         cv::drawContours(originalImage, ceilingContours, idx, ceilingColor);
     }
-
+    
     return [ImageUtils UIImageFromCVMat:originalImage];
 }
 
+
 + (BOOL) isCeilingColor: (cv::Vec3b)pixel {
-    int ceilingColor[3] = {228, 228, 228};
+    cv::Vec3b ceilingColor = {228, 228, 228};
     return [CVConverters equals:pixel color:ceilingColor];
 }
 
 + (BOOL) isBuildingColor: (cv::Vec3b)pixel {
-    return (pixel[0] >= 198 && pixel[0] <= 233) &&
-            (pixel[1] >= 198 && pixel[1] <= 233) &&
-            (pixel[2] >= 198 && pixel[2] <= 233);
+    return (pixel[0] >= 198 && pixel[0] <= 230) &&
+            (pixel[1] >= 198 && pixel[1] <= 230) &&
+            (pixel[2] >= 198 && pixel[2] <= 230);
 }
 
 + (UIImage *) colorIn: (UIImage*)image atX:(int)x andY:(int)y {
     cv::Mat matrix = [ImageUtils cvMatFromUIImage:image];
+    cv::cvtColor(matrix, matrix, CV_BGR2GRAY);
+
     cv::Vec3b color = matrix.at<cv::Vec3b>(cv::Point(x,y));
     NSLog(@"X%d Y%d: R%d G%d B%d A%d", x, y, (int)color[0], (int)color[1], (int)color[2], (int)color[3]);
     color[0] = 0; color[1] = 255; color[2] = 255;
@@ -92,11 +95,8 @@ extern "C" {
     return [ImageUtils UIImageFromCVMat:matrix];
 }
 
-+ (BOOL) equals:(cv::Vec3b)pixel color:(int*)color {
-    int r = (int)pixel[0];
-    int g = (int)pixel[1];
-    int b = (int)pixel[2];
-    return r == color[0] && g == color[1] && b == color[2];
++ (BOOL) equals:(cv::Vec3b)pixel color:(cv::Vec3b)color {
+    return pixel[0] == color[0] && pixel[1] == color[1] && pixel[2] == color[2];
 }
 
 
