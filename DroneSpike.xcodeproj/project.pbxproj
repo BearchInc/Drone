@@ -13,6 +13,7 @@
 		361C09551BFCD79A001AE0D5 /* MissionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361C09531BFCD79A001AE0D5 /* MissionControl.swift */; };
 		361C09561BFCD79A001AE0D5 /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361C09541BFCD79A001AE0D5 /* Waypoint.swift */; };
 		361C09591BFCD7A6001AE0D5 /* CVConverters.mm in Sources */ = {isa = PBXBuildFile; fileRef = 361C09581BFCD7A6001AE0D5 /* CVConverters.mm */; };
+		3694516E1C04D6FE00F75273 /* MotionDetectionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3694516D1C04D6FE00F75273 /* MotionDetectionViewController.mm */; };
 		36ADF7FE1BF13E1E0021ED2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */; };
 		36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */; };
 		36ADF8031BF13E1E0021ED2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36ADF8011BF13E1E0021ED2F /* Main.storyboard */; };
@@ -79,6 +80,8 @@
 		361C09571BFCD7A6001AE0D5 /* CVConverters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CVConverters.h; path = Opencv/CVConverters.h; sourceTree = "<group>"; };
 		361C09581BFCD7A6001AE0D5 /* CVConverters.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CVConverters.mm; path = Opencv/CVConverters.mm; sourceTree = "<group>"; };
 		366B68B01BFA3DB3003FE32F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		3694516D1C04D6FE00F75273 /* MotionDetectionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MotionDetectionViewController.mm; sourceTree = "<group>"; };
+		3694516F1C04D74400F75273 /* MotionDetectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotionDetectionViewController.h; sourceTree = "<group>"; };
 		36ADF7FA1BF13E1E0021ED2F /* DroneSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ADF7FD1BF13E1E0021ED2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36ADF7FF1BF13E1E0021ED2F /* WaypointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
@@ -674,6 +677,8 @@
 				82340B581BFA42EC0005565F /* VideoMotionViewController.h */,
 				82340B591BFA42EC0005565F /* VideoMotionViewController.mm */,
 				55E2BBB31BFF35AF00EFA714 /* MapViewController.swift */,
+				3694516D1C04D6FE00F75273 /* MotionDetectionViewController.mm */,
+				3694516F1C04D74400F75273 /* MotionDetectionViewController.h */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -900,6 +905,7 @@
 				82340B5A1BFA42EC0005565F /* VideoMotionViewController.mm in Sources */,
 				36BF2B621BF6130700154F78 /* DJILinkQueues.m in Sources */,
 				36ADF8001BF13E1E0021ED2F /* WaypointViewController.swift in Sources */,
+				3694516E1C04D6FE00F75273 /* MotionDetectionViewController.mm in Sources */,
 				96524F371BF4EA9900C1A364 /* PlaybackViewController.swift in Sources */,
 				361C09591BFCD7A6001AE0D5 /* CVConverters.mm in Sources */,
 				361C09551BFCD79A001AE0D5 /* MissionControl.swift in Sources */,

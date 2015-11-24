@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MKI-2g-2hQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MKI-2g-2hQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -110,24 +110,38 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlk-kz-jrR" userLabel="Video Motion Detection">
-                                <rect key="frame" x="242" y="156" width="118" height="30"/>
+                                <rect key="frame" x="270" y="156" width="62" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Motion Detection"/>
+                                <state key="normal" title="Camshift"/>
                                 <connections>
                                     <segue destination="pOg-Lo-jpF" kind="presentation" modalPresentationStyle="currentContext" id="EKP-CA-IxD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NM7-4g-tsy">
                                 <rect key="frame" x="278" y="489" width="46" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Map"/>
                                 <connections>
                                     <segue destination="hJL-OB-R9Z" kind="show" id="qTn-KM-BSQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcT-6A-5Rw">
+                                <rect key="frame" x="227" y="550" width="147" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="147" id="TaJ-eB-sOL"/>
+                                    <constraint firstAttribute="height" constant="30" id="wvE-l2-sje"/>
+                                </constraints>
+                                <state key="normal" title="Motion Detection"/>
+                                <connections>
+                                    <segue destination="0c2-M2-Feh" kind="show" id="2gh-xU-N8Z"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="WcT-6A-5Rw" secondAttribute="trailing" constant="206" id="0Wg-Go-zY9"/>
                             <constraint firstItem="2YT-W5-Q86" firstAttribute="top" secondItem="xER-uH-eBV" secondAttribute="bottom" constant="50" id="0kU-6M-Qkk"/>
                             <constraint firstItem="xER-uH-eBV" firstAttribute="top" secondItem="a0R-dH-iWv" secondAttribute="bottom" constant="50" id="6MV-Oz-EcJ"/>
                             <constraint firstItem="NM7-4g-tsy" firstAttribute="top" secondItem="2YT-W5-Q86" secondAttribute="bottom" constant="22" id="8H0-jT-yah"/>
@@ -138,13 +152,16 @@
                             <constraint firstItem="a0R-dH-iWv" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="TvW-bP-GPm"/>
                             <constraint firstItem="2YT-W5-Q86" firstAttribute="top" secondItem="2T6-xv-Zl3" secondAttribute="bottom" constant="39" id="U6w-Si-PpD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2T6-xv-Zl3" secondAttribute="trailing" constant="234" id="UBh-xc-wx1"/>
-                            <constraint firstItem="NM7-4g-tsy" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="YuF-KE-Xsz"/>
+                            <constraint firstItem="WcT-6A-5Rw" firstAttribute="leading" secondItem="EU4-Ws-WcS" secondAttribute="leadingMargin" constant="207" id="UHU-Ma-p4T"/>
+                            <constraint firstItem="NM7-4g-tsy" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" constant="1" id="YuF-KE-Xsz"/>
                             <constraint firstItem="vlk-kz-jrR" firstAttribute="centerX" secondItem="a0R-dH-iWv" secondAttribute="centerX" id="aLU-dH-0jF"/>
                             <constraint firstItem="2T6-xv-Zl3" firstAttribute="leading" secondItem="xER-uH-eBV" secondAttribute="trailing" constant="-77" id="jZD-1t-iR6"/>
                             <constraint firstItem="a0R-dH-iWv" firstAttribute="top" secondItem="vlk-kz-jrR" secondAttribute="bottom" constant="28" id="jun-5w-cct"/>
                             <constraint firstItem="2T6-xv-Zl3" firstAttribute="centerX" secondItem="xER-uH-eBV" secondAttribute="centerX" id="n7x-In-w1t"/>
                             <constraint firstItem="kpd-ei-CWi" firstAttribute="top" secondItem="Dai-Sx-JSY" secondAttribute="bottom" id="rsk-4M-EaN"/>
                             <constraint firstItem="2T6-xv-Zl3" firstAttribute="leading" secondItem="EU4-Ws-WcS" secondAttribute="leadingMargin" constant="235" id="sfJ-Sg-3h9"/>
+                            <constraint firstItem="WcT-6A-5Rw" firstAttribute="top" secondItem="2YT-W5-Q86" secondAttribute="bottom" constant="83" id="y44-X9-REB"/>
+                            <constraint firstItem="WcT-6A-5Rw" firstAttribute="centerX" secondItem="EU4-Ws-WcS" secondAttribute="centerX" id="y9V-Ys-ir1"/>
                             <constraint firstItem="2T6-xv-Zl3" firstAttribute="top" secondItem="xER-uH-eBV" secondAttribute="bottom" constant="44" id="zD8-hg-MQv"/>
                         </constraints>
                         <variation key="default">
@@ -153,6 +170,8 @@
                                 <exclude reference="jZD-1t-iR6"/>
                                 <exclude reference="sfJ-Sg-3h9"/>
                                 <exclude reference="0kU-6M-Qkk"/>
+                                <exclude reference="0Wg-Go-zY9"/>
+                                <exclude reference="UHU-Ma-p4T"/>
                             </mask>
                         </variation>
                     </view>
@@ -165,10 +184,61 @@
             </objects>
             <point key="canvasLocation" x="262" y="798"/>
         </scene>
-        <!--Detect Video View Controller-->
+        <!--Motion Detection View Controller-->
+        <scene sceneID="Kek-W9-FJ5">
+            <objects>
+                <viewController id="0c2-M2-Feh" customClass="MotionDetectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uLd-H3-C3P"/>
+                        <viewControllerLayoutGuide type="bottom" id="1U4-qP-5t7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cX0-ZX-FUL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MQQ-dT-5Lr">
+                                <rect key="frame" x="20" y="64" width="560" height="472"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.92156822643979053" green="0.19246777609821705" blue="0.17409476621621339" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="472" id="Knr-L2-XiL"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3k9-qE-pKB">
+                                <rect key="frame" x="236" y="550" width="128" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dJg-Ru-aUW"/>
+                                    <constraint firstAttribute="width" constant="128" id="mWy-by-eeS"/>
+                                </constraints>
+                                <state key="normal" title="Start Detection"/>
+                                <connections>
+                                    <action selector="startDetection:" destination="0c2-M2-Feh" eventType="touchUpInside" id="vgh-3w-a2I"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3k9-qE-pKB" firstAttribute="centerX" secondItem="cX0-ZX-FUL" secondAttribute="centerX" id="NTq-Dk-2Yl"/>
+                            <constraint firstItem="1U4-qP-5t7" firstAttribute="top" secondItem="3k9-qE-pKB" secondAttribute="bottom" constant="20" id="SWv-xU-c36"/>
+                            <constraint firstItem="MQQ-dT-5Lr" firstAttribute="leading" secondItem="cX0-ZX-FUL" secondAttribute="leadingMargin" id="XIw-cK-pno"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MQQ-dT-5Lr" secondAttribute="trailing" id="hZ3-3o-gAv"/>
+                            <constraint firstItem="MQQ-dT-5Lr" firstAttribute="top" secondItem="uLd-H3-C3P" secondAttribute="bottom" id="ten-l6-oQo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cameraView" destination="MQQ-dT-5Lr" id="zoa-9s-G1m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cSD-Yj-1Uc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="996" y="1319"/>
+        </scene>
+        <!--I-->
         <scene sceneID="nld-gU-osh">
             <objects>
-                <viewController id="d7p-ij-gPD" customClass="DetectVideoViewController" sceneMemberID="viewController">
+                <viewController id="d7p-ij-gPD" customClass="I" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7P7-hQ-AXe"/>
                         <viewControllerLayoutGuide type="bottom" id="sFz-4u-SEt"/>
@@ -207,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZEO-al-ZPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="690" y="1592"/>
+            <point key="canvasLocation" x="528" y="1976"/>
         </scene>
         <!--Joystick View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -446,7 +516,7 @@
                                     <constraint firstAttribute="width" constant="100" id="eZ9-go-vTh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1N-Y0-vb8">
@@ -580,7 +650,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1373" y="1132"/>
+            <point key="canvasLocation" x="1819" y="732"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="8fl-Vo-b9r">
@@ -596,9 +666,11 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ed5-v7-eag">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PI-7S-8ZH">
                                 <rect key="frame" x="20" y="317" width="560" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Capture"/>
                                 <connections>
                                     <action selector="saveImage" destination="hJL-OB-R9Z" eventType="touchUpInside" id="cbX-Cj-LgG"/>
@@ -606,6 +678,7 @@
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F7x-CE-Bj5">
                                 <rect key="frame" x="378" y="208" width="216" height="384"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="384" id="8d9-SD-SBo"/>
                                     <constraint firstAttribute="width" constant="216" id="yFI-5e-LqO"/>
@@ -617,6 +690,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5PI-7S-8ZH" firstAttribute="centerY" secondItem="ed5-v7-eag" secondAttribute="centerY" id="7uH-Bb-Vmo"/>
