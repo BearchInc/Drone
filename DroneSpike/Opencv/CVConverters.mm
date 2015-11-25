@@ -30,9 +30,11 @@ extern "C" {
     cv::Mat originalImage = [ImageUtils cvMatFromUIImage:image];
     cv::Mat buildingImage = originalImage.clone();
     cv::cvtColor(originalImage, buildingImage, CV_BGR2GRAY);
-    cv::Mat ceilingImage = buildingImage.clone();
+    cv::Mat lineImage = buildingImage.clone();
+    lineImage = cv::Scalar(255,255,255);
     
     cv::Vec3b blackColor = {0, 0, 0};
+    cv::Vec3b whiteColor = {255, 255, 255};
     for(int y=0;y<buildingImage.rows;y++)
     {
         for(int x=0;x<buildingImage.cols;x++)
@@ -40,33 +42,53 @@ extern "C" {
             cv::Vec3b color = buildingImage.at<cv::Vec3b>(cv::Point(x,y));
             if([CVConverters isCeilingColor:color])
             {
-                ceilingImage.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
+
             } else if([CVConverters isBuildingColor:color]) {
+                buildingImage.at<cv::Vec3b>(cv::Point(x,y)) = whiteColor;
+            }
+        }
+    }
+
+    cv::Scalar black = cv::Scalar(0,0,0);
+    int length = 1000;
+    
+    
+    
+    for(int i=-1; i<=1; i++) {
+        int angle = -90 + -i*3;
+        cv::Point p1 = cv::Point(lineImage.cols/2 + i*lineImage.cols/4, lineImage.rows);
+        cv::Point p2;
+        p2.x =  (int)round(p1.x + length * cos(angle * CV_PI / 180.0));
+        p2.y =  (int)round(p1.y + length * sin(angle * CV_PI / 180.0));
+        cv::line(lineImage, p1, p2, black);
+    }
+    
+    for(int y=0;y<buildingImage.rows;y++)
+    {
+        for(int x=0;x<buildingImage.cols;x++)
+        {
+            cv::Vec3b a = buildingImage.at<cv::Vec3b>(cv::Point(x,y));
+            cv::Vec3b b = lineImage.at<cv::Vec3b>(cv::Point(x,y));
+            if([CVConverters equals:a color:whiteColor] && ![CVConverters equals:b color:whiteColor]) {
                 buildingImage.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
             }
         }
     }
-//    return [ImageUtils UIImageFromCVMat:matrix];
-    cv::threshold(buildingImage, buildingImage, 1, 255, CV_THRESH_BINARY);
-    cv::threshold(ceilingImage, ceilingImage, 1, 255, CV_THRESH_BINARY);
-    std::vector<std::vector<cv::Point> > buildingContours;
-    std::vector<std::vector<cv::Point> > ceilingContours;
     
-    cv::findContours(buildingImage, buildingContours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE );
-    cv::findContours(ceilingImage, ceilingContours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE );
+//    
+//    for(int i=-1; i<=1; i++) {
+//        int x=lineImage.cols/2 + i*lineImage.cols/4;
+//        int angle = -90 + -i*3;
+//        double t = tan(angle * CV_PI / 180.0);
+//        for(int y=buildingImage.rows;y>0;y--)
+//        {
+//            buildingImage.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
+//            t--;
+//        }
+//    }
     
-    cv::Scalar ceilingColor = cv::Scalar(255, 0, 0);
-    cv::Scalar buildingColor = cv::Scalar(0, 0, 255);
-    for (size_t idx = 0; idx < buildingContours.size(); idx++) {
-        cv::drawContours(originalImage, buildingContours, idx, buildingColor);
-    }
-    for (size_t idx = 0; idx < ceilingContours.size(); idx++) {
-        cv::drawContours(originalImage, ceilingContours, idx, ceilingColor);
-    }
-    
-    return [ImageUtils UIImageFromCVMat:originalImage];
+    return [ImageUtils UIImageFromCVMat:buildingImage];
 }
-
 
 + (BOOL) isCeilingColor: (cv::Vec3b)pixel {
     cv::Vec3b ceilingColor = {228, 228, 228};
