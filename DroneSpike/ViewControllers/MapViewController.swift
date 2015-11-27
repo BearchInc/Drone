@@ -12,16 +12,18 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let location = CLLocationCoordinate2D(latitude: 30.264781, longitude: -97.744461)
+//        let location = CLLocationCoordinate2D(latitude:37.7899, longitude:-122.3969)
         mapView.showsBuildings = true
         mapView.showsPointsOfInterest = false
         mapView.mapType = MKMapType.Standard
-        let camera = MKMapCamera(lookingAtCenterCoordinate: location, fromDistance: 900.0, pitch: 45.0, heading: 0.0)
+        let camera = MKMapCamera(lookingAtCenterCoordinate: location, fromDistance: 600.0, pitch: 45.0, heading: 0.0)
         mapView.camera = camera
     }
     
     @IBAction func saveImage() {
         let screenshot = captureScreen()
-        imageView.image = CVConverters.markElements(screenshot)
+        
+        imageView.image = CVConverters.measureHeights(screenshot)
 //        UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
 
     }
@@ -36,6 +38,7 @@ class MapViewController: UIViewController {
         imageView.hidden = false
         button.hidden = false
         return screenshot
+//        return UIImage(named:"grid")!
 
     }
     

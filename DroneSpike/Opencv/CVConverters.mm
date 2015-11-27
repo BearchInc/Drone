@@ -8,15 +8,21 @@ extern "C" {
 #import "libswscale/swscale.h"
 }
 
+using namespace cv;
+using namespace std;
+
 @implementation CVConverters : NSObject
 
+Vec3b blackColor = {0, 0, 0};
+Vec3b whiteColor = {255, 255, 255};
+Scalar white = Scalar(255,255,255);
 
 + (UIImage *) imageWithGrayscale: (AVFrame) frame {
     
-    cv::Mat image = [CVConverters cvMatFromAVFrame: frame];
-    cv::Mat image_copy;
+    Mat image = [CVConverters cvMatFromAVFrame: frame];
+    Mat image_copy;
     
-    //    cv::cv
+    //    cv
     cvtColor(image, image_copy, CV_BGRA2BGR);
     
     // invert image
@@ -26,110 +32,166 @@ extern "C" {
     return [CVConverters imageFromCVMat: image];
 }
 
-+ (UIImage *) markElements: (UIImage*) image {
-    cv::Mat originalImage = [ImageUtils cvMatFromUIImage:image];
-    cv::Mat buildingImage = originalImage.clone();
-    cv::cvtColor(originalImage, buildingImage, CV_BGR2GRAY);
-    cv::Mat lineImage = buildingImage.clone();
-    lineImage = cv::Scalar(255,255,255);
++ (UIImage *) measureHeights: (UIImage*) image {
+    Mat originalImage = [ImageUtils cvMatFromUIImage:image];
+    Mat matrix = originalImage.clone();
+    cvtColor(originalImage, matrix, CV_BGR2GRAY);
     
-    cv::Vec3b blackColor = {0, 0, 0};
-    cv::Vec3b whiteColor = {255, 255, 255};
-    for(int y=0;y<buildingImage.rows;y++)
-    {
-        for(int x=0;x<buildingImage.cols;x++)
-        {
-            cv::Vec3b color = buildingImage.at<cv::Vec3b>(cv::Point(x,y));
-            if([CVConverters isCeilingColor:color])
-            {
+    for(int y=0;y<matrix.rows;y++) {
+        for(int x=0;x<matrix.cols;x++) {
+            
+            Vec3b color = matrix.at<Vec3b>(cv::Point(x,y));
+            if([CVConverters isCeilingColor:color]) {
 
             } else if([CVConverters isBuildingColor:color]) {
-                buildingImage.at<cv::Vec3b>(cv::Point(x,y)) = whiteColor;
+                matrix.at<Vec3b>(cv::Point(x,y)) = Vec3b(0, 0, 0);
             }
         }
     }
 
-    cv::Scalar black = cv::Scalar(0,0,0);
-    int length = 1000;
+    int topbarSize = 60;
+    int delta = 45;
+    std::vector<Point2f> corners;
+    corners.push_back(Point2f(94, 46));
+    corners.push_back(Point2f(321, 46));
+    corners.push_back(Point2f(403, 733));
+    corners.push_back(Point2f(16, 733));
     
-    
-    
-    for(int i=-1; i<=1; i++) {
-        int angle = -90 + -i*3;
-        cv::Point p1 = cv::Point(lineImage.cols/2 + i*lineImage.cols/4, lineImage.rows);
-        cv::Point p2;
-        p2.x =  (int)round(p1.x + length * cos(angle * CV_PI / 180.0));
-        p2.y =  (int)round(p1.y + length * sin(angle * CV_PI / 180.0));
-        cv::line(lineImage, p1, p2, black);
-    }
-    
-    for(int y=0;y<buildingImage.rows;y++)
-    {
-        for(int x=0;x<buildingImage.cols;x++)
-        {
-            cv::Vec3b a = buildingImage.at<cv::Vec3b>(cv::Point(x,y));
-            cv::Vec3b b = lineImage.at<cv::Vec3b>(cv::Point(x,y));
-            if([CVConverters equals:a color:whiteColor] && ![CVConverters equals:b color:whiteColor]) {
-                buildingImage.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
+    Mat quad = matrix.clone();
+    std::vector<Point2f> quad_pts;
+
+//    quad_pts.push_back(Point2f(0, 0));
+//    quad_pts.push_back(Point2f(quad.cols, 0));
+//    quad_pts.push_back(Point2f(quad.cols, quad.rows));
+//    quad_pts.push_back(Point2f(0, quad.rows));
+//    
+//    Mat transmtx = getPerspectiveTransform(corners, quad_pts);
+//    warpPerspective(matrix, quad, transmtx, quad.size());
+
+    int x = quad.cols/2;
+    BOOL dashing = false;
+    int length = 0;
+    int x1 = 0, x2 = 0;
+    int y1 = 0, y2 = 0;
+    for(int y=0;y<quad.rows;y++) {
+        Vec3b color = quad.at<Vec3b>(cv::Point(x,y));
+        if([CVConverters equals:color color:blackColor]) {
+            if(dashing == false) {
+                x1 = x;
+                y1 = y;
+                dashing = true;
+            }
+            length++;
+            quad.at<Vec3b>(cv::Point(x,y)) = Vec3b(255, 255, 255);
+        } else {
+            if(dashing) {
+                float d = (y+y1)/2.0;
+                float size = (float)length*0.8;
+//                float meters = size + size*0.04*fabs(size*((quad.rows/2.0)-d)/(float)quad.rows);
+                dashing = false;
+        
+                cv::line(originalImage, cv::Point(x1, y1), cv::Point(x,y), Scalar(255,0,0));
+                putText(originalImage, std::to_string(size), cv::Point(x+10,y-length/2),
+                        FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(255,0,0));
+                length = 0;
             }
         }
     }
-    
-//    
-//    for(int i=-1; i<=1; i++) {
-//        int x=lineImage.cols/2 + i*lineImage.cols/4;
-//        int angle = -90 + -i*3;
-//        double t = tan(angle * CV_PI / 180.0);
-//        for(int y=buildingImage.rows;y>0;y--)
-//        {
-//            buildingImage.at<cv::Vec3b>(cv::Point(x,y)) = blackColor;
-//            t--;
-//        }
-//    }
-    
-    return [ImageUtils UIImageFromCVMat:buildingImage];
+
+
+    return [ImageUtils UIImageFromCVMat:originalImage];
 }
 
-+ (BOOL) isCeilingColor: (cv::Vec3b)pixel {
-    cv::Vec3b ceilingColor = {228, 228, 228};
+void sortCorners(std::vector<Point2f>& corners, Point2f center)
+{
+    std::vector<Point2f> top, bot;
+    
+    for (int i = 0; i < corners.size(); i++)
+    {
+        if (corners[i].y < center.y)
+            top.push_back(corners[i]);
+        else
+            bot.push_back(corners[i]);
+    }
+    
+    Point2f tl = top[0].x > top[1].x ? top[1] : top[0];
+    Point2f tr = top[0].x > top[1].x ? top[0] : top[1];
+    Point2f bl = bot[0].x > bot[1].x ? bot[1] : bot[0];
+    Point2f br = bot[0].x > bot[1].x ? bot[0] : bot[1];
+    
+    corners.clear();
+    corners.push_back(tl);
+    corners.push_back(tr);
+    corners.push_back(br);
+    corners.push_back(bl);
+}
+
+
+
++ (int) findEndOfLineForPointX:(int)x Y:(int)y image:(Mat)image {
+//    int originalX = x;
+//    int originalY = y;
+    Vec3b blackColor = Vec3b(0,0,0);
+    while(y < image.rows-1) {
+        Vec3b a1 = image.at<Vec3b>(cv::Point(x-1,y+1));
+        Vec3b a2 = image.at<Vec3b>(cv::Point(x,y+1));
+        Vec3b a3 = image.at<Vec3b>(cv::Point(x+1,y+1));
+        if([CVConverters equals:a1 color:blackColor]) {
+            x--;
+            y++;
+        } else if([CVConverters equals:a2 color:blackColor]) {
+            y++;
+        } else if([CVConverters equals:a3 color:blackColor]) {
+            x++;
+            y++;
+        } else {
+            NSLog(@"%d", y);
+            return 0;
+        }
+    }
+    return 0;
+}
+
++ (BOOL) isCeilingColor: (Vec3b)pixel {
+    Vec3b ceilingColor = {228, 228, 228};
     return [CVConverters equals:pixel color:ceilingColor];
 }
 
-+ (BOOL) isBuildingColor: (cv::Vec3b)pixel {
++ (BOOL) isBuildingColor: (Vec3b)pixel {
     return (pixel[0] >= 198 && pixel[0] <= 230) &&
             (pixel[1] >= 198 && pixel[1] <= 230) &&
             (pixel[2] >= 198 && pixel[2] <= 230);
 }
 
 + (UIImage *) colorIn: (UIImage*)image atX:(int)x andY:(int)y {
-    cv::Mat matrix = [ImageUtils cvMatFromUIImage:image];
-    cv::cvtColor(matrix, matrix, CV_BGR2GRAY);
+    Mat matrix = [ImageUtils cvMatFromUIImage:image];
+    cvtColor(matrix, matrix, CV_BGR2GRAY);
 
-    cv::Vec3b color = matrix.at<cv::Vec3b>(cv::Point(x,y));
+    Vec3b color = matrix.at<Vec3b>(cv::Point(x,y));
     NSLog(@"X%d Y%d: R%d G%d B%d A%d", x, y, (int)color[0], (int)color[1], (int)color[2], (int)color[3]);
     color[0] = 0; color[1] = 255; color[2] = 255;
     // mark points around clicked are
     for(int i=-5; i<5; i++) {
         for(int j=-5; j<5; j++) {
-            matrix.at<cv::Vec3b>(cv::Point(x+i,y+j)) = color;
+            matrix.at<Vec3b>(cv::Point(x+i,y+j)) = color;
         }
     }
     return [ImageUtils UIImageFromCVMat:matrix];
 }
 
-+ (BOOL) equals:(cv::Vec3b)pixel color:(cv::Vec3b)color {
++ (BOOL) equals:(Vec3b)pixel color:(Vec3b)color {
     return pixel[0] == color[0] && pixel[1] == color[1] && pixel[2] == color[2];
 }
 
 
-+ (cv::Mat) cvMatFromAVFrame: (AVFrame) frame {
++ (Mat) cvMatFromAVFrame: (AVFrame) frame {
     AVFrame dst;
-    cv::Mat m;
+    Mat m;
     
     memset(&dst, 0, sizeof(dst));
     
     int w = frame.width, h = frame.height;
-    m = cv::Mat(h, w, CV_8UC3);
+    m = Mat(h, w, CV_8UC3);
     dst.data[0] = (uint8_t *)m.data;
     avpicture_fill( (AVPicture *)&dst, dst.data[0], PIX_FMT_BGR24, w, h);
     
@@ -146,12 +208,12 @@ extern "C" {
 }
 
 + (UIImage *) imageFromAVFrame: (AVFrame) frame {
-    cv::Mat m = [CVConverters cvMatFromAVFrame: frame];
+    Mat m = [CVConverters cvMatFromAVFrame: frame];
     return [CVConverters imageFromCVMat: m];
 }
 
 
-+ (UIImage *) imageFromCVMat: (cv::Mat) cvMat
++ (UIImage *) imageFromCVMat: (Mat) cvMat
 {
     NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
     CGColorSpaceRef colorSpace;
@@ -164,7 +226,7 @@ extern "C" {
     
     CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
     
-    // Creating CGImage from cv::Mat
+    // Creating CGImage from Mat
     CGImageRef imageRef = CGImageCreate(cvMat.cols,                                 //width
                                         cvMat.rows,                                 //height
                                         8,                                          //bits per component
